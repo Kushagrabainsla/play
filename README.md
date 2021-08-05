@@ -32,27 +32,12 @@ git clone https://github.com/Kushagrabainsla/play.git
 cd play
 ```
 
-
-* Open two terminal windows, one for react development server, another for flask server.
-
-
 For running react development server.
 
 ```shell
-cd frontend
 npm install
 npm start
 ```
-
-
-For running local flask server.
-
-```shell
-cd backend
-python server.py
-```
-
-
 
 
 ## Style guide
