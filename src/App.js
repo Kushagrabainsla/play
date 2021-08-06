@@ -7,7 +7,7 @@ import LoginPage from './Screens/LoginPage/LoginPage';
 import ProfilePage from './Screens/ProfilePage/ProfilePage';
 
 function App() {
-    const userToken = true;
+    const userToken = null;
 
     if (userToken !== null) {
         return (
