@@ -14,10 +14,10 @@ function App() {
         return (
             <Router>
                 <Switch>
-                    <Route path='/profile'>
+                    <Route path='/play/profile'>
                         <Layout component={<ProfilePage/>}/>
                     </Route>
-                    <Route path='/'>
+                    <Route path='/play'>
                         <Layout component={<HomePage/>}/>
                     </Route>
                 </Switch>
@@ -27,10 +27,10 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path='/login'>
+                <Route path='/play/login'>
                     <Layout component={<LoginPage/>}/>
                 </Route>
-                <Route path='/'>
+                <Route path='/play'>
                     <Layout component={<WelcomePage/>}/>
                 </Route>
             </Switch>
