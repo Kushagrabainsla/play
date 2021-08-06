@@ -5,6 +5,7 @@ import Layout from './Screens/Layout/Layout';
 import HomePage from './Screens/HomePage/HomePage';
 import LoginPage from './Screens/LoginPage/LoginPage';
 import ProfilePage from './Screens/ProfilePage/ProfilePage';
+import WelcomePage from './Screens/WelcomePage/WelcomePage';
 
 function App() {
     const userToken = null;
@@ -28,6 +29,9 @@ function App() {
             <Switch>
                 <Route path='/login'>
                     <Layout component={<LoginPage/>}/>
+                </Route>
+                <Route path='/'>
+                    <Layout component={<WelcomePage/>}/>
                 </Route>
             </Switch>
         </Router>
