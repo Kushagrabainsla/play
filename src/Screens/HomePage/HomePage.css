@@ -7,6 +7,9 @@
     align-items: center;
     /* justify-content: center; */
     box-shadow: 2px 1px 10px lightgrey;
+
+    /* For hiding scroll bar */
+    /* overflow: hidden; */
 }
 
 .matchedProfilesContainer {
@@ -16,6 +19,11 @@
     align-items: center;
     overflow: scroll;
     /* background-color: red; */
+
+    /* For hiding scroll bar */
+    /* overflow: auto; */
+    /* padding-right: 20px; */
+    /* text-align: center; */
 }
 
 .matchedProfile {
@@ -23,11 +31,43 @@
     /* background-color: red; */
     width: 95%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: 2px 1px 10px lightgrey;
+}
+
+.matchedProfileTop {
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.matchedProfileTopLeft {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rebeccapurple; */
+}
+.matchedProfileTopRight {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.matchedProfileBottom {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rebeccapurple; */
+    margin-bottom: 10px;
 }
 
 .homeFloatingFooter {

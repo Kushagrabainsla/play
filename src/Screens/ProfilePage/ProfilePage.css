@@ -5,19 +5,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: space-evenly;
     box-shadow: 2px 1px 10px lightgrey;
 }
 
-.profile {
-    margin-top: 10px;
-    width: 95%;
-    height: 100vh;
+.profileTop {
+    width: 100%;
+    height: calc(40vh - 5vh);
+    display: flex;
     /* background-color: red; */
+    border-radius: 15px;
+    box-shadow: 2px 1px 10px lightgrey;
+}
+
+.profileTopLeft {
+    width: 40%;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+
+.profilePhoto {
+    width: 80%;
+    border-radius: 50%;
+    /* background-color: green; */
+}
+.profileTopRight {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    /* background-color: aqua; */
+}
+
+/* Parent container for hidding scroll bars */
+.profileBottom {
+    width: 100%;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    overflow: hidden;
+    /* background-color: brown; */
+    border-radius: 15px;
+    box-shadow: 2px 1px 10px lightgrey;
+}
+/* Child container for hidding scroll bars */
+.profileLikes {
+    width: 100%;
+    /* background-color: brown; */
+    overflow: auto;
+    padding-right: 15px;
+    text-align: center;
+}
+.likeContainer {
+    display: inline-block;
+    margin: 3px 3px 3px 0px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 50px;
+    background-color: #0079c1;
 }
 
 .profileFloatingFooter {

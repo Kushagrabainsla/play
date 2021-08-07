@@ -10,14 +10,34 @@ import WelcomePage from './Screens/WelcomePage/WelcomePage';
 function App() {
     const userToken = null;
 
+    // return (
+    //     <Router>
+    //         <Switch>
+    //             <Route path='/profile'>
+    //                 <Layout component={<ProfilePage/>}/>
+    //             </Route>
+    //             <Route path='/feed'>
+    //                 <Layout component={<HomePage/>}/>
+    //             </Route>
+
+    //             <Route path='/login'>
+    //                 <Layout component={<LoginPage/>}/>
+    //             </Route>
+    //             <Route path='/'>
+    //                 <Layout component={<WelcomePage/>}/>
+    //             </Route>
+    //         </Switch>
+    //     </Router>
+    // );
+
     if (userToken !== null) {
         return (
             <Router>
                 <Switch>
-                    <Route path='/play/profile'>
+                    <Route path='/profile'>
                         <Layout component={<ProfilePage/>}/>
                     </Route>
-                    <Route path='/play'>
+                    <Route path='/'>
                         <Layout component={<HomePage/>}/>
                     </Route>
                 </Switch>
@@ -27,10 +47,10 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path='/play/login'>
+                <Route path='/login'>
                     <Layout component={<LoginPage/>}/>
                 </Route>
-                <Route path='/play'>
+                <Route path='/'>
                     <Layout component={<WelcomePage/>}/>
                 </Route>
             </Switch>

@@ -1,46 +1,54 @@
 import React from 'react';
 import './HomePage.css';
-import { Card } from 'antd';
 
 function HomePage() {
-    const { Meta } = Card;
     const matches = [
         {
-            name: 'kushagra',
+            name: 'user',
             tags: ['ryr', 'gbg', 'fdvdfsv', 'dsfbdgb'],
-            photoUrl: '',
+            photoUrl: 'https://avatars.githubusercontent.com/u/72407476?v=4',
         },
         {
-            name: 'sachin',
+            name: 'user',
             tags: ['ryr', 'gbg', 'fdvdfsv', 'dsfbdgb'],
-            photoUrl: '',
+            photoUrl: 'https://avatars.githubusercontent.com/u/72407476?v=4',
         },
         {
-            name: 'mohit',
+            name: 'user',
             tags: ['ryr', 'gbg', 'fdvdfsv', 'dsfbdgb'],
-            photoUrl: '',
+            photoUrl: 'https://avatars.githubusercontent.com/u/72407476?v=4',
         },
         {
-            name: 'hrithik',
+            name: 'user',
             tags: ['ryr', 'gbg', 'fdvdfsv', 'dsfbdgb'],
-            photoUrl: '',
+            photoUrl: 'https://avatars.githubusercontent.com/u/72407476?v=4',
         },
     ];
     return (
         <div className='homeContainer'>
             <div className='matchedProfilesContainer'>
                 {
-                    matches.map((matchedProfile, index) => <div key={index} className='matchedProfile'>
-                        <Card
-                            hoverable
-                            cover={<img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                                width='150px'
-                            />}
-                        >
-                            <Meta title={matchedProfile.name} description="www.instagram.com" />
-                        </Card>
+                    matches.map((matchedProfile, profileIndex) => <div key={profileIndex} className='matchedProfile'>
+                        <div className='matchedProfileTop'>
+                            <div className='matchedProfileTopLeft'>
+                                <img
+                                    src={matchedProfile.photoUrl}
+                                    alt='Matched Profile Picture'
+                                    className='profilePhoto'
+                                />
+                            </div>
+                            <div className='matchedProfileTopRight'>
+                                <p>{matchedProfile.name}</p>
+                            </div>
+                        </div>
+                        <div className='matchedProfileBottom'>
+                            {
+                                matchedProfile.tags.map((tag, tagIndex) => <p
+                                    key={tagIndex}
+                                    className='likeContainer'
+                                >{tag}</p>)
+                            }
+                        </div>
                     </div>)
                 }
             </div>
