@@ -10,18 +10,49 @@ import WelcomePage from './Screens/WelcomePage/WelcomePage';
 import DemoPage from './Screens/DemoPage';
 
 function App() {
+    const savedState = false;
+    // return (
+    //     <Router>
+    //         <Switch>
+    //             <Route path='/demo'>
+    //                 <Layout component={<DemoPage/>}/>
+    //             </Route>
+    //             <Route path='/profile'>
+    //                 <Layout component={<ProfilePage/>}/>
+    //             </Route>
+    //             <Route path='/feed'>
+    //                 <Layout component={<HomePage/>}/>
+    //             </Route>
+    //             <Route path='/login'>
+    //                 <Layout component={<LoginPage/>}/>
+    //             </Route>
+    //             <Route path='/'>
+    //                 <Layout component={<WelcomePage/>}/>
+    //             </Route>
+    //         </Switch>
+    //     </Router>
+    // );
+
+    if (savedState === true) {
+        return (
+            <Router>
+                <Switch>
+                    <Route path='/demo'>
+                        <Layout component={<DemoPage/>}/>
+                    </Route>
+                    <Route path='/profile'>
+                        <Layout component={<ProfilePage/>}/>
+                    </Route>
+                    <Route path='/'>
+                        <Layout component={<HomePage/>}/>
+                    </Route>
+                </Switch>
+            </Router>
+        );
+    }
     return (
         <Router>
             <Switch>
-                <Route path='/demo'>
-                    <Layout component={<DemoPage/>}/>
-                </Route>
-                <Route path='/profile'>
-                    <Layout component={<ProfilePage/>}/>
-                </Route>
-                <Route path='/feed'>
-                    <Layout component={<HomePage/>}/>
-                </Route>
                 <Route path='/login'>
                     <Layout component={<LoginPage/>}/>
                 </Route>
@@ -31,36 +62,6 @@ function App() {
             </Switch>
         </Router>
     );
-
-    // if (savedState === true) {
-    //     return (
-    //         <Router>
-    //             <Switch>
-    //                 <Route path='/demo'>
-    //                     <Layout component={<DemoPage/>}/>
-    //                 </Route>
-    //                 <Route path='/profile'>
-    //                     <Layout component={<ProfilePage/>}/>
-    //                 </Route>
-    //                 <Route path='/'>
-    //                     <Layout component={<HomePage/>}/>
-    //                 </Route>
-    //             </Switch>
-    //         </Router>
-    //     );
-    // }
-    // return (
-    //     <Router>
-    //         <Switch>
-    //             <Route path='/play/login'>
-    //                 <Layout component={<LoginPage/>}/>
-    //             </Route>
-    //             <Route path='/play'>
-    //                 <Layout component={<WelcomePage/>}/>
-    //             </Route>
-    //         </Switch>
-    //     </Router>
-    // );
 }
 
 export default App;
