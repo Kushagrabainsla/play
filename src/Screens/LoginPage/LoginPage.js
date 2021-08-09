@@ -1,10 +1,17 @@
-import React, { useEffect } from 'react';
+import React, {
+    useState,
+    useEffect,
+} from 'react';
 import './LoginPage.css';
+import axios from 'axios';
 
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user.emails.read https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.phonenumbers.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 
 function LoginPage() {
+    const [youtubeResponse, setyoutubeResponse] = useState(false);
+    const [peopleResponse, setpeopleResponse] = useState(false);
+
     function initClient() {
         window.gapi.client.init({
             apiKey: process.env.REACT_APP_API_KEY,
@@ -20,11 +27,49 @@ function LoginPage() {
 
     useEffect(() => {
         window.gapi.load('client:auth2', initClient);
-    });
+    }, []);
+
+    async function fetchDataFromAPI() {
+        window.gapi.client.people.people.get({
+            resourceName: 'people/me',
+            personFields: 'names,photos,genders',
+        }).then((response) => {
+            setpeopleResponse(response);
+        }).catch((err) => {
+            console.log('PEOPLE API', err);
+        });
+        window.gapi.client.youtube.playlistItems.list({
+            part: ['snippet,contentDetails'],
+            maxResults: 50,
+            playlistId: 'LL',
+        }).then((response) => {
+            setyoutubeResponse(response);
+        }).catch((err) => {
+            console.log('YOUTUBE API', err);
+        });
+    }
+    useEffect(() => {
+        if (youtubeResponse !== false && peopleResponse !== false) {
+            const url = `${process.env.REACT_APP_SERVER_DEV_URL}/login`;
+            // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/login`;
+            const userDetails = {
+                youtubeResponse,
+                peopleResponse,
+            };
+            axios.post(url, userDetails).then((response) => {
+                if (response.status === 200 && response.data.error === false) {
+                    console.log(response);
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
+            console.log(peopleResponse);
+        }
+    }, [youtubeResponse, peopleResponse]);
 
     function handleSignInClick() {
         window.gapi.auth2.getAuthInstance().signIn();
-        localStorage.setItem('loggedIn', true);
+        fetchDataFromAPI();
     }
 
     return (
@@ -44,7 +89,7 @@ function LoginPage() {
                 </div>
             </div>
             <div className='loginBottom'>
-                <div className='googleButton' onClick={() => handleSignInClick()}>
+                <div className='googleButton' onClick={handleSignInClick}>
                     <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
                     Sign in with Google
                 </div>
