@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './LoginPage.css';
 
+const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
+const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user.emails.read https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.phonenumbers.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
+
 function LoginPage() {
+    function initClient() {
+        window.gapi.client.init({
+            apiKey: process.env.REACT_APP_API_KEY,
+            clientId: process.env.REACT_APP_CLIENT_ID,
+            discoveryDocs: DISCOVERY_DOCS,
+            scope: SCOPES,
+        }).then(() => {
+            console.log('GAPI client loaded for API');
+        }).catch((error) => {
+            console.log(JSON.stringify(error, null, 2));
+        });
+    }
+
+    useEffect(() => {
+        window.gapi.load('client:auth2', initClient);
+    });
+
+    function handleSignInClick() {
+        window.gapi.auth2.getAuthInstance().signIn();
+        localStorage.setItem('loggedIn', true);
+    }
+
     return (
         <div className='loginContainer'>
             <div className='loginTop'>
                 <div className='loginTopColourFill'>
                     <img
-                        // src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
                         src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.png'
                         alt='Play Logo'
                         className='loginPagePlayLogo'
@@ -20,7 +44,10 @@ function LoginPage() {
                 </div>
             </div>
             <div className='loginBottom'>
-                <button>Sign in with google</button>
+                <div className='googleButton' onClick={() => handleSignInClick()}>
+                    <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
+                    Sign in with Google
+                </div>
             </div>
         </div>
     );

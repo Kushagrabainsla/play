@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './HomePage.css';
 
 function HomePage() {
+    function fetchDataFromAPI() {
+        window.gapi.client.people.people.get({
+            resourceName: 'people/me',
+            personFields: 'names,photos',
+        }).then((response) => {
+            console.log(response);
+        }).catch((err) => {
+            console.log('PEOPLE API', err);
+        });
+
+        window.gapi.client.youtube.playlistItems.list({
+            part: ['snippet,contentDetails'],
+            maxResults: 50,
+            playlistId: 'LL',
+        }).then((response) => {
+            console.log(response.result);
+            // Axios post request to backend,
+            // for posting the desired stuff like ligin credentials and youtube data.
+        }).catch((err) => {
+            console.log('YOUTUBE API', err);
+        });
+    }
+    useEffect(() => {
+        console.log(window.gapi.client);
+        // if (window.gapi.client) fetchDataFromAPI();
+    }, [window.gapi.client]);
+
     const matches = [
         {
             name: 'user',
@@ -53,7 +80,7 @@ function HomePage() {
                 }
             </div>
             <div className='homeFloatingFooter'>
-                <div>Chats</div>
+                <button onClick={() => fetchDataFromAPI()}>Chats</button>
                 <div>Profile</div>
             </div>
         </div>
