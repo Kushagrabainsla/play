@@ -81,3 +81,9 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+.navbarButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

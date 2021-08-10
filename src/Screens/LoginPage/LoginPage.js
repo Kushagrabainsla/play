@@ -1,14 +1,18 @@
 import React, {
     useState,
     useEffect,
+    useContext,
 } from 'react';
 import './LoginPage.css';
 import axios from 'axios';
+import { updateContext } from '../../Context';
 
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user.emails.read https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.phonenumbers.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 
 function LoginPage() {
+    const toggleUser = useContext(updateContext);
+    const [isGapiLoaded, setisGapiLoaded] = useState(false);
     const [youtubeResponse, setyoutubeResponse] = useState(false);
     const [peopleResponse, setpeopleResponse] = useState(false);
 
@@ -19,8 +23,9 @@ function LoginPage() {
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES,
         }).then(() => {
-            console.log('GAPI client loaded for API');
+            setisGapiLoaded(true);
         }).catch((error) => {
+            // Modal to tell user to refresh because the gapi client is not loaded.
             console.log(JSON.stringify(error, null, 2));
         });
     }
@@ -58,12 +63,13 @@ function LoginPage() {
             };
             axios.post(url, userDetails).then((response) => {
                 if (response.status === 200 && response.data.error === false) {
-                    console.log(response);
+                    toggleUser(response.data.result.userID);
+                    localStorage.setItem('currUser', response.data.result.userID);
+                    localStorage.setItem('token', response.data.result.token);
                 }
             }).catch((err) => {
                 console.log(err);
             });
-            console.log(peopleResponse);
         }
     }, [youtubeResponse, peopleResponse]);
 
@@ -89,10 +95,14 @@ function LoginPage() {
                 </div>
             </div>
             <div className='loginBottom'>
-                <div className='googleButton' onClick={handleSignInClick}>
-                    <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
-                    Sign in with Google
-                </div>
+                {
+                    isGapiLoaded
+                    ? <div className='googleButton' onClick={handleSignInClick}>
+                        <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
+                        Sign in with Google
+                    </div>
+                    : null
+                }
             </div>
         </div>
     );

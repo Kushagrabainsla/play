@@ -1,5 +1,8 @@
 import React from 'react';
 import './ProfilePage.css';
+import { Link } from 'react-router-dom';
+import { Button } from 'antd';
+import { RiHome5Fill, RiChatSmile3Fill, RiLogoutBoxRFill } from 'react-icons/ri';
 
 function ProfilePage() {
     const userlikes = ['svsf', 'fvd', 'fvs', 'fvds', 'fvdsffvsdfv', 'svasfvf'];
@@ -16,7 +19,21 @@ function ProfilePage() {
                 <div className='profileTopRight'>
                     <p style={{ fontWeight: '600' }}>Name</p>
                     <p style={{ fontWeight: '300' }}>user@provider.com</p>
-                    <div>Sign out</div>
+                    <Link to='/login'>
+                        <Button
+                            type="primary"
+                            shape="round"
+                            icon={<RiLogoutBoxRFill/>}
+                            className='navbarButton'
+                            onClick={() => {
+                                // window.gapi.auth2.getAuthInstance().signOut();
+                                localStorage.clear();
+                                document.location.href = '/#/login';
+                            }}
+                        >
+                            Sign out
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div className='profileBottom'>
@@ -32,8 +49,26 @@ function ProfilePage() {
                 </div>
             </div>
             <div className='profileFloatingFooter'>
-                <div>Chats</div>
-                <div>Feed</div>
+                <Link to='/'>
+                    <Button
+                        type="primary"
+                        shape="round"
+                        icon={<RiChatSmile3Fill />}
+                        className='navbarButton'
+                    >
+                        Chats
+                    </Button>
+                </Link>
+                <Link to='/'>
+                    <Button
+                        type="primary"
+                        shape="round"
+                        icon={<RiHome5Fill />}
+                        className='navbarButton'
+                    >
+                        Feed
+                    </Button>
+                </Link>
             </div>
         </div>
     );
