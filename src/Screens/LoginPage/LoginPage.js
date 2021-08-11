@@ -29,7 +29,8 @@ function LoginPage() {
             setisGapiLoaded(true);
         }).catch(() => {
             // console.log(JSON.stringify(error, null, 2));
-            Modal.warn({ content: 'Error while loading, please refresh !!' });
+            // Modal.warn({ content: 'Error while loading, please refresh !!' });
+            Modal.info({ content: 'Sorry, you do not have access to this application.' });
         });
     }
 

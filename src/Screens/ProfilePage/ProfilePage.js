@@ -75,7 +75,7 @@ function ProfilePage() {
                         <div className='profileNameText'>
                             {userDetails[1].user_name}
                         </div>
-                        <Link to='/login'>
+                        <Link to='/'>
                             <Button
                                 type="primary"
                                 shape="round"
@@ -90,7 +90,7 @@ function ProfilePage() {
                                 onClick={() => {
                                     // window.gapi.auth2.getAuthInstance().signOut();
                                     localStorage.clear();
-                                    document.location.href = '/#/login';
+                                    document.location.href = '/';
                                 }}
                             >
                                 Sign out
