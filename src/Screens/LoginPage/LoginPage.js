@@ -5,6 +5,9 @@ import React, {
 } from 'react';
 import './LoginPage.css';
 import axios from 'axios';
+import {
+    Modal,
+} from 'antd';
 import { updateContext } from '../../Context';
 
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
@@ -24,9 +27,9 @@ function LoginPage() {
             scope: SCOPES,
         }).then(() => {
             setisGapiLoaded(true);
-        }).catch((error) => {
-            // Modal to tell user to refresh because the gapi client is not loaded.
-            console.log(JSON.stringify(error, null, 2));
+        }).catch(() => {
+            // console.log(JSON.stringify(error, null, 2));
+            Modal.warn({ content: 'Error while loading, please refresh !!' });
         });
     }
 
@@ -40,8 +43,9 @@ function LoginPage() {
             personFields: 'names,photos,genders',
         }).then((response) => {
             setpeopleResponse(response);
-        }).catch((err) => {
-            console.log('PEOPLE API', err);
+        }).catch(() => {
+            Modal.warn({ content: 'Error while loading, please refresh !!' });
+            // console.log('PEOPLE API', err);
         });
         window.gapi.client.youtube.playlistItems.list({
             part: ['snippet,contentDetails'],
@@ -49,8 +53,9 @@ function LoginPage() {
             playlistId: 'LL',
         }).then((response) => {
             setyoutubeResponse(response);
-        }).catch((err) => {
-            console.log('YOUTUBE API', err);
+        }).catch(() => {
+            Modal.warn({ content: 'Error while loading, please refresh !!' });
+            // console.log('YOUTUBE API', err);
         });
     }
     useEffect(() => {
@@ -67,8 +72,9 @@ function LoginPage() {
                     localStorage.setItem('currUser', response.data.result.userID);
                     localStorage.setItem('token', response.data.result.token);
                 }
-            }).catch((err) => {
-                console.log(err);
+            }).catch(() => {
+                Modal.warn({ content: 'Error while loading, please refresh !!' });
+                // console.log(err);
             });
         }
     }, [youtubeResponse, peopleResponse]);
