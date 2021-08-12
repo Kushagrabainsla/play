@@ -7,6 +7,8 @@ import HomePage from './Screens/HomePage/HomePage';
 import LoginPage from './Screens/LoginPage/LoginPage';
 import ProfilePage from './Screens/ProfilePage/ProfilePage';
 import WelcomePage from './Screens/WelcomePage/WelcomePage';
+import ChatsPage from './Screens/ChatsPage/ChatsPage';
+import ChatRoom from './Screens/ChatRoom/ChatRoom';
 import { Context } from './Context';
 
 function App() {
@@ -16,6 +18,12 @@ function App() {
         return (
             <Router>
                 <Switch>
+                    <Route path='/chats/room'>
+                        <Layout component={<ChatRoom/>}/>
+                    </Route>
+                    <Route path='/chats'>
+                        <Layout component={<ChatsPage/>}/>
+                    </Route>
                     <Route path='/profile'>
                         <Layout component={<ProfilePage/>}/>
                     </Route>

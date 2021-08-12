@@ -5,19 +5,31 @@ import React, {
 } from 'react';
 import './ProfilePage.css';
 import { Link } from 'react-router-dom';
-import { Button, Modal } from 'antd';
+import {
+    Button,
+    Modal,
+    Menu,
+    Dropdown,
+    Form,
+    Input,
+    Select,
+    Row,
+} from 'antd';
 import axios from 'axios';
 import {
     RiHome5Fill,
     RiChatSmile3Fill,
     RiLogoutBoxRFill,
     RiAccountCircleFill,
+    RiMenuFill,
+    RiAddCircleFill,
 } from 'react-icons/ri';
 import { Context } from '../../Context';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function ProfilePage() {
+    const { Option } = Select;
     const [currUser] = useContext(Context);
     const [userDetails, setuserDetails] = useState(false);
     const [userLikes, setuserLikes] = useState(false);
@@ -51,12 +63,74 @@ function ProfilePage() {
         fetchUser();
     }, []);
 
+    // --------------------------- ADDING SOCIAL MEDIA MODAL ------------------------------
+    const [socialVisible, setsocialVisible] = useState(false);
+    const [socialConfirmLoading, setsocialConfirmLoading] = useState(false);
+
+    const showsocialModal = () => setsocialVisible(true);
+    const socialHandleCancel = () => setsocialVisible(false);
+    const onSocialFinishFailed = (errorInfo) => Modal.error({ content: errorInfo });
+
+    const onSocialFinish = (values) => {
+        setsocialConfirmLoading(true);
+        console.log(values);
+        setsocialVisible(false);
+        setsocialConfirmLoading(false);
+    };
+
     function formattedPhotoURL(url) {
         const formattedList = url.split('=');
         formattedList[formattedList.length - 1] = 's300';
         const formattedUrl = formattedList.join('=');
         return formattedUrl;
     }
+    const menu = (
+        <Menu>
+            <Menu.Item key="0">
+                <Button
+                    type="primary"
+                    shape="round"
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-evenly',
+                        background: '#0079c1',
+                        fontWeight: '500',
+                    }}
+                    icon={<RiAddCircleFill style={{ marginRight: 5 }}/>}
+                    onClick={() => {
+                        showsocialModal();
+                    }}
+                >
+                    Add Socials
+                </Button>
+            </Menu.Item>
+            <Menu.Divider />
+            <Link to='/'>
+                <Menu.Item key="1">
+                    <Button
+                        type="primary"
+                        shape="round"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-evenly',
+                            background: '#0079c1',
+                            fontWeight: '500',
+                        }}
+                        icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
+                        onClick={() => {
+                            // window.gapi.auth2.getAuthInstance().signOut();
+                            localStorage.clear();
+                            document.location.href = '/';
+                        }}
+                    >
+                        Sign out
+                    </Button>
+                </Menu.Item>
+            </Link>
+        </Menu>
+    );
 
     return (
         <div className='profileContainer'>
@@ -71,31 +145,22 @@ function ProfilePage() {
                             className='profilePhoto'
                         />
                     </div>
-                    <div className='profileTopRight'>
+                    <div className='profileTopMid'>
                         <div className='profileNameText'>
                             {userDetails[1].user_name}
                         </div>
-                        <Link to='/'>
-                            <Button
-                                type="primary"
-                                shape="round"
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-evenly',
-                                    background: '#0079c1',
-                                    fontWeight: '500',
-                                }}
-                                icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
-                                onClick={() => {
-                                    // window.gapi.auth2.getAuthInstance().signOut();
-                                    localStorage.clear();
-                                    document.location.href = '/';
-                                }}
-                            >
-                                Sign out
-                            </Button>
-                        </Link>
+                    </div>
+                    <div className='profileTopRight'>
+                        <Dropdown
+                            overlay={menu}
+                            placement="bottomRight"
+                            trigger={['click']}
+                        >
+                            <RiMenuFill
+                                onClick={(e) => e.preventDefault()}
+                                style={{ fontSize: 20 }}
+                            />
+                        </Dropdown>
                     </div>
                 </div>
                 : null
@@ -114,12 +179,12 @@ function ProfilePage() {
             </div>
             <div className='profileFloatingFooter'>
                 <Link
-                    to='/'
+                    to='/chats'
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiChatSmile3Fill
                         fontSize={32}
-                        color='white'
+                        color='lightgrey'
                     />
                 </Link>
                 <Link
@@ -128,7 +193,7 @@ function ProfilePage() {
                 >
                     <RiHome5Fill
                         fontSize={32}
-                        color='white'
+                        color='lightgrey'
                     />
                 </Link>
                 <Link
@@ -136,11 +201,84 @@ function ProfilePage() {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiAccountCircleFill
-                        fontSize={32}
+                        fontSize={35}
                         color='white'
                     />
                 </Link>
             </div>
+            <Modal
+                title="Add Social Media"
+                visible={socialVisible}
+                confirmLoading={socialConfirmLoading}
+                onCancel={socialHandleCancel}
+                footer={[]}
+                getContainer={false}
+            >
+                <Form
+                    name="basic"
+                    initialValues={{ remember: false }}
+                    onFinish={onSocialFinish}
+                    onFinishFailed={onSocialFinishFailed}
+                    layout={'horizontal'}
+                >
+                    <Form.Item
+                        label="Choose Platform"
+                        name="socialName"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Select a platform !',
+                            },
+                        ]}
+                    >
+                        <Select
+                            placeholder="Select a platform"
+                            allowClear
+                        >
+                            {
+                                ['Instagram', 'Linkedin', 'twitter', 'Facebook'].map((socialMedia, index) => <Option
+                                    value={socialMedia}
+                                    key={index}
+                                >
+                                    {socialMedia}
+                                </Option>)
+                            }
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        label="Enter Your Url"
+                        name="userHandle"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Enter URL for your social media ID !',
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item>
+                        <Row justify="end">
+                            <Button
+                                htmlType="submit"
+                                shape="round"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-evenly',
+                                    background: '#0079c1',
+                                    fontWeight: '500',
+                                    color: 'white',
+                                }}
+                                icon={<RiAddCircleFill style={{ marginRight: 5 }}/>}
+                            >
+                                Submit
+                            </Button>
+
+                        </Row>
+                    </Form.Item>
+                </Form>
+            </Modal>
         </div>
     );
 }

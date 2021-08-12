@@ -50,12 +50,12 @@ function HomePage() {
             </div>
             <div className='homeFloatingFooter'>
                 <Link
-                    to='/'
+                    to='/chats'
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiChatSmile3Fill
                         fontSize={32}
-                        color='white'
+                        color='lightgrey'
                     />
                 </Link>
                 <Link
@@ -63,7 +63,7 @@ function HomePage() {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiHome5Fill
-                        fontSize={32}
+                        fontSize={35}
                         color='white'
                     />
                 </Link>
@@ -73,7 +73,7 @@ function HomePage() {
                 >
                     <RiAccountCircleFill
                         fontSize={32}
-                        color='white'
+                        color='lightgrey'
                     />
                 </Link>
             </div>

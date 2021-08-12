@@ -6,6 +6,7 @@ import './MatchedProfileCard.css';
 import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
@@ -52,13 +53,21 @@ function MatchedProfileCard(props) {
                         <img
                             src={formattedPhotoURL(matchedDetails[3].user_photoURL)}
                             alt='Matched Profile Picture'
-                            className='profilePhoto'
+                            className='matchedProfileProfilePhoto'
                         />
                     </div>
                     <div className='matchedProfileTopRight'>
-                        <div className='profileNameText'>
+                        <div className='matchedProfileNameText'>
                             {matchedDetails[1].user_name}
                         </div>
+                        {
+                            // Show socails which are added from profile.
+                            matchedDetails[0].socials
+                            ? <div className='matchedProfileSocialMedia'>
+                                {'socials'}
+                            </div>
+                            : null
+                        }
                         {
                             matchedDetails[2].user_gender === 'Male'
                             ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
@@ -70,10 +79,14 @@ function MatchedProfileCard(props) {
             }
             <div className='matchedProfileBottom'>
                 {
-                    matchedLikes.map((tag, tagIndex) => <p
+                    matchedLikes.map((tag, tagIndex) => <Link
                         key={tagIndex}
-                        className='likeContainer'
-                    >{tag}</p>)
+                        to='/chats/room'
+                    >
+                        <p className='likeContainer'>
+                            { tag }
+                        </p>
+                    </Link>)
                 }
             </div>
         </div>
