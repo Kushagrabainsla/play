@@ -51,7 +51,10 @@ function HomePage() {
                     : <img
                         src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
                         alt='No Matches Found'
-                        // width='80%'
+                        style={{
+                            width: '80%',
+                            paddingTop: '50%',
+                        }}
                     />
                 }
             </div>
