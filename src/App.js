@@ -37,6 +37,12 @@ function App() {
     return (
         <Router>
             <Switch>
+                {/* <Route path='/welcome'>
+                    <Layout component={<WelcomePage/>}/>
+                </Route>
+                <Route path='/'>
+                    <Layout component={<LoginPage/>}/>
+                </Route> */}
                 <Route path='/login'>
                     <Layout component={<LoginPage/>}/>
                 </Route>

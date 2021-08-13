@@ -27,8 +27,7 @@ function HomePage() {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                // setmatchedProfiles(response.data.result);
-                setmatchedProfiles([]);
+                setmatchedProfiles(response.data.result);
             }
         }).catch(() => {
             // console.log(err);
@@ -52,8 +51,8 @@ function HomePage() {
                         src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
                         alt='No Matches Found'
                         style={{
-                            width: '80%',
-                            paddingTop: '50%',
+                            height: '60vh',
+                            paddingTop: '30vh',
                         }}
                     />
                 }

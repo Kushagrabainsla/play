@@ -144,7 +144,7 @@ function ProfilePage() {
                         onClick={() => {
                             window.gapi.auth2.getAuthInstance().signOut();
                             localStorage.clear();
-                            document.location.href = '/login';
+                            document.location.href = '/';
                         }}
                     >
                         Sign out
@@ -162,7 +162,6 @@ function ProfilePage() {
                     <div className='profileTopLeft'>
                         <img
                             src={formattedPhotoURL(userDetails[3].user_photoURL)}
-                            // src='https://avatars.githubusercontent.com/u/72407476?v=4'
                             alt='User Profile Photo'
                             className='profilePhoto'
                         />

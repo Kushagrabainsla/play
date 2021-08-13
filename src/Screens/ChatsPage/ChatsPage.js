@@ -49,6 +49,7 @@ function ChatsPage() {
                         height: '15vh',
                         display: 'flex',
                         alignItems: 'center',
+                        justifyContent: 'center',
                     }}
                 >
                     11:11 pm
