@@ -23,6 +23,11 @@ import {
     RiAccountCircleFill,
     RiMenuFill,
     RiAddCircleFill,
+    RiTwitterFill,
+    RiFacebookBoxFill,
+    RiSnapchatFill,
+    RiInstagramFill,
+    RiLinkedinBoxFill,
 } from 'react-icons/ri';
 import { Context } from '../../Context';
 
@@ -32,6 +37,7 @@ function ProfilePage() {
     const { Option } = Select;
     const [currUser] = useContext(Context);
     const [userDetails, setuserDetails] = useState(false);
+    const [userSocials, setuserSocials] = useState(false);
     const [userLikes, setuserLikes] = useState(false);
 
     async function fetchUser() {
@@ -44,7 +50,7 @@ function ProfilePage() {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                // console.log(response.data.result);
+                setuserSocials(response.data.result.socials);
                 setuserDetails(response.data.result.details);
                 const moreLikes = [];
                 // eslint-disable-next-line no-restricted-syntax
@@ -73,9 +79,25 @@ function ProfilePage() {
 
     const onSocialFinish = (values) => {
         setsocialConfirmLoading(true);
-        console.log(values);
-        setsocialVisible(false);
-        setsocialConfirmLoading(false);
+        const url = `${process.env.REACT_APP_SERVER_DEV_URL}/updateSocials`;
+        const config = {
+            headers: {
+                Authorization: AUTH_TOKEN,
+                userID: currUser,
+            },
+        };
+        const socials = values;
+        axios.put(url, socials, config).then((response) => {
+            if (response.status === 200 && response.data.error === false) {
+                setsocialVisible(false);
+                setsocialConfirmLoading(false);
+                Modal.success({ content: response.data.message });
+            } else {
+                Modal.warn({ content: 'Error while updating socials !!' });
+            }
+        }).catch(() => {
+            Modal.warn({ content: 'Error while updating socials !!' });
+        });
     };
 
     function formattedPhotoURL(url) {
@@ -84,7 +106,7 @@ function ProfilePage() {
         const formattedUrl = formattedList.join('=');
         return formattedUrl;
     }
-    const menu = (
+    const optionsMenu = (
         <Menu>
             <Menu.Item key="0">
                 <Button
@@ -120,9 +142,9 @@ function ProfilePage() {
                         }}
                         icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
                         onClick={() => {
-                            // window.gapi.auth2.getAuthInstance().signOut();
+                            window.gapi.auth2.getAuthInstance().signOut();
                             localStorage.clear();
-                            document.location.href = '/';
+                            document.location.href = '/login';
                         }}
                     >
                         Sign out
@@ -135,7 +157,7 @@ function ProfilePage() {
     return (
         <div className='profileContainer'>
             {
-                userDetails
+                userDetails && userSocials
                 ? <div className='profileTop'>
                     <div className='profileTopLeft'>
                         <img
@@ -149,10 +171,37 @@ function ProfilePage() {
                         <div className='profileNameText'>
                             {userDetails[1].user_name}
                         </div>
+                        <div className='profileSocials'>
+                            {
+                                userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>} arrow>
+                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.facebook}</Menu.Item></Menu>} arrow>
+                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.twitter}</Menu.Item></Menu>} arrow>
+                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.snapchat}</Menu.Item></Menu>} arrow>
+                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.linkedin}</Menu.Item></Menu>} arrow>
+                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                        </div>
                     </div>
                     <div className='profileTopRight'>
                         <Dropdown
-                            overlay={menu}
+                            overlay={optionsMenu}
                             placement="bottomRight"
                             trigger={['click']}
                         >
@@ -236,7 +285,7 @@ function ProfilePage() {
                             allowClear
                         >
                             {
-                                ['Instagram', 'Linkedin', 'twitter', 'Facebook'].map((socialMedia, index) => <Option
+                                ['Instagram', 'Linkedin', 'Twitter', 'Facebook', 'Snapchat'].map((socialMedia, index) => <Option
                                     value={socialMedia}
                                     key={index}
                                 >

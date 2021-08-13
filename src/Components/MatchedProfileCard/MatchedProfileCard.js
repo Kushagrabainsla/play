@@ -4,7 +4,18 @@ import React, {
 } from 'react';
 import './MatchedProfileCard.css';
 import PropTypes from 'prop-types';
-import { Modal } from 'antd';
+import {
+    Modal,
+    Menu,
+    Dropdown,
+} from 'antd';
+import {
+    RiTwitterFill,
+    RiFacebookBoxFill,
+    RiSnapchatFill,
+    RiInstagramFill,
+    RiLinkedinBoxFill,
+} from 'react-icons/ri';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +24,7 @@ const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 function MatchedProfileCard(props) {
     const { profile } = props;
     const matchedLikes = Object.keys(profile.matched_likes);
+    const [matchedSocials, setmatchedSocials] = useState(false);
     const [matchedDetails, setmatchedDetails] = useState(false);
 
     async function fetchUser() {
@@ -25,8 +37,8 @@ function MatchedProfileCard(props) {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
+                setmatchedSocials(response.data.result.socials);
                 setmatchedDetails(response.data.result.details);
-                // console.log(response.data.result.details);
             }
         }).catch(() => {
             // console.log(err);
@@ -60,14 +72,33 @@ function MatchedProfileCard(props) {
                         <div className='matchedProfileNameText'>
                             {matchedDetails[1].user_name}
                         </div>
-                        {
-                            // Show socails which are added from profile.
-                            matchedDetails[0].socials
-                            ? <div className='matchedProfileSocialMedia'>
-                                {'socials'}
-                            </div>
-                            : null
-                        }
+                        <div className='profileSocials'>
+                            {
+                                matchedSocials && matchedSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.instagram}</Menu.Item></Menu>} arrow>
+                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                matchedSocials && matchedSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.facebook}</Menu.Item></Menu>} arrow>
+                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                matchedSocials && matchedSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.twitter}</Menu.Item></Menu>} arrow>
+                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                matchedSocials && matchedSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.snapchat}</Menu.Item></Menu>} arrow>
+                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                            {
+                                matchedSocials && matchedSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.linkedin}</Menu.Item></Menu>} arrow>
+                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                </Dropdown>
+                            }
+                        </div>
                         {
                             matchedDetails[2].user_gender === 'Male'
                             ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>

@@ -27,7 +27,8 @@ function HomePage() {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                setmatchedProfiles(response.data.result);
+                // setmatchedProfiles(response.data.result);
+                setmatchedProfiles([]);
             }
         }).catch(() => {
             // console.log(err);
@@ -42,10 +43,16 @@ function HomePage() {
         <div className='homeContainer'>
             <div className='matchedProfilesContainer'>
                 {
-                    matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
+                    matchedProfiles.length > 0
+                    ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
                         profile={profile}
                         key={profileIndex}
                     />)
+                    : <img
+                        src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
+                        alt='No Matches Found'
+                        // width='80%'
+                    />
                 }
             </div>
             <div className='homeFloatingFooter'>
