@@ -1,7 +1,12 @@
 import React, { useContext } from 'react';
 import './App.css';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+    HashRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
 import Layout from './Screens/Layout/Layout';
 import HomePage from './Screens/HomePage/HomePage';
 import LoginPage from './Screens/LoginPage/LoginPage';
@@ -18,18 +23,19 @@ function App() {
         return (
             <Router>
                 <Switch>
-                    <Route path='/chats/room'>
+                    <Route exact path='/chats/room'>
                         <Layout component={<ChatRoom/>}/>
                     </Route>
-                    <Route path='/chats'>
+                    <Route exact path='/chats'>
                         <Layout component={<ChatsPage/>}/>
                     </Route>
-                    <Route path='/profile'>
+                    <Route exact path='/profile'>
                         <Layout component={<ProfilePage/>}/>
                     </Route>
-                    <Route path='/'>
+                    <Route exact path='/'>
                         <Layout component={<HomePage/>}/>
                     </Route>
+                    <Redirect from="*" to="/" />
                 </Switch>
             </Router>
         );
