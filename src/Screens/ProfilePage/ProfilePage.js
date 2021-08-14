@@ -14,6 +14,7 @@ import {
     Input,
     Select,
     Row,
+    Skeleton,
 } from 'antd';
 import axios from 'axios';
 import {
@@ -107,7 +108,15 @@ function ProfilePage() {
         return formattedUrl;
     }
     const optionsMenu = (
-        <Menu>
+        <Menu
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '15px',
+            }}
+        >
             <Menu.Item key="0">
                 <Button
                     type="primary"
@@ -142,7 +151,7 @@ function ProfilePage() {
                         }}
                         icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
                         onClick={() => {
-                            window.gapi.auth2.getAuthInstance().signOut();
+                            // window.gapi.auth2.getAuthInstance().signOut();
                             localStorage.clear();
                             document.location.href = '/';
                         }}
@@ -161,39 +170,39 @@ function ProfilePage() {
                 ? <div className='profileTop'>
                     <div className='profileTopLeft'>
                         <img
-                            src={formattedPhotoURL(userDetails[3].user_photoURL)}
+                            src={formattedPhotoURL(userDetails.userPhotoURL)}
                             alt='User Profile Photo'
                             className='profilePhoto'
                         />
                     </div>
                     <div className='profileTopMid'>
                         <div className='profileNameText'>
-                            {userDetails[1].user_name}
+                            {userDetails.userName}
                         </div>
                         <div className='profileSocials'>
                             {
                                 userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>} arrow>
-                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5 }} />
+                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.facebook}</Menu.Item></Menu>} arrow>
-                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>} arrow>
+                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.twitter}</Menu.Item></Menu>} arrow>
-                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5 }} />
+                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>} arrow>
+                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.snapchat}</Menu.Item></Menu>} arrow>
-                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5 }} />
+                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>} arrow>
+                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.linkedin}</Menu.Item></Menu>} arrow>
-                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>} arrow>
+                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                         </div>
@@ -206,12 +215,19 @@ function ProfilePage() {
                         >
                             <RiMenuFill
                                 onClick={(e) => e.preventDefault()}
-                                style={{ fontSize: 20 }}
+                                style={{
+                                    fontSize: 20,
+                                    cursor: 'pointer',
+                                }}
                             />
                         </Dropdown>
                     </div>
                 </div>
-                : null
+                : <Skeleton
+                    active
+                    className='profileLikes'
+                />
+
             }
             <div className='profileBottom'>
                 <div className='profileLikes'>
@@ -221,7 +237,10 @@ function ProfilePage() {
                             key={index}
                             className='likeContainer'
                             >{keyword}</p>)
-                        : <p></p>
+                        : <Skeleton
+                            active
+                            className='profileLikes'
+                        />
                     }
                 </div>
             </div>
@@ -294,7 +313,7 @@ function ProfilePage() {
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        label="Enter Your Url"
+                        label="Enter Your profile Id / Url"
                         name="userHandle"
                         rules={[
                             {

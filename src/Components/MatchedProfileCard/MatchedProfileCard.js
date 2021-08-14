@@ -63,44 +63,44 @@ function MatchedProfileCard(props) {
                 ? <div className='matchedProfileTop'>
                     <div className='matchedProfileTopLeft'>
                         <img
-                            src={formattedPhotoURL(matchedDetails[3].user_photoURL)}
+                            src={formattedPhotoURL(matchedDetails.userPhotoURL)}
                             alt='Matched Profile Picture'
                             className='matchedProfileProfilePhoto'
                         />
                     </div>
                     <div className='matchedProfileTopRight'>
                         <div className='matchedProfileNameText'>
-                            {matchedDetails[1].user_name}
+                            {matchedDetails.userName}
                         </div>
                         <div className='profileSocials'>
                             {
                                 matchedSocials && matchedSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.instagram}</Menu.Item></Menu>} arrow>
-                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5 }} />
+                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                matchedSocials && matchedSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.facebook}</Menu.Item></Menu>} arrow>
-                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                matchedSocials && matchedSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{matchedSocials.facebook}</Menu.Item></Menu>} arrow>
+                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                matchedSocials && matchedSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.twitter}</Menu.Item></Menu>} arrow>
-                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5 }} />
+                                matchedSocials && matchedSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{matchedSocials.twitter}</Menu.Item></Menu>} arrow>
+                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                matchedSocials && matchedSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.snapchat}</Menu.Item></Menu>} arrow>
-                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5 }} />
+                                matchedSocials && matchedSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{matchedSocials.snapchat}</Menu.Item></Menu>} arrow>
+                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                             {
-                                matchedSocials && matchedSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.linkedin}</Menu.Item></Menu>} arrow>
-                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5 }} />
+                                matchedSocials && matchedSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{matchedSocials.linkedin}</Menu.Item></Menu>} arrow>
+                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
                                 </Dropdown>
                             }
                         </div>
                         {
-                            matchedDetails[2].user_gender === 'Male'
+                            matchedDetails.userGender === 'Male'
                             ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
                             : <div className='interestTagText'>Tap an interest tag to begin a conversation with her.</div>
                         }
