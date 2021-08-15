@@ -21,17 +21,16 @@ function LoginPage() {
 
     function initClient() {
         window.gapi.client.init({
-            apiKey: process.env.REACT_APP_API_KEY,
-            clientId: process.env.REACT_APP_CLIENT_ID,
+            // apiKey: process.env.REACT_APP_API_KEY,
+            // clientId: process.env.REACT_APP_CLIENT_ID,
+            apiKey: 'AIzaSyD4PkG5XFC4AH_IbzE_kilSomvujUBki8k',
+            clientId: '464436051945-5o57e4484mo8li7uuc67k4rgqg4fu6eb.apps.googleusercontent.com',
             discoveryDocs: DISCOVERY_DOCS,
             scope: SCOPES,
         }).then(() => {
             setisGapiLoaded(true);
-        }).catch((error) => {
-            console.log(JSON.stringify(error, null, 2));
-            // Modal.warn({ content: 'Error while loading, please refresh !!' });
-            // Change this after adding endpoint.
-            // Modal.info({ content: 'Sorry, you do not have access to this application.' });
+        }).catch(() => {
+            Modal.info({ content: 'Sorry, you do not have access to this application.' });
         });
     }
 
@@ -63,7 +62,7 @@ function LoginPage() {
     useEffect(() => {
         if (youtubeResponse !== false && peopleResponse !== false) {
             // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/login`;
-            const url = `${process.env.REACT_APP_SERVER_PROD_URL}/login`;
+            const url = 'https://play-backend-app.herokuapp.com/login';
             const userDetails = {
                 youtubeResponse,
                 peopleResponse,
@@ -75,8 +74,7 @@ function LoginPage() {
                     localStorage.setItem('token', response.data.result.token);
                 }
             }).catch(() => {
-                Modal.warn({ content: 'Error while loading, please refresh !!' });
-                // console.log(err);
+                Modal.warn({ content: 'Error while updating, please refresh !!' });
             });
         }
     }, [youtubeResponse, peopleResponse]);
