@@ -156,7 +156,7 @@ function ProfilePage() {
                         onClick={() => {
                             // window.gapi.auth2.getAuthInstance().signOut();
                             localStorage.clear();
-                            document.location.href = 'https://kushagrabainsla.github.io/play/#/';
+                            document.location.href = '/play';
                         }}
                     >
                         Sign out
