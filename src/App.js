@@ -14,6 +14,8 @@ import ProfilePage from './Screens/ProfilePage/ProfilePage';
 import WelcomePage from './Screens/WelcomePage/WelcomePage';
 import ChatsPage from './Screens/ChatsPage/ChatsPage';
 import ChatRoom from './Screens/ChatRoom/ChatRoom';
+import NotFound from './Screens/NotFound/NotFound';
+
 import { Context } from './Context';
 
 function App() {
@@ -43,17 +45,14 @@ function App() {
     return (
         <Router>
             <Switch>
-                {/* <Route path='/welcome'>
+                <Route exact path='/welcome'>
                     <Layout component={<WelcomePage/>}/>
                 </Route>
-                <Route path='/'>
-                    <Layout component={<LoginPage/>}/>
-                </Route> */}
-                <Route path='/login'>
+                <Route exact path='/'>
                     <Layout component={<LoginPage/>}/>
                 </Route>
-                <Route path='/'>
-                    <Layout component={<WelcomePage/>}/>
+                <Route>
+                    <Layout component={<NotFound/>}/>
                 </Route>
             </Switch>
         </Router>

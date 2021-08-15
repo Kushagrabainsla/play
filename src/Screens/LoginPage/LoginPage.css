@@ -19,7 +19,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0f0a20;
+    background-color: #0c0b22;
+    /* background: var(--themeOrange); */
+    /* background: linear-gradient(180deg,  var(--themeOrange) 0%,  var(--themeLightGreen) 62%,var(--themeDarkGreen) 100%); */
 }
 .loginPagePlayLogo {
     width: 70%; /* With text icon */
@@ -41,7 +43,7 @@
 }
 
 .custom-shape-divider-top-1628334449 .shape-fill {
-    fill: #0f0a21;
+    fill: #0c0b22;
 }
 
 .loginBottom {
@@ -50,7 +52,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: rebeccapurple; */
 }
 
 .googleButton {
@@ -63,7 +64,7 @@
     height: 40px;
     font-weight: 300;
     font-size: 17px;
-    border: 2px solid #0f0a20;
+    border: 2px solid var(--themeDarkGreen);
     cursor: pointer;
     box-shadow: 2px 1px 10px lightgrey;
   }

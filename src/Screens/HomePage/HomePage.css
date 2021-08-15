@@ -27,7 +27,8 @@
 }
 
 .homeFloatingFooter {
-    background-color: #0079c1;
+    /* background-color: #0079c1; */
+    background-color: var(--themeLightGreen);
     bottom: 10px;
     position: fixed;
     border-radius: 50px;

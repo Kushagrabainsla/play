@@ -9,7 +9,9 @@
 }
 
 .chatRoomFloatingHeader {
-    background-color: #0079c1;
+    /* background-color: #0079c1; */
+    color: white;
+    background-color: var(--themeLightGreen);
     top: 10px;
     position: fixed;
     border-radius: 50px;

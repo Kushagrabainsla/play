@@ -125,7 +125,7 @@ function ProfilePage() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-evenly',
-                        background: '#0079c1',
+                        background: '#2a9d8f',
                         fontWeight: '500',
                     }}
                     icon={<RiAddCircleFill style={{ marginRight: 5 }}/>}
@@ -146,7 +146,7 @@ function ProfilePage() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-evenly',
-                            background: '#0079c1',
+                            background: '#2a9d8f',
                             fontWeight: '500',
                         }}
                         icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
@@ -333,7 +333,7 @@ function ProfilePage() {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'space-evenly',
-                                    background: '#0079c1',
+                                    background: '#2a9d8f',
                                     fontWeight: '500',
                                     color: 'white',
                                 }}

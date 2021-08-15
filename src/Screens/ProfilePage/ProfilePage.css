@@ -94,12 +94,14 @@
     margin: 3px 3px 3px 0px;
     padding: 5px 10px 5px 10px;
     border-radius: 50px;
-    background-color: #0079c1;
+    /* background-color: #0079c1; */
+    background-color: var(--themeLightGreen);
     box-shadow: 2px 1px 10px lightgrey;
 }
 
 .profileFloatingFooter {
-    background-color: #0079c1;
+    /* background-color: #0079c1; */
+    background-color: var(--themeLightGreen);
     bottom: 10px;
     position: fixed;
     border-radius: 50px;

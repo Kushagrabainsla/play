@@ -1,3 +1,12 @@
 .App {
   margin: 0px;
 }
+
+:root {
+  --themeLightGreen: #2a9d8f;
+  --themeDarkGreen: #264653;
+  --themeYellow: #e9c46a;
+  --themeOrange: #f4a261;
+  --themeRed:#e76f51;
+  --themeBlue: #0079c1;
+}
