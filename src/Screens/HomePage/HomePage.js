@@ -22,7 +22,8 @@ function HomePage() {
     const [matchedProfiles, setmatchedProfiles] = useState(false);
 
     async function fetchMatches() {
-        const url = `${process.env.REACT_APP_SERVER_DEV_URL}/user/connections`;
+        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/user/connections`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/connections`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -39,7 +40,8 @@ function HomePage() {
         });
     }
     useEffect(() => {
-        const url = `${process.env.REACT_APP_SERVER_DEV_URL}/makeMatches`;
+        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/makeMatches`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/makeMatches`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,

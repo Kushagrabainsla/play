@@ -42,7 +42,8 @@ function ProfilePage() {
     const [userLikes, setuserLikes] = useState(false);
 
     async function fetchUser() {
-        const url = `${process.env.REACT_APP_SERVER_DEV_URL}/user/profile`;
+        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/user/profile`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -80,7 +81,8 @@ function ProfilePage() {
 
     const onSocialFinish = (values) => {
         setsocialConfirmLoading(true);
-        const url = `${process.env.REACT_APP_SERVER_DEV_URL}/updateSocials`;
+        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/updateSocials`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/updateSocials`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
