@@ -5,11 +5,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     box-shadow: 2px 1px 10px lightgrey;
 
-    /* For hiding scroll bar */
-    /* overflow: hidden; */
+    /* Parent container for hiding scroll bar */
+    overflow: hidden;
 }
 
 .matchedProfilesContainer {
@@ -17,13 +16,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
     /* background-color: red; */
+    padding-bottom: 60px;
 
-    /* For hiding scroll bar */
-    /* overflow: auto; */
-    /* padding-right: 20px; */
-    /* text-align: center; */
+    /* Child container for hiding scroll bar */
+    overflow-y: scroll;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: content-box;
 }
 
 .homeFloatingFooter {

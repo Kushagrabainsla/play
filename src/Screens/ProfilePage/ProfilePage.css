@@ -5,17 +5,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     box-shadow: 2px 1px 10px lightgrey;
 }
 
 .profileTop {
+    margin-top: 2vh;
     width: 95%;
     height: calc(40vh - 5vh);
     display: flex;
     /* background-color: red; */
     border-radius: 15px;
     box-shadow: 2px 1px 10px lightgrey;
+    margin-bottom: 2vh;
 }
 
 .profileTopLeft {
@@ -68,9 +69,9 @@
 /* Parent container for hidding scroll bars */
 .profileBottom {
     width: 95%;
-    height: 60vh;
+    height: 50vh;
     display: flex;
-    align-items: center;
+    text-align: center;
     justify-content: center;
     overflow: hidden;
     /* background-color: brown; */

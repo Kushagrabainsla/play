@@ -122,9 +122,10 @@ function ProfilePage() {
         >
             <Menu.Item key="0">
                 <Button
-                    type="primary"
+                    type="ghost"
                     shape="round"
                     style={{
+                        color: 'white',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-evenly',
@@ -143,9 +144,10 @@ function ProfilePage() {
             <Link to='/'>
                 <Menu.Item key="1">
                     <Button
-                        type="primary"
+                        type="ghost"
                         shape="round"
                         style={{
+                            color: 'white',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-evenly',
