@@ -30,7 +30,7 @@ import {
     RiInstagramFill,
     RiLinkedinBoxFill,
 } from 'react-icons/ri';
-import { Context } from '../../Context';
+import { Context } from '../../StateManagement/Context';
 
 // const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27v54';

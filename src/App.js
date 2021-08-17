@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import './App.css';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
     HashRouter as Router,
     Switch,
@@ -16,7 +15,7 @@ import ChatsPage from './Screens/ChatsPage/ChatsPage';
 import ChatRoom from './Screens/ChatRoom/ChatRoom';
 import NotFound from './Screens/NotFound/NotFound';
 
-import { Context } from './Context';
+import { Context } from './StateManagement/Context';
 
 function App() {
     const [currUser] = useContext(Context);

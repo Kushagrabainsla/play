@@ -4,7 +4,7 @@ import './index.css';
 import 'antd/dist/antd.css';
 import 'remixicon/fonts/remixicon.css';
 import App from './App';
-import { Provider } from './Context';
+import { Provider } from './StateManagement/Context';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

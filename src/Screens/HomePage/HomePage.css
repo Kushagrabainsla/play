@@ -7,8 +7,8 @@
     align-items: center;
     box-shadow: 2px 1px 10px lightgrey;
 
-    /* Parent container for hiding scroll bar */
-    overflow: hidden;
+    /* Parent container for hiding scroll bar
+    overflow: hidden;  */
 }
 
 .matchedProfilesContainer {
@@ -20,10 +20,10 @@
     padding-bottom: 60px;
 
     /* Child container for hiding scroll bar */
-    overflow-y: scroll;
+    /* overflow-y: scroll;
     padding-left: 20px;
     padding-right: 20px;
-    box-sizing: content-box;
+    box-sizing: content-box; */
 }
 
 .homeFloatingFooter {

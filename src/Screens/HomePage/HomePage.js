@@ -1,6 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 import './HomePage.css';
 import axios from 'axios';
+import PullToRefresh from 'react-simple-pull-to-refresh';
 import { Link } from 'react-router-dom';
 import {
     RiAccountCircleFill,
@@ -11,7 +16,7 @@ import {
     Modal,
     Skeleton,
 } from 'antd';
-import { Context } from '../../Context';
+import { Context } from '../../StateManagement/Context';
 import MatchedProfileCard from '../../Components/MatchedProfileCard/MatchedProfileCard';
 
 // const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
@@ -19,7 +24,6 @@ const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27
 
 function HomePage() {
     const [currUser] = useContext(Context);
-    // const [matchedProfiles, setmatchedProfiles] = useState([]);
     const [matchedProfiles, setmatchedProfiles] = useState(false);
 
     async function fetchMatches() {
@@ -40,7 +44,7 @@ function HomePage() {
             Modal.warn({ content: 'Error while loading , please refresh !!' });
         });
     }
-    useEffect(() => {
+    async function makeMatches() {
         // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/makeMatches`;
         const url = 'https://play-backend-app.herokuapp.com/makeMatches';
         const config = {
@@ -56,51 +60,56 @@ function HomePage() {
                 fetchMatches();
             }
         });
+    }
+    useEffect(() => {
+        makeMatches();
     }, []);
 
     return (
         <div className='homeContainer'>
-            <div className='matchedProfilesContainer'>
-                {
-                    // eslint-disable-next-line no-nested-ternary
-                    matchedProfiles
-                    ? matchedProfiles.length > 0
-                        ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
-                            profile={profile}
-                            key={profileIndex}
-                        />)
-                        : <img
-                            src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
-                            alt='No Matches Found'
-                            style={{
-                                height: '60vh',
-                                paddingTop: '30vh',
-                            }}
-                        />
-                    : <>
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                    </>
-                }
-            </div>
+            <PullToRefresh onRefresh={makeMatches}>
+                <div className='matchedProfilesContainer'>
+                    {
+                        // eslint-disable-next-line no-nested-ternary
+                        matchedProfiles
+                        ? matchedProfiles.length > 0
+                            ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
+                                profile={profile}
+                                key={profileIndex}
+                            />)
+                            : <img
+                                src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
+                                alt='No Matches Found'
+                                style={{
+                                    height: '60vh',
+                                    paddingTop: '30vh',
+                                }}
+                            />
+                        : <>
+                            <Skeleton
+                                active
+                                className='matchedProfileBottom'
+                            />
+                            <Skeleton
+                                active
+                                className='matchedProfileBottom'
+                            />
+                            <Skeleton
+                                active
+                                className='matchedProfileBottom'
+                            />
+                            <Skeleton
+                                active
+                                className='matchedProfileBottom'
+                            />
+                            <Skeleton
+                                active
+                                className='matchedProfileBottom'
+                            />
+                        </>
+                    }
+                </div>
+            </PullToRefresh>
             <div className='homeFloatingFooter'>
                 <Link
                     to='/chats'
