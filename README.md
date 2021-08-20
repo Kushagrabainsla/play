@@ -2,7 +2,7 @@
 
 
 
-# Play &middot; [![react](https://badges.aleen42.com/src/react.svg)](https://badges.aleen42.com/src/react.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/your/your-project/blob/master/LICENSE)
+# Play &middot; [![react](https://badges.aleen42.com/src/react.svg)](https://badges.aleen42.com/src/react.svg) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/your/your-project/blob/master/LICENSE) [![Build Status](https://app.travis-ci.com/Kushagrabainsla/play.svg?branch=master)]()
 
 <Br/>
 
