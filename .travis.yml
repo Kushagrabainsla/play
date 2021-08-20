@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+script:
+  - npm run build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  env:
+    - REACT_APP_SUPER_SECRET: $REACT_APP_SUPER_SECRET
+    - REACT_APP_SERVER_DEV_URL: $REACT_APP_SERVER_DEV_URL
+    - REACT_APP_SERVER_PROD_URL: $REACT_APP_SERVER_PROD_URL
+    - REACT_APP_API_TOKEN: $REACT_APP_API_TOKEN
+    - REACT_APP_CLIENT_ID: $REACT_APP_CLIENT_ID
+    - REACT_APP_API_KEY: $REACT_APP_API_KEY
+  local_dir: build
+  on:
+    branch: master
+
+    
