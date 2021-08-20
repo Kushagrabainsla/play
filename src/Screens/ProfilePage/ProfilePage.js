@@ -32,8 +32,8 @@ import {
 } from 'react-icons/ri';
 import { Context } from '../../StateManagement/Context';
 
-// const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
-const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27v54';
+const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
+// const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27v54';
 
 function ProfilePage() {
     const { Option } = Select;
@@ -43,8 +43,8 @@ function ProfilePage() {
     const [userLikes, setuserLikes] = useState(false);
 
     async function fetchUser() {
-        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/user/profile`;
-        const url = 'https://play-backend-app.herokuapp.com/user/profile';
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
+        // const url = 'https://play-backend-app.herokuapp.com/user/profile';
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -82,8 +82,8 @@ function ProfilePage() {
 
     const onSocialFinish = (values) => {
         setsocialConfirmLoading(true);
-        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/updateSocials`;
-        const url = 'https://play-backend-app.herokuapp.com/updateSocials';
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/updateSocials`;
+        // const url = 'https://play-backend-app.herokuapp.com/updateSocials';
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -138,7 +138,6 @@ function ProfilePage() {
                     }}
                 >
                     Add Socials
-                    {process.env.REACT_APP_SERVER_PROD_URL}
                 </Button>
             </Menu.Item>
             <Menu.Divider />

@@ -19,16 +19,16 @@ import {
 import { Context } from '../../StateManagement/Context';
 import MatchedProfileCard from '../../Components/MatchedProfileCard/MatchedProfileCard';
 
-// const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
-const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27v54';
+const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
+// const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27v54';
 
 function HomePage() {
     const [currUser] = useContext(Context);
     const [matchedProfiles, setmatchedProfiles] = useState(false);
 
     async function fetchMatches() {
-        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/user/connections`;
-        const url = 'https://play-backend-app.herokuapp.com/user/connections';
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/connections`;
+        // const url = 'https://play-backend-app.herokuapp.com/user/connections';
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -45,8 +45,8 @@ function HomePage() {
         });
     }
     async function makeMatches() {
-        // const url = `${process.env.REACT_APP_SERVER_DEV_URL}/makeMatches`;
-        const url = 'https://play-backend-app.herokuapp.com/makeMatches';
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/makeMatches`;
+        // const url = 'https://play-backend-app.herokuapp.com/makeMatches';
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
