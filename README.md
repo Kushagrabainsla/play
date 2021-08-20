@@ -15,7 +15,7 @@
 ### Built With
 
 * React.js
-* ant-design
+* Ant-design
 * OAuth2.0
 
 ### Prerequisites
