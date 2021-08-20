@@ -20,7 +20,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
-// const AUTH_TOKEN = 'Bearer blruvyq362f3t9746rbvt578tbcr367b48br34t786fg47985nt27v54';
 
 function MatchedProfileCard(props) {
     const { profile } = props;
@@ -30,7 +29,6 @@ function MatchedProfileCard(props) {
 
     async function fetchUser() {
         const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
-        // const url = 'https://play-backend-app.herokuapp.com/user/profile';
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -43,7 +41,6 @@ function MatchedProfileCard(props) {
                 setmatchedDetails(response.data.result.details);
             }
         }).catch(() => {
-            // console.log(err);
             Modal.warn({ content: 'Error while loading, please refresh !!' });
         });
     }
