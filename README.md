@@ -15,13 +15,11 @@
 ### Built With
 
 * React.js
-* Flask
-* Docker
+* ant-design
 * OAuth2.0
-* MongoDB
 
 ### Prerequisites
-* **Node** and **Python** should be installed on your machine.
+* **Node** and **React.js** should be installed on your machine.
 
 
 ### Setting up Dev
@@ -31,8 +29,6 @@
 git clone https://github.com/Kushagrabainsla/play.git
 cd play
 ```
-
-For running react development server.
 
 ```shell
 npm install
@@ -48,8 +44,3 @@ npm start
 ## Api Reference
 
 * All the APIs are for internal use only.
-
-
-## Database
-
-* MongoDB is used as the Primary database, along with Redis as the secondary Database.

@@ -45,7 +45,7 @@ function LoginPage() {
         }).then((response) => {
             setpeopleResponse(response);
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading, please refresh !!' });
+            Modal.warn({ content: 'Error while loading, please retry !!' });
             // console.log('PEOPLE API', err);
         });
         window.gapi.client.youtube.playlistItems.list({
@@ -55,7 +55,7 @@ function LoginPage() {
         }).then((response) => {
             setyoutubeResponse(response);
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading, please refresh !!' });
+            Modal.warn({ content: 'Error while loading, please retry !!' });
             // console.log('YOUTUBE API', err);
         });
     }
@@ -74,7 +74,7 @@ function LoginPage() {
                     localStorage.setItem('token', response.data.result.token);
                 }
             }).catch(() => {
-                Modal.warn({ content: 'Error while updating, please refresh !!' });
+                Modal.warn({ content: 'Error while updating, please retry !!' });
             });
         }
     }, [youtubeResponse, peopleResponse]);
