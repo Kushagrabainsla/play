@@ -138,6 +138,7 @@ function ProfilePage() {
                     }}
                 >
                     Add Socials
+                    {process.env.REACT_APP_SERVER_PROD_URL}
                 </Button>
             </Menu.Item>
             <Menu.Divider />
