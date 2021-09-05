@@ -20,31 +20,42 @@ import WelcomePage from './Screens/WelcomePage/WelcomePage';
 import ChatsPage from './Screens/ChatsPage/ChatsPage';
 import ChatRoom from './Screens/ChatRoom/ChatRoom';
 import NotFound from './Screens/NotFound/NotFound';
-
 import { Context } from './StateManagement/Context';
 
 const socket = io('http://localhost:5000');
+// const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
+const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function App() {
     const [currUser] = useContext(Context);
     const [rooms, setrooms] = useState([]);
 
     async function fetchRooms() {
-        const url = 'http://localhost:5000/rooms';
-        axios.get(url).then((response) => {
+        const url = 'http://localhost:5000/socket/rooms';
+        // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/rooms`;
+        const config = {
+            headers: {
+                Authorization: AUTH_TOKEN,
+            },
+        };
+        axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
                 setrooms(response.data.message);
             }
         });
     }
     async function addRoom(room) {
-        const url = 'http://localhost:5000/rooms';
+        const url = 'http://localhost:5000/socket/rooms';
+        // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/rooms`;
         const config = {
-            headers: { room },
+            headers: {
+                Authorization: AUTH_TOKEN,
+                room,
+            },
         };
         axios.post(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-            setrooms(response.data.message);
+                setrooms(response.data.message);
             }
         });
     }
@@ -59,14 +70,9 @@ function App() {
     }
 
     function setSocketListeners() {
-        socket.on('message', (data) => {
-            // eslint-disable-next-line no-console
-            console.log(data.message);
-        });
-
         socket.on('message_sent', (message) => {
-          const { room } = message;
-          if (rooms.indexOf(room) === -1) addRoom(room);
+            const { room } = message;
+            if (rooms.indexOf(room) === -1) addRoom(room);
         });
 
         socket.on('open_room', (data) => {
@@ -74,7 +80,7 @@ function App() {
             const userInRoom = room.split('|').indexOf(currUser) !== -1;
             const roomNotOpen = rooms.indexOf(room) === -1;
             if (userInRoom && roomNotOpen) {
-                joinRoom(room, currUser);
+                joinRoom(room, currUser, null);
             }
         });
       }
@@ -82,15 +88,18 @@ function App() {
     useEffect(() => {
         fetchRooms();
         setSocketListeners();
-      }, []);
+    }, []);
 
     if (currUser) {
         return (
             <Router>
                 <Switch>
                     <Route exact path='/chats/room'>
-                        {/* Props are not passing down the tree. (BUG) */}
-                        <Layout component={<ChatRoom socket={socket} joinRoom={joinRoom}/>} />
+                        <Layout
+                            component={<ChatRoom/>}
+                            socket={socket}
+                            joinRoom={joinRoom}
+                        />
                     </Route>
                     <Route exact path='/chats'>
                         <Layout component={<ChatsPage/>}/>

@@ -39,6 +39,53 @@
     font-weight: 400;
 }
 
+
+.chatRoomChatContainer {
+    width: 100%;
+    height: 100vh;
+    margin: 70px 0px 60px 0px; /* top right bottom left */
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    /* background-color: red; */
+}
+
+.chatRoomChatRow {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 0px 10px 0px 10px;
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+}
+.chatRoomBubbleLeft {
+    margin-left: 5px; 
+    margin-right: auto;
+    background-color: grey;
+    box-shadow: 2px 1px 10px lightgrey;
+    border-radius: 15px 15px 15px 0px;
+    width: auto;
+    max-width: 50%;
+    padding: 5px 10px 5px 10px;
+    display: block;
+}
+.chatRoomBubbleRight {
+    margin-left: auto; 
+    margin-right: 5px;
+    background-color: var(--themeLightGreen);
+    box-shadow: 2px 1px 10px lightgrey;
+    border-radius: 15px 15px 0px 15px;
+    width: auto;
+    max-width: 50%;
+    padding: 5px 10px 5px 10px;
+    display: block;
+}
+.chatRoomBubbleText {
+    color: white;
+    font-weight: 500;
+}
+
+
 .chatRoomFloatingFooter {
     color: white;
     bottom: 0px;

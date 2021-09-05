@@ -2,25 +2,28 @@ import React, {
     useState,
     useEffect,
     useContext,
+    useRef,
 } from 'react';
 import './ChatRoom.css';
 import {
     RiArrowLeftSLine,
 } from 'react-icons/ri';
-import { Input, Button } from 'antd';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Input, Button, Modal } from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Context } from '../../StateManagement/Context';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function ChatRoom(props) {
+    const lastMessageReference = useRef();
     const history = useHistory();
     const location = useLocation();
     const [currUser] = useContext(Context);
 
     const { socket, joinRoom } = props;
+    // On refreshing, the location.state becomes undefined. (BUG)
     const { receiver } = location.state;
 
     const room = [currUser, receiver.userId].sort().join('|');
@@ -28,7 +31,8 @@ function ChatRoom(props) {
     const [messages, setmessages] = useState([]);
 
     async function fetchMessages() {
-        const url = 'http://localhost:5000/messages';
+        const url = 'http://localhost:5000/socket/messages';
+        // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/messages`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -38,8 +42,13 @@ function ChatRoom(props) {
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
                 setmessages(response.data.message);
+            } else {
+                Modal.warn({ content: 'Error while loading messages, please refresh !!' });
             }
+        }).catch(() => {
+            Modal.warn({ content: 'Error while loading messages, please refresh !!' });
         });
+        lastMessageReference.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     function sendMessage() {
@@ -54,15 +63,17 @@ function ChatRoom(props) {
             },
         );
         setmessage('');
-        fetchMessages();
+        // fetchMessages();
     }
 
-    function handleMessageChange(event) {
-        setmessage(event.target.value);
+    function setSocketListeners() {
+        socket.on('private_message_sent', () => {
+            fetchMessages();
+        });
     }
 
     useEffect(() => {
-        console.log(props.socket, props.joinRoom);
+        setSocketListeners();
         joinRoom(null, currUser, receiver.userId);
         fetchMessages();
     }, []);
@@ -82,18 +93,19 @@ function ChatRoom(props) {
                     {receiver.username}
                 </div>
             </div>
-            <div
-                style={{
-                    marginTop: '100px',
-                }}
-            >
+            <div className='chatRoomChatContainer'>
                 {
                     messages.map((text, textIndex) => <div
                         key={textIndex}
                     >
-                        {text.author}  :  {text.body}
+                        <div className='chatRoomChatRow'>
+                            <div className={ text.author === currUser ? 'chatRoomBubbleRight' : 'chatRoomBubbleLeft'}>
+                                <div className='chatRoomBubbleText'>{text.body}</div>
+                            </div>
+                        </div>
                     </div>)
                 }
+                <span style={{ marginBottom: 40 }} ref={lastMessageReference}></span>
             </div>
             <div className='chatRoomFloatingFooter'>
                 <div className='chatRoomFooterLeft'>
@@ -105,7 +117,7 @@ function ChatRoom(props) {
                             height: '100%',
                             border: 'none',
                         }}
-                        onChange={(e) => handleMessageChange(e)}
+                        onChange={(event) => setmessage(event.target.value)}
                     />
                 </div>
                 <div className='chatRoomFooterRight'>
@@ -131,8 +143,9 @@ function ChatRoom(props) {
 }
 
 ChatRoom.propTypes = {
-    socket: PropTypes.any,
+    socket: PropTypes.object,
     joinRoom: PropTypes.func,
+    flagForNewMessages: PropTypes.bool,
 };
 
 export default ChatRoom;

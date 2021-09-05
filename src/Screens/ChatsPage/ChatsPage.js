@@ -11,6 +11,7 @@ import {
     RiAccountCircleFill,
 } from 'react-icons/ri';
 import axios from 'axios';
+import { Modal } from 'antd';
 import { Context } from '../../StateManagement/Context';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
@@ -20,7 +21,8 @@ function ChatsPage() {
     const [acticeChats, setacticeChats] = useState([]);
 
     async function fetchChats() {
-        const url = 'http://127.0.0.1:5000/chats';
+        const url = 'http://127.0.0.1:5000/socket/chats';
+        // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/chats`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -30,7 +32,11 @@ function ChatsPage() {
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
                 setacticeChats(response.data.message);
+            } else {
+                Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
             }
+        }).catch(() => {
+            Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
         });
     }
 
@@ -122,8 +128,29 @@ function ChatsPage() {
                             justifyContent: 'center',
                         }}
                     >
-                        <div>{chat.username}</div>
-                        <div>{chat.lastMessageText}</div>
+                        <div
+                            style={{
+                                fontSize: 20,
+                                fontWeight: '600',
+                                height: '40%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                // background: 'red',
+                            }}
+                        >
+                            {chat.username}
+                        </div>
+                        <div
+                            style={{
+                                fontWeight: '400',
+                                height: '50%',
+                                display: 'flex',
+                                overflow: 'hidden',
+                                // background: 'green',
+                            }}
+                        >
+                            {chat.lastMessageText}
+                        </div>
                     </div>
                     <div
                         style={{
