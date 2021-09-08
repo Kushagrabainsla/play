@@ -21,8 +21,7 @@ function ChatsPage() {
     const [acticeChats, setacticeChats] = useState([]);
 
     async function fetchChats() {
-        const url = 'http://127.0.0.1:5000/socket/chats';
-        // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/chats`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/chats`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,

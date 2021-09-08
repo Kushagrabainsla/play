@@ -9,20 +9,21 @@ import {
     RiArrowLeftSLine,
 } from 'react-icons/ri';
 import axios from 'axios';
+import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 import { Input, Button, Modal } from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Context } from '../../StateManagement/Context';
 
+const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
-function ChatRoom(props) {
+function ChatRoom() {
     const lastMessageReference = useRef();
     const history = useHistory();
     const location = useLocation();
     const [currUser] = useContext(Context);
 
-    const { socket, joinRoom } = props;
     // On refreshing, the location.state becomes undefined. (BUG)
     const { receiver } = location.state;
 
@@ -31,8 +32,7 @@ function ChatRoom(props) {
     const [messages, setmessages] = useState([]);
 
     async function fetchMessages() {
-        const url = 'http://localhost:5000/socket/messages';
-        // const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/messages`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/messages`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -63,7 +63,6 @@ function ChatRoom(props) {
             },
         );
         setmessage('');
-        // fetchMessages();
     }
 
     function setSocketListeners() {
@@ -74,7 +73,6 @@ function ChatRoom(props) {
 
     useEffect(() => {
         setSocketListeners();
-        joinRoom(null, currUser, receiver.userId);
         fetchMessages();
     }, []);
 
@@ -146,6 +144,7 @@ ChatRoom.propTypes = {
     socket: PropTypes.object,
     joinRoom: PropTypes.func,
     flagForNewMessages: PropTypes.bool,
+    location: PropTypes.any,
 };
 
 export default ChatRoom;

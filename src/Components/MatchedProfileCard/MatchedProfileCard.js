@@ -111,7 +111,16 @@ function MatchedProfileCard(props) {
                 {
                     matchedLikes.map((tag, tagIndex) => <Link
                         key={tagIndex}
-                        to='/chats/room'
+                        to={{
+                            pathname: '/chats/room',
+                            state: {
+                                receiver: {
+                                    userId: matchedDetails.userId,
+                                    userProfilePhoto: matchedDetails.userPhotoURL,
+                                    username: matchedDetails.userName,
+                                },
+                            },
+                        }}
                     >
                         <p className='likeContainer'>
                             { tag }
