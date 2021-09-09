@@ -61,49 +61,47 @@ function HomePage() {
 
     return (
         <div className='homeContainer'>
-            <PullToRefresh onRefresh={makeMatches}>
-                <div className='matchedProfilesContainer'>
-                    {
-                        // eslint-disable-next-line no-nested-ternary
-                        matchedProfiles
-                        ? matchedProfiles.length > 0
-                            ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
-                                profile={profile}
-                                key={profileIndex}
-                            />)
-                            : <img
-                                src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
-                                alt='No Matches Found'
-                                style={{
-                                    height: '60vh',
-                                    paddingTop: '30vh',
-                                }}
-                            />
-                        : <>
-                            <Skeleton
-                                active
-                                className='matchedProfileBottom'
-                            />
-                            <Skeleton
-                                active
-                                className='matchedProfileBottom'
-                            />
-                            <Skeleton
-                                active
-                                className='matchedProfileBottom'
-                            />
-                            <Skeleton
-                                active
-                                className='matchedProfileBottom'
-                            />
-                            <Skeleton
-                                active
-                                className='matchedProfileBottom'
-                            />
-                        </>
-                    }
-                </div>
-            </PullToRefresh>
+            <div className='matchedProfilesContainer'>
+                {
+                    // eslint-disable-next-line no-nested-ternary
+                    matchedProfiles
+                    ? matchedProfiles.length > 0
+                        ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
+                            profile={profile}
+                            key={profileIndex}
+                        />)
+                        : <img
+                            src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
+                            alt='No Matches Found'
+                            style={{
+                                height: '60vh',
+                                paddingTop: '30vh',
+                            }}
+                        />
+                    : <>
+                        <Skeleton
+                            active
+                            className='matchedProfileBottom'
+                        />
+                        <Skeleton
+                            active
+                            className='matchedProfileBottom'
+                        />
+                        <Skeleton
+                            active
+                            className='matchedProfileBottom'
+                        />
+                        <Skeleton
+                            active
+                            className='matchedProfileBottom'
+                        />
+                        <Skeleton
+                            active
+                            className='matchedProfileBottom'
+                        />
+                    </>
+                }
+            </div>
             <div className='homeFloatingFooter'>
                 <Link
                     to='/chats'
