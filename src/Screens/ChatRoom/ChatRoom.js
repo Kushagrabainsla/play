@@ -19,7 +19,7 @@ const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function ChatRoom() {
-    const lastMessageReference = useRef();
+    const lastMessageReference = useRef(null);
     const history = useHistory();
     const location = useLocation();
     const [currUser] = useContext(Context);
@@ -48,7 +48,7 @@ function ChatRoom() {
         }).catch(() => {
             Modal.warn({ content: 'Error while loading messages, please refresh !!' });
         });
-        lastMessageReference.current.scrollIntoView({ behavior: 'smooth' });
+        if (lastMessageReference.current) lastMessageReference.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     function sendMessage() {

@@ -4,10 +4,12 @@ import React, {
     useContext,
 } from 'react';
 import './LoginPage.css';
-import axios from 'axios';
 import {
     Modal,
+    Spin,
 } from 'antd';
+import axios from 'axios';
+import { LoadingOutlined } from '@ant-design/icons';
 import { updateContext } from '../../StateManagement/Context';
 
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
@@ -16,6 +18,7 @@ const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.goo
 function LoginPage() {
     const toggleUser = useContext(updateContext);
     const [isGapiLoaded, setisGapiLoaded] = useState(false);
+    const [dataLoading, setdataLoading] = useState(false);
     const [youtubeResponse, setyoutubeResponse] = useState(false);
     const [peopleResponse, setpeopleResponse] = useState(false);
 
@@ -77,8 +80,10 @@ function LoginPage() {
     }, [youtubeResponse, peopleResponse]);
 
     function handleSignInClick() {
-        window.gapi.auth2.getAuthInstance().signIn();
-        fetchDataFromAPI();
+        window.gapi.auth2.getAuthInstance().signIn().then(() => {
+            setdataLoading(true);
+            fetchDataFromAPI();
+        });
     }
 
     return (
@@ -99,9 +104,17 @@ function LoginPage() {
             </div>
             <div className='loginBottom'>
                 {
-                    isGapiLoaded
+                    isGapiLoaded === true
                     ? <div className='googleButton' onClick={handleSignInClick}>
-                        <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
+                        {
+                            dataLoading
+                            ? <Spin
+                                spinning={dataLoading}
+                                indicator={<LoadingOutlined style={{ fontSize: 30, color: '#264653' }} spin />}
+                                size="large"
+                            />
+                            : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
+                        }
                         Sign in with Google
                     </div>
                     : null

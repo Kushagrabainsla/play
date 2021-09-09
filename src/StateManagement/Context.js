@@ -6,6 +6,7 @@ export const updateContext = createContext();
 
 export const Provider = (props) => {
     const [currUser, setcurrUser] = useState(localStorage.getItem('currUser'));
+
     function toggleUser(user) {
         setcurrUser(user);
     }

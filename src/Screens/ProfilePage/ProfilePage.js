@@ -153,7 +153,9 @@ function ProfilePage() {
                         }}
                         icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
                         onClick={() => {
-                            // window.gapi.auth2.getAuthInstance().signOut();
+                            if (window.gapi.auth2.getAuthInstance()) {
+                                window.gapi.auth2.getAuthInstance().signOut();
+                            }
                             localStorage.clear();
                             document.location.href = '/play';
                         }}
