@@ -5,7 +5,6 @@ import React, {
 } from 'react';
 import './HomePage.css';
 import axios from 'axios';
-import PullToRefresh from 'react-simple-pull-to-refresh';
 import { Link } from 'react-router-dom';
 import {
     RiAccountCircleFill,
