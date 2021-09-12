@@ -32,8 +32,8 @@ function LoginPage() {
             setisGapiLoaded(true);
         }).catch((res) => {
             // Modal.info({ content: 'Sorry, you do not have access to this application.' });
-            Modal.info({ content: res.error });
-            Modal.info({ content: res.error.message });
+            if (res.error.message) Modal.info({ content: res.error.message });
+            else Modal.info({ content: res.error });
         });
     }
 
