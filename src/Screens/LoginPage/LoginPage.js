@@ -30,7 +30,8 @@ function LoginPage() {
             scope: SCOPES,
         }).then(() => {
             setisGapiLoaded(true);
-        }).catch(() => {
+        }).catch((res) => {
+            console.log('error', res);
             Modal.info({ content: 'Sorry, you do not have access to this application.' });
         });
     }

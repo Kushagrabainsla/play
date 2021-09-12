@@ -21,5 +21,6 @@ deploy:
   local_dir: build
   on:
     branch: master
+  fqdn: officialplay.me
 
     
