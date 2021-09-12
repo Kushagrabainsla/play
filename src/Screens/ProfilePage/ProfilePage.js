@@ -158,7 +158,7 @@ function ProfilePage() {
                             }
                             localStorage.clear();
                             // document.location.href = '/play';
-                            document.location.href = '/#/';
+                            document.location.href = '/';
                         }}
                     >
                         Sign out
