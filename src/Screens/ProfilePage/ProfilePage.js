@@ -157,7 +157,8 @@ function ProfilePage() {
                                 window.gapi.auth2.getAuthInstance().signOut();
                             }
                             localStorage.clear();
-                            document.location.href = '/play';
+                            // document.location.href = '/play';
+                            document.location.href = '/#/';
                         }}
                     >
                         Sign out

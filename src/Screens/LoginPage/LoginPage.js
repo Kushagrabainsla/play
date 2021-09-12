@@ -30,10 +30,8 @@ function LoginPage() {
             scope: SCOPES,
         }).then(() => {
             setisGapiLoaded(true);
-        }).catch((res) => {
-            // Modal.info({ content: 'Sorry, you do not have access to this application.' });
-            if (res.error.message) Modal.info({ content: res.error.message });
-            else Modal.info({ content: res.error });
+        }).catch(() => {
+            Modal.info({ content: 'Sorry, you do not have access to this application.' });
         });
     }
 
