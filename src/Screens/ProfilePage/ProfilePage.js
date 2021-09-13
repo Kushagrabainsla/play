@@ -173,46 +173,7 @@ function ProfilePage() {
             {
                 userDetails && userSocials
                 ? <div className='profileTop'>
-                    <div className='profileTopLeft'>
-                        <img
-                            src={formattedPhotoURL(userDetails.userPhotoURL)}
-                            alt='User Profile Photo'
-                            className='profilePhoto'
-                        />
-                    </div>
-                    <div className='profileTopMid'>
-                        <div className='profileNameText'>
-                            {userDetails.userName}
-                        </div>
-                        <div className='profileSocials'>
-                            {
-                                userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>} arrow>
-                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>} arrow>
-                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>} arrow>
-                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>} arrow>
-                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>} arrow>
-                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                        </div>
-                    </div>
-                    <div className='profileTopRight'>
+                    <div className='profileTopHamburgerArea'>
                         <Dropdown
                             overlay={optionsMenu}
                             placement="bottomRight"
@@ -227,12 +188,60 @@ function ProfilePage() {
                             />
                         </Dropdown>
                     </div>
+                    <div className='profileTopDetails'>
+                        <div className='profilePhotoContainer'>
+                            <img
+                                src={formattedPhotoURL(userDetails.userPhotoURL)}
+                                alt='User Profile Photo'
+                                className='profilePhoto'
+                            />
+                        </div>
+                        <div className='profileSocials'>
+                            {
+                                userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                        </div>
+                        <div className='profileNameText'>
+                            {userDetails.userName}
+                        </div>
+                    </div>
                 </div>
                 : <Skeleton
                     active
                     className='profileLikes'
                 />
-
             }
             <div className='profileBottom'>
                 <div className='profileLikes'>

@@ -51,8 +51,8 @@
 }
 
 .chatRoomChatRow {
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 0px 10px 0px 10px;
     /* background-color: black; */
     display: flex;
@@ -61,13 +61,12 @@
 .chatRoomBubbleLeft {
     margin-left: 5px; 
     margin-right: auto;
-    
     color: black;
     background-color: white;
     box-shadow: 2px 1px 10px lightgrey;
     border-radius: 15px 15px 15px 0px;
     width: auto;
-    max-width: 50%;
+    max-width: 70%;
     padding: 5px 10px 5px 10px;
     display: block;
 }
@@ -79,12 +78,18 @@
     box-shadow: 2px 1px 10px lightgrey;
     border-radius: 15px 15px 0px 15px;
     width: auto;
-    max-width: 50%;
+    max-width: 70%;
     padding: 5px 10px 5px 10px;
     display: block;
 }
 .chatRoomBubbleText {
     font-weight: 500;
+}
+
+.chatRoomBubbleTimestamp {
+    display: flex;
+    color: lightgray;
+    justify-content: flex-end;
 }
 
 

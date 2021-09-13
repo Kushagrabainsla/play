@@ -11,6 +11,7 @@ import {
 import axios from 'axios';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Input, Button, Modal } from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Context } from '../../StateManagement/Context';
@@ -97,8 +98,20 @@ function ChatRoom() {
                         key={textIndex}
                     >
                         <div className='chatRoomChatRow'>
+                            <img
+                                src={receiver.userProfilePhoto}
+                                alt='Profile Picture'
+                                style={{
+                                    display: text.author === currUser ? 'none' : 'flex',
+                                    width: '30px',
+                                    borderRadius: '50%',
+                                    alignSelf: 'flex-end',
+                                    boxShadow: '2px 1px 10px lightgrey',
+                                }}
+                            />
                             <div className={ text.author === currUser ? 'chatRoomBubbleRight' : 'chatRoomBubbleLeft'}>
                                 <div className='chatRoomBubbleText'>{text.body}</div>
+                                <div className='chatRoomBubbleTimestamp'>{moment(text.timeStamp).format('LT')}</div>
                             </div>
                         </div>
                     </div>)

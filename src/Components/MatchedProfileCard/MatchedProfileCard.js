@@ -71,7 +71,7 @@ function MatchedProfileCard(props) {
                         <div className='matchedProfileNameText'>
                             {matchedDetails.userName}
                         </div>
-                        <div className='profileSocials'>
+                        <div className='matchedProfileSocialMedia'>
                             {
                                 matchedSocials && matchedSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.instagram}</Menu.Item></Menu>} arrow>
                                     <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />

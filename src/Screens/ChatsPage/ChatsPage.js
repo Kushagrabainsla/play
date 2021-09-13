@@ -74,6 +74,7 @@ function ChatsPage() {
                                 alt='Profile Picture'
                                 style={{
                                     width: '70%',
+                                    maxWidth: '80px',
                                     borderRadius: '50%',
                                 }}
                             />
@@ -93,7 +94,7 @@ function ChatsPage() {
                                     fontWeight: '600',
                                     height: '40%',
                                     display: 'flex',
-                                    alignItems: 'center',
+                                    overflow: 'hidden',
                                     // background: 'red',
                                 }}
                             >
