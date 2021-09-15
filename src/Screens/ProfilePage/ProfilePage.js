@@ -183,6 +183,7 @@ function ProfilePage() {
                                 onClick={(e) => e.preventDefault()}
                                 style={{
                                     fontSize: 20,
+                                    color: 'black',
                                     cursor: 'pointer',
                                 }}
                             />
@@ -282,8 +283,8 @@ function ProfilePage() {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiAccountCircleFill
-                        fontSize={35}
-                        color='white'
+                        fontSize={32}
+                        color='black'
                     />
                 </Link>
             </div>

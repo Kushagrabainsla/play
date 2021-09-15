@@ -7,6 +7,7 @@ import React, {
 import './ChatRoom.css';
 import {
     RiArrowLeftSLine,
+    RiSendPlane2Fill,
 } from 'react-icons/ri';
 import axios from 'axios';
 import io from 'socket.io-client';
@@ -53,17 +54,19 @@ function ChatRoom() {
     }
 
     function sendMessage() {
-        socket.emit(
-            'send_message',
-            {
-                room,
-                author: currUser,
-                receiver: receiver.userId,
-                body: message,
-                timeStamp: Date.now(),
-            },
-        );
-        setmessage('');
+        if (message) {
+            socket.emit(
+                'send_message',
+                {
+                    room,
+                    author: currUser,
+                    receiver: receiver.userId,
+                    body: message,
+                    timeStamp: Date.now(),
+                },
+            );
+            setmessage('');
+        }
     }
 
     function setSocketListeners() {
@@ -85,6 +88,7 @@ function ChatRoom() {
                         onClick={() => history.goBack()}
                         style={{
                             fontSize: 32,
+                            cursor: 'pointer',
                         }}
                     />
                 </div>
@@ -125,8 +129,9 @@ function ChatRoom() {
                         allowClear
                         value={message}
                         style={{
-                            height: '100%',
+                            height: '80%',
                             border: 'none',
+                            borderRadius: '50px',
                         }}
                         onChange={(event) => setmessage(event.target.value)}
                     />
@@ -134,19 +139,18 @@ function ChatRoom() {
                 <div className='chatRoomFooterRight'>
                     <Button
                         type="ghost"
-                        shape="round"
+                        shape="circle"
+                        size='large'
                         onClick={sendMessage}
+                        icon={<RiSendPlane2Fill/>}
                         style={{
                             color: 'white',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'space-evenly',
+                            justifyContent: 'center',
                             background: '#2a9d8f',
-                            fontWeight: '500',
                         }}
-                    >
-                        Send
-                    </Button>
+                    />
                 </div>
             </div>
         </div>

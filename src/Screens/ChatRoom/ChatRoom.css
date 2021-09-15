@@ -10,13 +10,10 @@
 }
 
 .chatRoomFloatingHeader {
-    /* background-color: #0079c1; */
-    color: white;
-    background-color: var(--themeLightGreen);
+    color: black;
+    background-color: white;
     top: 10px;
     position: absolute;
-    border-radius: 50px;
-    box-shadow: 2px 1px 10px grey;
     width: 300px;
     height: 50px;
     display: flex;
@@ -27,7 +24,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: red; */
 }
 .chatRoomHeaderRight {
     width: 80%;
@@ -107,10 +103,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
 }
 .chatRoomFooterRight {
     float: right;
+    width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;

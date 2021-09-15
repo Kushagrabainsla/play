@@ -60,99 +60,56 @@ function ChatsPage() {
                         className='singleChatBubble'
                         key={chat.userId}
                     >
-                        <div
-                            style={{
-                                width: '20%',
-                                height: '15vh',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                        >
+                        <div className='chatBubbleLeft'>
                             <img
                                 src={chat.userProfilePhoto}
                                 alt='Profile Picture'
                                 style={{
-                                    width: '70%',
-                                    maxWidth: '80px',
+                                    width: '80%',
+                                    maxWidth: '70px',
                                     borderRadius: '50%',
                                 }}
                             />
                         </div>
-                        <div
-                            style={{
-                                width: '60%',
-                                height: '15vh',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <div
-                                style={{
-                                    fontSize: 20,
-                                    fontWeight: '600',
-                                    height: '40%',
-                                    display: 'flex',
-                                    overflow: 'hidden',
-                                    // background: 'red',
-                                }}
-                            >
+                        <div className='chatBubbleMid' >
+                            <div className='chatBubbleUpperMid' >
                                 {chat.username}
                             </div>
-                            <div
-                                style={{
-                                    fontWeight: '400',
-                                    height: '50%',
-                                    display: 'flex',
-                                    overflow: 'hidden',
-                                    // background: 'green',
-                                }}
-                            >
+                            <div className='chatBubbleLowerMid'>
                                 {chat.lastMessageText}
                             </div>
                         </div>
-                        <div
-                            style={{
-                                width: '20%',
-                                height: '15vh',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                        >
+                        <div className='chatBubbleRight'>
                             { moment(chat.lastMessageTimestamp).format('LT') }
                         </div>
                     </Link>)
-                    : <img
-                        src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
-                        alt='No Matches Found'
-                        style={{
-                            height: '60vh',
-                            paddingTop: '30vh',
-                        }}
-                    />
+                    : <div className='noChatBubble'>
+                        <div
+                            style={{
+                                color: 'black',
+                                fontSize: '20px',
+                                fontWeight: '500',
+                            }}
+                        >
+                            Hey
+                        </div>
+                        <div style={{ color: 'gray' }} >
+                            You do not have any conversations yet,
+                            go to your connections page, and tap on any
+                            interest tag of your favourite connection
+                            to start a conversation.
+                        </div>
+                    </div>
                 : <>
-                    <Skeleton
-                        active
-                        className='matchedProfileBottom'
-                    />
-                    <Skeleton
-                        active
-                        className='matchedProfileBottom'
-                    />
-                    <Skeleton
-                        active
-                        className='matchedProfileBottom'
-                    />
-                    <Skeleton
-                        active
-                        className='matchedProfileBottom'
-                    />
-                    <Skeleton
-                        active
-                        className='matchedProfileBottom'
-                    />
+                    {
+                        [0, 1, 2, 3, 4].map((id) => <Skeleton
+                            key={id}
+                            active
+                            avatar
+                            paragraph={{ rows: 1 }}
+                            className='chatBubbleSkeleton'
+                        />)
+                    }
                 </>
             }
             <div className='chatsPageFloatingFooter'>
@@ -161,8 +118,8 @@ function ChatsPage() {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiChatSmile3Fill
-                        fontSize={35}
-                        color='white'
+                        fontSize={32}
+                        color='black'
                     />
                 </Link>
                 <Link

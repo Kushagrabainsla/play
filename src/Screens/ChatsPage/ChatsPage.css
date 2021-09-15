@@ -12,24 +12,81 @@
 .singleChatBubble {
     margin-top: 10px;
     width: 95%;
-    padding: 0px 10px 0px 10px;
-    height: 15vh;
+    padding: 0px 10px 0px 5px;
+    height: 100px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     box-shadow: 2px 1px 10px lightgrey;
     border-radius: 15px;
-    color: var(--themeLightGreen);
+    background-color: white;
+}
+
+.chatBubbleLeft {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatBubbleMid {
+    width: 60%;
+    height: 100px; /* Same as of chatbubble */
+    display: 'flex';
+    flex-direction: 'column';
+}
+.chatBubbleUpperMid {
+    height: 50%;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+
+}
+.chatBubbleLowerMid {
+    height: 50%;
+    /* Word overflow with dots. */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    color: gray;
+    font-weight: 400;
+}
+
+.chatBubbleRight {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+}
+
+.chatBubbleSkeleton {
+    padding-top: 15px;
+    width: 90%;
+}
+
+.noChatBubble {
+    margin-top: 10px;
+    width: 95%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 1px 10px lightgrey;
+    border-radius: 15px;
+    background-color: white;
 }
 
 .chatsPageFloatingFooter {
-    /* background-color: #0079c1; */
-    background-color: var(--themeLightGreen);
+    background-color: white;
     bottom: 10px;
     position: fixed;
     border-radius: 50px;
-    box-shadow: 2px 1px 10px grey;
+    box-shadow: 2px 1px 10px lightgrey;
     width: 220px;
     height: 50px;
     display: flex;

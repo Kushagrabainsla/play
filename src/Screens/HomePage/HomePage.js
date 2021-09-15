@@ -116,8 +116,8 @@ function HomePage() {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                     <RiHome5Fill
-                        fontSize={35}
-                        color='white'
+                        fontSize={32}
+                        color='black'
                     />
                 </Link>
                 <Link
