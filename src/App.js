@@ -51,6 +51,9 @@ function App() {
                 <Route exact path='/'>
                     <Layout component={<LoginPage/>}/>
                 </Route>
+                {/* <Route exact path='/loginLegacy'>
+                    <Layout component={<LoginPageLegacy/>}/>
+                </Route> */}
                 <Route>
                     <Layout component={<NotFound/>}/>
                 </Route>

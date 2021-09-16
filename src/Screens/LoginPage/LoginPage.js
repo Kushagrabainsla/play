@@ -13,7 +13,6 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { updateContext } from '../../StateManagement/Context';
 
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
-// const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user.emails.read https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.phonenumbers.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 
 function LoginPage() {
@@ -92,37 +91,39 @@ function LoginPage() {
 
     return (
         <div className='loginContainer'>
-            <div className='loginTop'>
-                <div className='loginTopColourFill'>
+            <div className='loginbBurryBackground'></div>
+            <div className='loginUpperLayer'>
+                <div className='loginContainerTop'>
                     <img
-                        src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.png'
-                        alt='Play Logo'
-                        className='loginPagePlayLogo'
+                        src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
+                        className='loginPlayImage'
                     />
                 </div>
-                <div className="custom-shape-divider-top-1628334449">
-                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
-                    </svg>
-                </div>
-            </div>
-            <div className='loginBottom'>
-                {
-                    isGapiLoaded === true
-                    ? <div className='googleButton' onClick={handleSignInClick}>
+                <div className='loginContainerBottom'>
+                    <div className='loginBottomCard'>
+                        <div className='loginPlayText'>
+                            play
+                        </div>
+                        <div className='loginBottom'>
                         {
-                            dataLoading
-                            ? <Spin
-                                spinning={dataLoading}
-                                indicator={<LoadingOutlined style={{ fontSize: 30, color: '#264653' }} spin />}
-                                size="large"
-                            />
-                            : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' className='loginGoogleLogo' />
+                            isGapiLoaded === true
+                            ? <div className='googleButton' onClick={handleSignInClick}>
+                                {
+                                    dataLoading
+                                    ? <Spin
+                                        spinning={dataLoading}
+                                        indicator={<LoadingOutlined style={{ fontSize: 30, color: '#264653' }} spin />}
+                                        size="large"
+                                    />
+                                    : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'/>
+                                }
+                                Sign in with Google
+                            </div>
+                            : null
                         }
-                        Sign in with Google
                     </div>
-                    : null
-                }
+                    </div>
+                </div>
             </div>
         </div>
     );

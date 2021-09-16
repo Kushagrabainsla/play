@@ -14,6 +14,7 @@
 
 .matchedProfilesContainer {
     /* background-color: violet; */
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -25,6 +26,11 @@
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: content-box;
+}
+
+.matchedProfileSkeleton {
+    margin-top: 20px;
+    width: 90%;
 }
 
 .homeFloatingFooter {

@@ -84,16 +84,13 @@ function ChatsPage() {
                         </div>
                     </Link>)
                     : <div className='noChatBubble'>
-                        <div
-                            style={{
-                                color: 'black',
-                                fontSize: '20px',
-                                fontWeight: '500',
-                            }}
-                        >
-                            Hey
+                        <div className='noChatBubbleLeft'>
+                            <img
+                                src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
+                                width='100%'
+                            />
                         </div>
-                        <div style={{ color: 'gray' }} >
+                        <div className='noChatBubbleRight' >
                             You do not have any conversations yet,
                             go to your connections page, and tap on any
                             interest tag of your favourite connection

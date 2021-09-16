@@ -241,7 +241,9 @@ function ProfilePage() {
                 </div>
                 : <Skeleton
                     active
-                    className='profileLikes'
+                    title={false}
+                    avatar={{ size: 100 }}
+                    className='profileDetailsSkeleton'
                 />
             }
             <div className='profileBottom'>
@@ -254,7 +256,9 @@ function ProfilePage() {
                             >{keyword}</p>)
                         : <Skeleton
                             active
-                            className='profileLikes'
+                            title={false}
+                            paragraph={{ rows: 6 }}
+                            className='likeContainerSkeleton'
                         />
                     }
                 </div>

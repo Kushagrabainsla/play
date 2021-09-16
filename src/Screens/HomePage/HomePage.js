@@ -78,26 +78,15 @@ function HomePage() {
                             }}
                         />
                     : <>
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
-                        <Skeleton
-                            active
-                            className='matchedProfileBottom'
-                        />
+                        {
+                            [0, 1, 2, 3, 4].map((id) => <Skeleton
+                                key={id}
+                                active
+                                avatar={{ size: 80 }}
+                                paragraph={{ rows: 3 }}
+                                className='matchedProfileSkeleton'
+                            />)
+                        }
                     </>
                 }
             </div>

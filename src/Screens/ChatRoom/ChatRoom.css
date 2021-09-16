@@ -7,6 +7,9 @@
     align-items: center;
     position: relative;
     box-shadow: 2px 1px 10px lightgrey;
+
+    /* Parent container for hiding scroll bar */
+    overflow: hidden; 
 }
 
 .chatRoomFloatingHeader {
@@ -44,6 +47,12 @@
     flex-direction: column;
     overflow: scroll;
     /* background-color: red; */
+
+    /* Child container for hiding scroll bar */
+    overflow: scroll;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: content-box;
 }
 
 .chatRoomChatRow {

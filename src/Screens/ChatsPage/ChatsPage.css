@@ -73,11 +73,29 @@
 .noChatBubble {
     margin-top: 10px;
     width: 95%;
-    padding: 15px;
     display: flex;
-    flex-direction: column;
+    padding: 15px;
+    flex-direction: row;
     box-shadow: 2px 1px 10px lightgrey;
     border-radius: 15px;
+    /* background-color: red; */
+}
+.noChatBubbleLeft {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+.noChatBubbleRight {
+    width: 85%;
+    font-weight: 500;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 20px;
     background-color: white;
 }
 

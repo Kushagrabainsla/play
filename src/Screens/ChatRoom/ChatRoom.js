@@ -50,7 +50,6 @@ function ChatRoom() {
         }).catch(() => {
             Modal.warn({ content: 'Error while loading messages, please refresh !!' });
         });
-        if (lastMessageReference.current) lastMessageReference.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     function sendMessage() {
@@ -75,10 +74,20 @@ function ChatRoom() {
         });
     }
 
+    function scrollToLastMessage() {
+        if (lastMessageReference.current) {
+            lastMessageReference.current?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        }
+    }
+
     useEffect(() => {
         setSocketListeners();
         fetchMessages();
     }, []);
+
+    useEffect(() => {
+        scrollToLastMessage();
+    }, [messages]);
 
     return (
         <div className='chatRoomContainer'>
@@ -120,7 +129,7 @@ function ChatRoom() {
                         </div>
                     </div>)
                 }
-                <span style={{ marginBottom: 40 }} ref={lastMessageReference}></span>
+                <span ref={lastMessageReference}></span>
             </div>
             <div className='chatRoomFloatingFooter'>
                 <div className='chatRoomFooterLeft'>
