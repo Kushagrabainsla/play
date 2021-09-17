@@ -88,7 +88,8 @@
     /* Use the text as a mask for the background. */
     /* This will show the gradient as a text color rather than element bg. */
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent; /* Text not visible on safari  */
+    /* -webkit-text-fill-color: rgb(0,0,0,0.1); Working on safari with black colour  */
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
 }
