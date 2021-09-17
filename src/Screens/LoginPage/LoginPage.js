@@ -101,8 +101,8 @@ function LoginPage() {
                 </div>
                 <div className='loginContainerBottom'>
                     <div className='loginBottomCard'>
-                        <div className='loginPlayText'>
-                            play
+                        <div className='loginPlayTextContainer'>
+                            <div className='loginPlayInside'>play</div>
                         </div>
                         <div className='loginBottom'>
                         {
