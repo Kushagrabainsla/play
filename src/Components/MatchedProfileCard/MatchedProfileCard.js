@@ -8,6 +8,7 @@ import {
     Modal,
     Menu,
     Dropdown,
+    Collapse,
 } from 'antd';
 import {
     RiTwitterFill,
@@ -20,6 +21,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
+const { Panel } = Collapse;
 
 function MatchedProfileCard(props) {
     const { profile } = props;
@@ -108,25 +110,33 @@ function MatchedProfileCard(props) {
                 : null
             }
             <div className='matchedProfileBottom'>
-                {
-                    matchedLikes.map((tag, tagIndex) => <Link
-                        key={tagIndex}
-                        to={{
-                            pathname: '/chats/room',
-                            state: {
-                                receiver: {
-                                    userId: matchedDetails.userId,
-                                    userProfilePhoto: matchedDetails.userPhotoURL,
-                                    username: matchedDetails.userName,
-                                },
-                            },
-                        }}
+                <Collapse ghost >
+                    <Panel
+                        header="Tap to view interest tags"
+                        key="1"
+                        className="site-collapse-custom-panel"
                     >
-                        <p className='likeContainer'>
-                            { tag }
-                        </p>
-                    </Link>)
-                }
+                        {
+                            matchedLikes.map((tag, tagIndex) => <Link
+                                key={tagIndex}
+                                to={{
+                                    pathname: '/chats/room',
+                                    state: {
+                                        receiver: {
+                                            userId: matchedDetails.userId,
+                                            userProfilePhoto: matchedDetails.userPhotoURL,
+                                            username: matchedDetails.userName,
+                                        },
+                                    },
+                                }}
+                            >
+                                <p className='likeContainer'>
+                                    { tag }
+                                </p>
+                            </Link>)
+                        }
+                    </Panel>
+                </Collapse>
             </div>
         </div>
     );
