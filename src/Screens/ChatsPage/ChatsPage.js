@@ -12,7 +12,11 @@ import {
 } from 'react-icons/ri';
 import axios from 'axios';
 import io from 'socket.io-client';
-import { Modal, Skeleton, Badge } from 'antd';
+import {
+    Modal,
+    Skeleton,
+    // Badge,
+} from 'antd';
 import moment from 'moment';
 import { Context } from '../../StateManagement/Context';
 
@@ -22,17 +26,19 @@ const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 function ChatsPage() {
     const [currUser] = useContext(Context);
     const [acticeChats, setacticeChats] = useState(false);
-    const [areNewMessagesAvailable, setareNewMessagesAvailable] = useState(false);
+    // const [areNewMessagesAvailable, setareNewMessagesAvailable] = useState(false);
 
-    function areChatsEqual(oldChats, newChats) {
-        if (oldChats.length !== newChats.length) return false;
+    // function areChatsEqual(oldChats, newChats) {
+    //     if (oldChats.length !== newChats.length) return false;
 
-        for (let i = 0; i < oldChats.length; i += 1) {
-            if (oldChats[i].lastMessageText !== newChats[i].lastMessageText) return false;
-            if (oldChats[i].lastMessageTimestamp !== newChats[i].lastMessageTimestamp) return false;
-        }
-        return true;
-    }
+    //     for (let i = 0; i < oldChats.length; i += 1) {
+    //         if (oldChats[i].lastMessageText !== newChats[i].lastMessageText) return false;
+    //         if (oldChats[i].lastMessageTimestamp !== newChats[i].lastMessageTimestamp) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
     async function fetchChats() {
         const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/chats`;
@@ -44,13 +50,13 @@ function ChatsPage() {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                const oldChatInfo = JSON.parse(localStorage.getItem('userChats'));
+                // const oldChatInfo = JSON.parse(localStorage.getItem('userChats'));
                 // If old messages and new messages are not same.
-                if (areChatsEqual(oldChatInfo, response.data.message) === false) {
-                    setareNewMessagesAvailable(true);
-                }
+                // if (areChatsEqual(oldChatInfo, response.data.message) === false) {
+                //     setareNewMessagesAvailable(true);
+                // }
                 setacticeChats(response.data.message);
-                localStorage.setItem('userChats', JSON.stringify(response.data.message));
+                // localStorage.setItem('userChats', JSON.stringify(response.data.message));
             } else {
                 Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
             }
@@ -136,16 +142,16 @@ function ChatsPage() {
                     to='/chats'
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                    {/* <RiChatSmile3Fill
+                    <RiChatSmile3Fill
                         fontSize={32}
                         color='black'
-                    /> */}
-                    <Badge dot={areNewMessagesAvailable}>
+                    />
+                    {/* <Badge dot={areNewMessagesAvailable}>
                         <RiChatSmile3Fill
                             fontSize={32}
                             color='black'
                         />
-                    </Badge>
+                    </Badge> */}
                 </Link>
                 <Link
                     to='/'
