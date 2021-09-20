@@ -64,11 +64,7 @@ function ChatsPage() {
                             <img
                                 src={chat.userProfilePhoto}
                                 alt='Profile Picture'
-                                style={{
-                                    width: '80%',
-                                    maxWidth: '70px',
-                                    borderRadius: '50%',
-                                }}
+                                className='chatProfilePhoto'
                             />
                         </div>
                         <div className='chatBubbleMid' >

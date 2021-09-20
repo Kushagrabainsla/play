@@ -106,6 +106,7 @@
     height: 50px;
     display: flex;
     flex-direction: row;
+    /* background-color: rebeccapurple; */
 }
 .chatRoomFooterLeft {
     width: 100%;
