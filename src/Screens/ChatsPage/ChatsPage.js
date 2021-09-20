@@ -27,7 +27,6 @@ function ChatsPage() {
     const [currUser] = useContext(Context);
     const [acticeChats, setacticeChats] = useState(false);
     // const [areNewMessagesAvailable, setareNewMessagesAvailable] = useState(false);
-
     // function areChatsEqual(oldChats, newChats) {
     //     if (oldChats.length !== newChats.length) return false;
 
