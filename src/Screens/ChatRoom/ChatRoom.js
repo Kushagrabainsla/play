@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Input, Button, Modal } from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Context } from '../../StateManagement/Context';
+import { UserContext } from '../../StateManagement/UserContext';
 
 const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
@@ -24,7 +24,7 @@ function ChatRoom() {
     const lastMessageReference = useRef(null);
     const history = useHistory();
     const location = useLocation();
-    const [currUser] = useContext(Context);
+    const [currUser] = useContext(UserContext);
 
     // On refreshing, the location.state becomes undefined. (BUG)
     const { receiver } = location.state;
@@ -68,22 +68,19 @@ function ChatRoom() {
         }
     }
 
-    function setSocketListeners() {
-        socket.on('private_message_sent', () => {
-            fetchMessages();
-        });
-    }
+    socket.on('private_message_sent', () => {
+        fetchMessages();
+    });
+
+    useEffect(() => {
+        fetchMessages();
+    }, []);
 
     function scrollToLastMessage() {
         if (lastMessageReference.current) {
             lastMessageReference.current?.scrollIntoView({ block: 'center', behavior: 'smooth' });
         }
     }
-
-    useEffect(() => {
-        setSocketListeners();
-        fetchMessages();
-    }, []);
 
     useEffect(() => {
         scrollToLastMessage();

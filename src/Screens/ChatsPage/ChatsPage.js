@@ -15,29 +15,33 @@ import io from 'socket.io-client';
 import {
     Modal,
     Skeleton,
-    // Badge,
+    Badge,
 } from 'antd';
 import moment from 'moment';
-import { Context } from '../../StateManagement/Context';
+import { UserContext } from '../../StateManagement/UserContext';
+import { NewMessagesContext, updateNewMessages } from '../../StateManagement/NewMessagesContext';
 
 const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function ChatsPage() {
-    const [currUser] = useContext(Context);
+    const [currUser] = useContext(UserContext);
+    const toggleBadge = useContext(updateNewMessages);
+    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     const [acticeChats, setacticeChats] = useState(false);
-    // const [areNewMessagesAvailable, setareNewMessagesAvailable] = useState(false);
-    // function areChatsEqual(oldChats, newChats) {
-    //     if (oldChats.length !== newChats.length) return false;
 
-    //     for (let i = 0; i < oldChats.length; i += 1) {
-    //         if (oldChats[i].lastMessageText !== newChats[i].lastMessageText) return false;
-    //         if (oldChats[i].lastMessageTimestamp !== newChats[i].lastMessageTimestamp) {
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
+    function areChatsEqual(oldChats, newChats) {
+        if (oldChats.length !== newChats.length) return false;
+        for (let i = 0; i < oldChats.length; i += 1) {
+            if (oldChats[i].lastMessageText !== newChats[i].lastMessageText) {
+                return false;
+            }
+            if (oldChats[i].lastMessageTimestamp !== newChats[i].lastMessageTimestamp) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     async function fetchChats() {
         const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/chats`;
@@ -49,13 +53,14 @@ function ChatsPage() {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                // const oldChatInfo = JSON.parse(localStorage.getItem('userChats'));
-                // If old messages and new messages are not same.
-                // if (areChatsEqual(oldChatInfo, response.data.message) === false) {
-                //     setareNewMessagesAvailable(true);
-                // }
+                const oldChatInfo = JSON.parse(localStorage.getItem('userChats'));
+                localStorage.setItem('userChats', JSON.stringify(response.data.message));
+                if (oldChatInfo === null) {
+                    toggleBadge(true);
+                } else if (areChatsEqual(oldChatInfo, response.data.message) === false) {
+                    toggleBadge(true);
+                }
                 setacticeChats(response.data.message);
-                // localStorage.setItem('userChats', JSON.stringify(response.data.message));
             } else {
                 Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
             }
@@ -64,14 +69,11 @@ function ChatsPage() {
         });
     }
 
-    function setSocketListeners() {
-        socket.on('private_message_sent', () => {
-            fetchChats();
-        });
-    }
+    socket.on('private_message_sent', () => {
+        fetchChats();
+    });
 
     useEffect(() => {
-        setSocketListeners();
         fetchChats();
     }, []);
 
@@ -81,7 +83,9 @@ function ChatsPage() {
                 // eslint-disable-next-line no-nested-ternary
                 acticeChats
                 ? acticeChats.length > 0
-                    ? acticeChats.map((chat) => <Link
+                    ? acticeChats
+                    .sort((ele1, ele2) => ele2.lastMessageTimestamp - ele1.lastMessageTimestamp)
+                    .map((chat) => <Link
                         to={{
                             pathname: '/chats/room',
                             state: {
@@ -90,6 +94,8 @@ function ChatsPage() {
                         }}
                         className='singleChatBubble'
                         key={chat.userId}
+                        // toggleBadge to false, only if new chat is pressed !!
+                        onClick={() => toggleBadge(false)}
                     >
                         <div className='chatBubbleLeft'>
                             <img
@@ -141,16 +147,12 @@ function ChatsPage() {
                     to='/chats'
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                    <RiChatSmile3Fill
-                        fontSize={32}
-                        color='black'
-                    />
-                    {/* <Badge dot={areNewMessagesAvailable}>
+                    <Badge dot={areNewMessagesAvailable}>
                         <RiChatSmile3Fill
                             fontSize={32}
                             color='black'
                         />
-                    </Badge> */}
+                    </Badge>
                 </Link>
                 <Link
                     to='/'

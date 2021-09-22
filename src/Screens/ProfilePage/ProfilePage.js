@@ -15,6 +15,7 @@ import {
     Select,
     Row,
     Skeleton,
+    Badge,
 } from 'antd';
 import axios from 'axios';
 import {
@@ -30,13 +31,16 @@ import {
     RiInstagramFill,
     RiLinkedinBoxFill,
 } from 'react-icons/ri';
-import { Context } from '../../StateManagement/Context';
+import { UserContext } from '../../StateManagement/UserContext';
+import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function ProfilePage() {
     const { Option } = Select;
-    const [currUser] = useContext(Context);
+    const [currUser] = useContext(UserContext);
+    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
+
     const [userDetails, setuserDetails] = useState(false);
     const [userSocials, setuserSocials] = useState(false);
     const [userLikes, setuserLikes] = useState(false);
@@ -157,7 +161,6 @@ function ProfilePage() {
                                 window.gapi.auth2.getAuthInstance().signOut();
                             }
                             localStorage.clear();
-                            // document.location.href = '/play';
                             document.location.href = '/';
                         }}
                     >
@@ -268,10 +271,12 @@ function ProfilePage() {
                     to='/chats'
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                    <RiChatSmile3Fill
-                        fontSize={32}
-                        color='lightgrey'
-                    />
+                    <Badge dot={areNewMessagesAvailable}>
+                        <RiChatSmile3Fill
+                            fontSize={32}
+                            color='lightgrey'
+                        />
+                    </Badge>
                 </Link>
                 <Link
                     to='/'

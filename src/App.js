@@ -16,10 +16,10 @@ import WelcomePage from './Screens/WelcomePage/WelcomePage';
 import ChatsPage from './Screens/ChatsPage/ChatsPage';
 import ChatRoom from './Screens/ChatRoom/ChatRoom';
 import NotFound from './Screens/NotFound/NotFound';
-import { Context } from './StateManagement/Context';
+import { UserContext } from './StateManagement/UserContext';
 
 function App() {
-    const [currUser] = useContext(Context);
+    const [currUser] = useContext(UserContext);
 
     if (currUser) {
         return (
@@ -51,9 +51,6 @@ function App() {
                 <Route exact path='/'>
                     <Layout component={<LoginPage/>}/>
                 </Route>
-                {/* <Route exact path='/loginLegacy'>
-                    <Layout component={<LoginPageLegacy/>}/>
-                </Route> */}
                 <Route>
                     <Layout component={<NotFound/>}/>
                 </Route>

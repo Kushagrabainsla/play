@@ -10,13 +10,13 @@ import {
 } from 'antd';
 import axios from 'axios';
 import { LoadingOutlined } from '@ant-design/icons';
-import { updateContext } from '../../StateManagement/Context';
+import { updateUserContext } from '../../StateManagement/UserContext';
 
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest', 'https://people.googleapis.com/$discovery/rest?version=v1'];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 
 function LoginPage() {
-    const toggleUser = useContext(updateContext);
+    const toggleUser = useContext(updateUserContext);
     const [isGapiLoaded, setisGapiLoaded] = useState(false);
     const [dataLoading, setdataLoading] = useState(false);
     const [youtubeResponse, setyoutubeResponse] = useState(false);

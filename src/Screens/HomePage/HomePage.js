@@ -14,14 +14,17 @@ import {
 import {
     Modal,
     Skeleton,
+    Badge,
 } from 'antd';
-import { Context } from '../../StateManagement/Context';
+import { UserContext } from '../../StateManagement/UserContext';
+import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
 import MatchedProfileCard from '../../Components/MatchedProfileCard/MatchedProfileCard';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function HomePage() {
-    const [currUser] = useContext(Context);
+    const [currUser] = useContext(UserContext);
+    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     const [matchedProfiles, setmatchedProfiles] = useState(false);
 
     async function fetchMatches() {
@@ -95,10 +98,12 @@ function HomePage() {
                     to='/chats'
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
-                    <RiChatSmile3Fill
-                        fontSize={32}
-                        color='lightgrey'
-                    />
+                    <Badge dot={areNewMessagesAvailable}>
+                        <RiChatSmile3Fill
+                            fontSize={32}
+                            color='lightgrey'
+                        />
+                    </Badge>
                 </Link>
                 <Link
                     to='/'

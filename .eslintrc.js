@@ -4,5 +4,10 @@ module.exports = {
     rules: {
         indent: 'off',
     },
+    globals: {
+        localStorage: true,
+        fetch: true,
+        window: true,
+        document: true,
+    },
 };
-
