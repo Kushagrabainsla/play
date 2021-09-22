@@ -17,6 +17,7 @@
 * React.js
 * Ant-design
 * OAuth2.0
+* Socket.io
 
 ### Prerequisites
 * **Node** should be installed on your machine.
