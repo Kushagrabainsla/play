@@ -19,7 +19,7 @@
 * OAuth2.0
 
 ### Prerequisites
-* **Node** and **React.js** should be installed on your machine.
+* **Node** should be installed on your machine.
 
 
 ### Setting up Dev
@@ -35,11 +35,6 @@ npm install
 npm start
 ```
 
-
-## Style guide
-
-* Linting is done with the standards of Airbnb's style guide. 
-* Used Eslint for linting.
 
 ## Api Reference
 
