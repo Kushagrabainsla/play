@@ -106,7 +106,7 @@ function ChatsPage() {
                         }}
                     >
                         <div className='chatBubbleLeft'>
-                            <Badge dot={!chat.lastMessageSeen} offset={[-25, 50]}>
+                            <Badge dot={!chat.lastMessageSeen} offset={[-20, 5]}>
                                 <img
                                     src={chat.userProfilePhoto}
                                     alt='Profile Picture'
