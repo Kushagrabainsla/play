@@ -26,6 +26,7 @@ const { Panel } = Collapse;
 function MatchedProfileCard(props) {
     const { profile } = props;
     const matchedLikes = Object.keys(profile.matched_likes);
+
     const [matchedSocials, setmatchedSocials] = useState(false);
     const [matchedDetails, setmatchedDetails] = useState(false);
 
