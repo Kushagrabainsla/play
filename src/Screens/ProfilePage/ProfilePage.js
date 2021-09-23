@@ -17,6 +17,20 @@ import {
     Skeleton,
     Badge,
 } from 'antd';
+import {
+    EmailShareButton,
+    EmailIcon,
+    FacebookShareButton,
+    FacebookIcon,
+    LinkedinShareButton,
+    LinkedinIcon,
+    TelegramShareButton,
+    TelegramIcon,
+    WhatsappShareButton,
+    WhatsappIcon,
+    TwitterShareButton,
+    TwitterIcon,
+  } from 'react-share';
 import axios from 'axios';
 import {
     RiHome5Fill,
@@ -30,6 +44,7 @@ import {
     RiSnapchatFill,
     RiInstagramFill,
     RiLinkedinBoxFill,
+    RiShareFill,
 } from 'react-icons/ri';
 import { UserContext } from '../../StateManagement/UserContext';
 import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
@@ -105,12 +120,18 @@ function ProfilePage() {
         });
     };
 
+    // --------------------------- SHARE WITH FRIENDS MODAL ------------------------------
+    const [shareVisible, setshareVisible] = useState(false);
+    const showshareModal = () => setshareVisible(true);
+    const shareHandleCancel = () => setshareVisible(false);
+
     function formattedPhotoURL(url) {
         const formattedList = url.split('=');
         formattedList[formattedList.length - 1] = 's300';
         const formattedUrl = formattedList.join('=');
         return formattedUrl;
     }
+
     const optionsMenu = (
         <Menu
             style={{
@@ -142,8 +163,30 @@ function ProfilePage() {
                 </Button>
             </Menu.Item>
             <Menu.Divider />
+            <Menu.Item key="1">
+                <Button
+                    type="ghost"
+                    shape="round"
+                    style={{
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-evenly',
+                        background: '#2a9d8f',
+                        fontWeight: '500',
+                    }}
+                    icon={<RiShareFill style={{ marginRight: 5 }}/>}
+                    onClick={() => {
+                        window.navigator.clipboard.writeText('https://officialplay.me');
+                        showshareModal();
+                    }}
+                >
+                    Tell a friend
+                </Button>
+            </Menu.Item>
+            <Menu.Divider />
             <Link to='/'>
-                <Menu.Item key="1">
+                <Menu.Item key="2">
                     <Button
                         type="ghost"
                         shape="round"
@@ -369,6 +412,55 @@ function ProfilePage() {
                         </Row>
                     </Form.Item>
                 </Form>
+            </Modal>
+            <Modal
+                title="Share it with your friends."
+                visible={shareVisible}
+                onCancel={shareHandleCancel}
+                footer={[]}
+                getContainer={false}
+            >
+                <div className='shareModalContainer'>
+                    <EmailShareButton
+                        url='https://officialplay.me'
+                        body='Play - The social you always wanted.'
+                    >
+                        <EmailIcon size={36} round={true}/>
+                    </EmailShareButton>
+                    <FacebookShareButton
+                        url='https://officialplay.me'
+                        quote='Play - The social you always wanted.'
+                        hashtag='#play'
+                    >
+                        <FacebookIcon size={36} round={true}/>
+                    </FacebookShareButton>
+                    <LinkedinShareButton
+                        url='https://officialplay.me'
+                        title='Play'
+                        summary='Play - The social you always wanted.'
+                    >
+                        <LinkedinIcon size={36} round={true}/>
+                    </LinkedinShareButton>
+                    <TelegramShareButton
+                        url='https://officialplay.me'
+                        title='Play - The social you always wanted.'
+                    >
+                        <TelegramIcon size={36} round={true}/>
+                    </TelegramShareButton>
+                    <WhatsappShareButton
+                        url='https://officialplay.me'
+                        title='Play - The social you always wanted.'
+                    >
+                        <WhatsappIcon size={36} round={true}/>
+                    </WhatsappShareButton>
+                    <TwitterShareButton
+                        url='https://officialplay.me'
+                        title='Play - The social you always wanted.'
+                        hashtag='#play'
+                    >
+                        <TwitterIcon size={36} round={true}/>
+                    </TwitterShareButton>
+                </div>
             </Modal>
         </div>
     );

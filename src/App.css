@@ -1,6 +1,11 @@
 .App {
   margin: 0px;
 }
+/* ANTD MODAL */
+.ant-modal-content {
+  overflow: auto;
+  border-radius: 20px
+}
 
 :root {
   --themeLightGreen: #2a9d8f;

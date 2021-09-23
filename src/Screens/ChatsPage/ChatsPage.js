@@ -30,17 +30,14 @@ function ChatsPage() {
     const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     const [acticeChats, setacticeChats] = useState(false);
 
-    function areChatsEqual(oldChats, newChats) {
-        if (oldChats.length !== newChats.length) return false;
-        for (let i = 0; i < oldChats.length; i += 1) {
-            if (oldChats[i].lastMessageText !== newChats[i].lastMessageText) {
-                return false;
-            }
-            if (oldChats[i].lastMessageTimestamp !== newChats[i].lastMessageTimestamp) {
-                return false;
+    function checkNewMessage(messages) {
+        for (let index = 0; index < messages.length; index += 1) {
+            if (messages[index].lastMessageSeen === false) {
+                toggleBadge(true);
+                return;
             }
         }
-        return true;
+        toggleBadge(false);
     }
 
     async function fetchChats() {
@@ -53,19 +50,28 @@ function ChatsPage() {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                const oldChatInfo = JSON.parse(localStorage.getItem('userChats'));
-                localStorage.setItem('userChats', JSON.stringify(response.data.message));
-                if (oldChatInfo === null) {
-                    toggleBadge(true);
-                } else if (areChatsEqual(oldChatInfo, response.data.message) === false) {
-                    toggleBadge(true);
-                }
+                checkNewMessage(response.data.message);
                 setacticeChats(response.data.message);
             } else {
                 Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
             }
         }).catch(() => {
             Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
+        });
+    }
+
+    async function markMessagesSeen(receiver) {
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/markMessage`;
+        const config = {
+            headers: {
+                Authorization: AUTH_TOKEN,
+                authorId: currUser,
+                receiverId: receiver.userId,
+            },
+        };
+        const value = true;
+        axios.put(url, value, config).catch(() => {
+            Modal.warn({ content: 'Error while updating read receipts !!' });
         });
     }
 
@@ -94,15 +100,19 @@ function ChatsPage() {
                         }}
                         className='singleChatBubble'
                         key={chat.userId}
-                        // toggleBadge to false, only if new chat is pressed !!
-                        onClick={() => toggleBadge(false)}
+                        onClick={() => {
+                            localStorage.setItem('receiver', JSON.stringify(chat));
+                            markMessagesSeen(chat);
+                        }}
                     >
                         <div className='chatBubbleLeft'>
-                            <img
-                                src={chat.userProfilePhoto}
-                                alt='Profile Picture'
-                                className='chatProfilePhoto'
-                            />
+                            <Badge dot={!chat.lastMessageSeen} offset={[-25, 50]}>
+                                <img
+                                    src={chat.userProfilePhoto}
+                                    alt='Profile Picture'
+                                    className='chatProfilePhoto'
+                                />
+                            </Badge>
                         </div>
                         <div className='chatBubbleMid' >
                             <div className='chatBubbleUpperMid' >

@@ -74,6 +74,12 @@
     padding-bottom: 5px;
 }
 
+.shareModalContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
 /* Parent container for hidding scroll bars */
 .profileBottom {

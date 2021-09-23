@@ -15,7 +15,7 @@
 .chatRoomFloatingHeader {
     color: black;
     background-color: white;
-    top: 10px;
+    top: 5px;
     position: absolute;
     width: 300px;
     height: 50px;
@@ -42,7 +42,7 @@
 .chatRoomChatContainer {
     width: 100%;
     height: 100vh;
-    margin: 70px 0px 60px 0px; /* top right bottom left */
+    margin: 55px 0px 50px 0px; /* top right bottom left */
     display: flex;
     flex-direction: column;
     overflow: scroll;
@@ -100,23 +100,26 @@
 
 .chatRoomFloatingFooter {
     color: white;
-    bottom: 0px;
+    bottom: 5px;
     position: absolute;
     width: 100%;
-    height: 50px;
+    height: 40px;
     display: flex;
     flex-direction: row;
-    /* background-color: rebeccapurple; */
+    /* background-color: red; */
 }
 .chatRoomFooterLeft {
     width: 100%;
+    height: 40px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    /* background-color: black; */
 }
 .chatRoomFooterRight {
     float: right;
     width: 50px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;

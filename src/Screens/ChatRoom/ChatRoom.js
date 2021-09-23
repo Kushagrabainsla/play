@@ -26,9 +26,7 @@ function ChatRoom() {
     const location = useLocation();
     const [currUser] = useContext(UserContext);
 
-    // On refreshing, the location.state becomes undefined. (BUG)
-    const { receiver } = location.state;
-
+    const receiver = location.state ? location.state.receiver : JSON.parse(localStorage.getItem('receiver'));
     const room = [currUser, receiver.userId].sort().join('|');
     const [message, setmessage] = useState('');
     const [messages, setmessages] = useState([]);
@@ -78,7 +76,10 @@ function ChatRoom() {
 
     function scrollToLastMessage() {
         if (lastMessageReference.current) {
-            lastMessageReference.current?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            lastMessageReference.current?.scrollIntoView({
+                block: 'center',
+                behavior: 'smooth',
+            });
         }
     }
 
@@ -119,7 +120,13 @@ function ChatRoom() {
                                     boxShadow: '2px 1px 10px lightgrey',
                                 }}
                             />
-                            <div className={ text.author === currUser ? 'chatRoomBubbleRight' : 'chatRoomBubbleLeft'}>
+                            <div
+                                className={
+                                    text.author === currUser
+                                    ? 'chatRoomBubbleRight'
+                                    : 'chatRoomBubbleLeft'
+                                }
+                            >
                                 <div className='chatRoomBubbleText'>{text.body}</div>
                                 <div className='chatRoomBubbleTimestamp'>{moment(text.timeStamp).format('LT')}</div>
                             </div>
@@ -132,10 +139,11 @@ function ChatRoom() {
                 <div className='chatRoomFooterLeft'>
                     <Input
                         placeholder='Message'
-                        allowClear
+                        // allowClear
+                        onPressEnter={sendMessage}
                         value={message}
                         style={{
-                            height: '80%',
+                            height: '100%',
                             border: 'none',
                             borderRadius: '50px',
                         }}
