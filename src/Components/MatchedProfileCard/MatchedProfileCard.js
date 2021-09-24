@@ -74,6 +74,11 @@ function MatchedProfileCard(props) {
                         <div className='matchedProfileNameText'>
                             {matchedDetails.userName}
                         </div>
+                        {
+                            matchedDetails.userGender === 'Male'
+                            ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
+                            : <div className='interestTagText'>Tap an interest tag to begin a conversation with her.</div>
+                        }
                         <div className='matchedProfileSocialMedia'>
                             {
                                 matchedSocials && matchedSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.instagram}</Menu.Item></Menu>} arrow>
@@ -101,11 +106,6 @@ function MatchedProfileCard(props) {
                                 </Dropdown>
                             }
                         </div>
-                        {
-                            matchedDetails.userGender === 'Male'
-                            ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
-                            : <div className='interestTagText'>Tap an interest tag to begin a conversation with her.</div>
-                        }
                     </div>
                 </div>
                 : null

@@ -16,6 +16,7 @@ import {
     Row,
     Skeleton,
     Badge,
+    Divider,
 } from 'antd';
 import {
     EmailShareButton,
@@ -45,6 +46,7 @@ import {
     RiInstagramFill,
     RiLinkedinBoxFill,
     RiShareFill,
+    RiDeleteBin6Fill,
 } from 'react-icons/ri';
 import { UserContext } from '../../StateManagement/UserContext';
 import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
@@ -59,6 +61,14 @@ function ProfilePage() {
     const [userDetails, setuserDetails] = useState(false);
     const [userSocials, setuserSocials] = useState(false);
     const [userLikes, setuserLikes] = useState(false);
+
+    function signOut() {
+        if (window.gapi.auth2.getAuthInstance()) {
+            window.gapi.auth2.getAuthInstance().signOut();
+        }
+        localStorage.clear();
+        document.location.href = '/';
+    }
 
     async function fetchUser() {
         const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
@@ -142,7 +152,7 @@ function ProfilePage() {
                 borderRadius: '15px',
             }}
         >
-            <Menu.Item key="0">
+            <Menu.Item key="0" style={{ background: 'white' }}>
                 <Button
                     type="ghost"
                     shape="round"
@@ -163,7 +173,7 @@ function ProfilePage() {
                 </Button>
             </Menu.Item>
             <Menu.Divider />
-            <Menu.Item key="1">
+            <Menu.Item key="1" style={{ background: 'white' }}>
                 <Button
                     type="ghost"
                     shape="round"
@@ -177,7 +187,7 @@ function ProfilePage() {
                     }}
                     icon={<RiShareFill style={{ marginRight: 5 }}/>}
                     onClick={() => {
-                        window.navigator.clipboard.writeText('https://officialplay.me');
+                        // window.navigator.clipboard.writeText('https://officialplay.me');
                         showshareModal();
                     }}
                 >
@@ -185,8 +195,34 @@ function ProfilePage() {
                 </Button>
             </Menu.Item>
             <Menu.Divider />
+            <Menu.Item key="2" style={{ background: 'white' }}>
+                <Button
+                    type="ghost"
+                    shape="round"
+                    style={{
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-evenly',
+                        background: '#2a9d8f',
+                        fontWeight: '500',
+                    }}
+                    icon={<RiDeleteBin6Fill style={{ marginRight: 5 }}/>}
+                    onClick={() => {
+                        Modal.warning({
+                            title: 'Are you sure you want to delete your account?',
+                            okText: 'Yes',
+                            closable: true,
+                            onOk: signOut,
+                        });
+                    }}
+                >
+                    Delete account
+                </Button>
+            </Menu.Item>
+            <Menu.Divider />
             <Link to='/'>
-                <Menu.Item key="2">
+                <Menu.Item key="3" style={{ background: 'white' }}>
                     <Button
                         type="ghost"
                         shape="round"
@@ -199,15 +235,9 @@ function ProfilePage() {
                             fontWeight: '500',
                         }}
                         icon={<RiLogoutBoxRFill style={{ marginRight: 5 }}/>}
-                        onClick={() => {
-                            if (window.gapi.auth2.getAuthInstance()) {
-                                window.gapi.auth2.getAuthInstance().signOut();
-                            }
-                            localStorage.clear();
-                            document.location.href = '/';
-                        }}
+                        onClick={signOut}
                     >
-                        Sign out
+                        Log out
                     </Button>
                 </Menu.Item>
             </Link>
@@ -292,6 +322,7 @@ function ProfilePage() {
                     className='profileDetailsSkeleton'
                 />
             }
+            <Divider/>
             <div className='profileBottom'>
                 <div className='profileLikes'>
                     {

@@ -30,8 +30,8 @@ function LoginPage() {
             scope: SCOPES,
         }).then(() => {
             setisGapiLoaded(true);
-        }).catch(() => {
-            Modal.info({ content: 'Sorry, you do not have access to this application.' });
+        }).catch((error) => {
+            Modal.warning({ title: error.details });
         });
     }
 
@@ -117,9 +117,9 @@ function LoginPage() {
                                     />
                                     : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'/>
                                 }
-                                Sign in with Google
+                                Sign up with Google
                             </div>
-                            : null
+                            : 'Loading...'
                         }
                     </div>
                     </div>
