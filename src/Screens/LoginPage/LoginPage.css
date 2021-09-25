@@ -1,12 +1,131 @@
-.loginContainer {
-    height: 100vh;
+.login-page-container {
     width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-container {
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+    border-radius: 30px;
+    box-shadow: 3px 3px 10px lightblue;
+}
+.login-right-container {
+    width: 40%;
+    min-width: 450px;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: relative; /* For privacy policy */
+}
+.login-left-container {
+    width: 60%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 3px 3px 10px lightblue;
+}
+.login-picture-container {
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.login-picture {
+    width: 135%;
+}
+
+.login-additionals-container {
+    /* width: 100%; */
+    width: 425px;
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    color: #264653;
+    padding-bottom: 10px;
+}
+.additionals-text {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    /* background-color: green; */
+}
+
+.login-card {
+    height: 400px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 1px 1px 10px 10px black;
+    background-color: white;
+    box-shadow: 3px 3px 10px lightblue;
+    border-radius: 30px;
 }
+.login-card-upper {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+.login-play-text {
+    font-size: 100px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    animation: backgroundGradient 10s infinite alternate;
+    background-size: 400%;
+    background-image: url('https://github.com/Kushagrabainsla/play/blob/master/public/social_picture.jpg?raw=true');
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+.login-card-lower {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: green; */
+}
+.google-button {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-width: 10px;
+    border-radius: 10px;
+    width: 210px;
+    height: 40px;
+    font-weight: 300;
+    border: 2px solid #264653;
+    cursor: pointer;
+    box-shadow: 2px 1px 10px lightgrey;
+    font-family: 'Poppins', sans-serif;
+}
+
 
 @keyframes backgroundGradient {
     0% {
@@ -18,120 +137,60 @@
 }
 
 
-.loginbBurryBackground {
-    /* animation: backgroundGradient 8s infinite alternate;
-    background-size: 400%; */
-
-    width: 100%;
-    height: 100vh;
-
-    /* Blurry background */
-    background-image: linear-gradient(45deg, #264653, #245663, #1f6671, #1a767d, #1b8786, #158c8e, #0c9297, #0097a0, #0092ab, #008bb6, #0083be, #0079c1);
-
-    /* Add the blur effect */
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-
-    /* Center and scale the image nicely */
-    /* background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
-}
-.loginUpperLayer {
-    height: 100vh;
-    width: 100%;
-    /* max-width: 800px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 499;
-    position: absolute;
-    /* background-color: violet; */
-    overflow: scroll;
+@media only screen and (max-width: 850px) and (min-width: 200px)
+{
+    .login-page-container {
+        height: auto;
+    }
+    .login-container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        flex-direction: column;
+        height: auto;
+        box-shadow: none;
+        /* background-color: red; */
+        overflow: hidden;
+    }
+    .login-right-container {
+        width: 100%;
+        height: 95vh;
+    }
+    .login-left-container {
+        width: 100%;
+        overflow: hidden;
+    }
+    .login-picture {
+        width: 160%;
+    }
 }
 
-.loginContainerTop {
-    width: 100%;
-    height: 30vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* background-color: red; */
-}
-.loginPlayImage {
-    top: 15vh;
-    position: relative;
-    width: 35%;
-    max-width: 150px;
-    z-index: 599;
-}
-
-.loginContainerBottom {
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    /* background-color: green; */
-    /* align-items: center; */
-    justify-content: center;
-}
-.loginBottomCard {
-    width: 80%;
-    max-width: 350px;
-    height: 60vh;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
-    background-color: white;
-    box-shadow: 2px 1px 12px black;
+@media only screen and (max-width: 400px)
+{
+    .login-page-container {
+        height: auto;
+    }
+    .login-container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        flex-direction: column;
+        height: auto;
+        box-shadow: none;
+        /* background-color: red; */
+        overflow: hidden;
+    }
+    .login-right-container {
+        width: 100%;
+        height: 95vh;
+    }
+    .login-left-container {
+        width: 100%;
+        overflow: hidden;
+    }
+    .login-picture {
+        width: 160%;
+    }
+    .login-additionals-container {
+        display: block;
+    }
 }
 
-.loginPlayTextContainer {
-    width: 100%;
-    height: 35vh;
-    min-height: 220px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-.loginPlayInside {
-    font-size: 90px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-
-    /* animation: backgroundGradient 8s infinite alternate;
-    background-size: 400%; */
-    background-image: linear-gradient(45deg, #90a0a7, #245663, #1f6671, #1a767d, #1b8786, #158c8e, #0c9297, #0097a0, #0092ab, #008bb6, #0083be, #0079c1);
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-background-clip: text;
-    -moz-text-fill-color: transparent;
-}
-
-.loginBottom {
-    width: 100%;
-    height: 25vh;
-    min-height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.googleButton {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    border-width: 10px;
-    border-radius: 10px;
-    width: 210px;
-    height: 40px;
-    font-weight: 300;
-    font-size: 17px;
-    border: 2px solid var(--themeDarkGreen);
-    cursor: pointer;
-    box-shadow: 2px 1px 10px lightgrey;
-}

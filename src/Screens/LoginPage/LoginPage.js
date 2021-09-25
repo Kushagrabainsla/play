@@ -90,38 +90,45 @@ function LoginPage() {
     }
 
     return (
-        <div className='loginContainer'>
-            <div className='loginbBurryBackground'></div>
-            <div className='loginUpperLayer'>
-                <div className='loginContainerTop'>
-                    <img
-                        src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
-                        className='loginPlayImage'
-                    />
-                </div>
-                <div className='loginContainerBottom'>
-                    <div className='loginBottomCard'>
-                        <div className='loginPlayTextContainer'>
-                            <div className='loginPlayInside'>play</div>
+        <div className='login-page-container'>
+            <div className='login-container'>
+                <div className='login-right-container'>
+                    <div className='login-card'>
+                        <div className='login-card-upper'>
+                            <div className='login-play-text'>play</div>
                         </div>
-                        <div className='loginBottom'>
-                        {
-                            isGapiLoaded === true
-                            ? <div className='googleButton' onClick={handleSignInClick}>
-                                {
-                                    dataLoading
-                                    ? <Spin
-                                        spinning={dataLoading}
-                                        indicator={<LoadingOutlined style={{ fontSize: 30, color: '#264653' }} spin />}
-                                        size="large"
-                                    />
-                                    : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'/>
-                                }
-                                Sign up with Google
-                            </div>
-                            : 'Loading...'
-                        }
+                        <div className='login-card-lower'>
+                            {
+                                isGapiLoaded === true
+                                ? <div className='google-button' onClick={handleSignInClick}>
+                                    {
+                                        dataLoading
+                                        ? <Spin
+                                            spinning={dataLoading}
+                                            indicator={<LoadingOutlined style={{ fontSize: 30, color: '#264653' }} spin />}
+                                            size="large"
+                                        />
+                                        : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'/>
+                                    }
+                                    Sign up with Google
+                                </div>
+                                : 'Loading...'
+                            }
+                        </div>
                     </div>
+                    <div className='login-additionals-container'>
+                        <div className='additionals-text'>Privary Policy</div>
+                        <div className='additionals-text'>FAQ</div>
+                        <div className='additionals-text'>{'Terms & Conditions'}</div>
+                    </div>
+                </div>
+                <div className='login-left-container'>
+                    <div className='login-picture-container'>
+                        <img
+                            alt='random social pictures'
+                            src='https://github.com/Kushagrabainsla/play/blob/master/public/social_picture.jpg?raw=true'
+                            className='login-picture'
+                        />
                     </div>
                 </div>
             </div>

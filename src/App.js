@@ -49,7 +49,7 @@ function App() {
                     <Layout component={<WelcomePage/>}/>
                 </Route>
                 <Route exact path='/'>
-                    <Layout component={<LoginPage/>}/>
+                    <LoginPage/>
                 </Route>
                 <Route>
                     <Layout component={<NotFound/>}/>
