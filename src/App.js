@@ -16,6 +16,7 @@ import WelcomePage from './Screens/WelcomePage/WelcomePage';
 import ChatsPage from './Screens/ChatsPage/ChatsPage';
 import ChatRoom from './Screens/ChatRoom/ChatRoom';
 import NotFound from './Screens/NotFound/NotFound';
+import Legals from './Screens/Legals/Legals';
 import { UserContext } from './StateManagement/UserContext';
 
 function App() {
@@ -48,11 +49,14 @@ function App() {
                 <Route exact path='/welcome'>
                     <Layout component={<WelcomePage/>}/>
                 </Route>
+                <Route exact path='/privacy-policy'>
+                    <Legals legalTitle='privacy-policy'/>
+                </Route>
                 <Route exact path='/'>
                     <LoginPage/>
                 </Route>
                 <Route>
-                    <Layout component={<NotFound/>}/>
+                    <NotFound/>
                 </Route>
             </Switch>
         </Router>

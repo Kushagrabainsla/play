@@ -9,7 +9,7 @@ function NotFound() {
             <Result
                 status="404"
                 title="404"
-                subTitle="Sorry, the page you visited does not exist."
+                subTitle="Sorry, We could not find the page you were looking for."
                 extra={<Link to='/'>Go back to Login</Link>}
             />
         </div>

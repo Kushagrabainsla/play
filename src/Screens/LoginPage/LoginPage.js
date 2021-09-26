@@ -9,6 +9,7 @@ import {
     Spin,
 } from 'antd';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import { updateUserContext } from '../../StateManagement/UserContext';
 
@@ -117,9 +118,15 @@ function LoginPage() {
                         </div>
                     </div>
                     <div className='login-additionals-container'>
-                        <div className='additionals-text'>Privary Policy</div>
-                        <div className='additionals-text'>FAQ</div>
-                        <div className='additionals-text'>{'Terms & Conditions'}</div>
+                        <Link to='/privacy-policy'>
+                            <div className='additionals-text'>Privary Policy</div>
+                        </Link>
+                        <Link to='/frequently-asked-questions'>
+                            <div className='additionals-text'>FAQ</div>
+                        </Link>
+                        <Link to='/privacy-policy'>
+                            <div className='additionals-text'>{'Terms & Conditions'}</div>
+                        </Link>
                     </div>
                 </div>
                 <div className='login-left-container'>
