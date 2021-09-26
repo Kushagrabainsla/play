@@ -31,8 +31,8 @@ function LoginPage() {
             scope: SCOPES,
         }).then(() => {
             setisGapiLoaded(true);
-        }).catch((error) => {
-            Modal.warning({ title: error.details });
+        }).catch(() => {
+            Modal.warning({ title: 'Make sure cookies are enabled, and you are browsing via https scheme, and not via http scheme.' });
         });
     }
 
@@ -106,14 +106,13 @@ function LoginPage() {
                                         dataLoading
                                         ? <Spin
                                             spinning={dataLoading}
-                                            indicator={<LoadingOutlined style={{ fontSize: 30, color: '#264653' }} spin />}
-                                            size="large"
+                                            indicator={<LoadingOutlined style={{ fontSize: 25, color: '#264653' }} spin />}
                                         />
                                         : <img alt='' src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'/>
                                     }
                                     Sign up with Google
                                 </div>
-                                : 'Loading...'
+                                : <div className='google-button'>Loading...</div>
                             }
                         </div>
                     </div>
