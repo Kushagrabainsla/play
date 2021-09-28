@@ -132,7 +132,7 @@ function LoginPage() {
                     <div className='login-picture-container'>
                         <img
                             alt='random social pictures'
-                            src='https://github.com/Kushagrabainsla/play/blob/master/public/social_picture.jpg?raw=true'
+                            src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/social_picture.webp'
                             className='login-picture'
                         />
                     </div>

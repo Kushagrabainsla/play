@@ -95,7 +95,7 @@
     font-family: 'Poppins', sans-serif;
     animation: backgroundGradient 15s infinite alternate;
     background-size: 400%;
-    background-image: url('https://github.com/Kushagrabainsla/play/blob/master/public/social_picture.jpg?raw=true');
+    background-image: url('https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/social_picture.webp');
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
