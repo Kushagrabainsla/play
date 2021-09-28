@@ -1,5 +1,7 @@
 import React, {
     useContext,
+    Suspense,
+    lazy,
 } from 'react';
 import './App.css';
 import {
@@ -9,15 +11,17 @@ import {
     Redirect,
 } from 'react-router-dom';
 import Layout from './Screens/Layout/Layout';
-import HomePage from './Screens/HomePage/HomePage';
-import LoginPage from './Screens/LoginPage/LoginPage';
-import ProfilePage from './Screens/ProfilePage/ProfilePage';
-import WelcomePage from './Screens/WelcomePage/WelcomePage';
-import ChatsPage from './Screens/ChatsPage/ChatsPage';
-import ChatRoom from './Screens/ChatRoom/ChatRoom';
-import NotFound from './Screens/NotFound/NotFound';
-import Legals from './Screens/Legals/Legals';
+import Loader from './Components/Loader/Loader';
 import { UserContext } from './StateManagement/UserContext';
+
+const Legals = lazy(() => import('./Screens/Legals/Legals'));
+const NotFound = lazy(() => import('./Screens/NotFound/NotFound'));
+const HomePage = lazy(() => import('./Screens/HomePage/HomePage'));
+const ChatRoom = lazy(() => import('./Screens/ChatRoom/ChatRoom'));
+const LoginPage = lazy(() => import('./Screens/LoginPage/LoginPage'));
+const ChatsPage = lazy(() => import('./Screens/ChatsPage/ChatsPage'));
+const ProfilePage = lazy(() => import('./Screens/ProfilePage/ProfilePage'));
+const WelcomePage = lazy(() => import('./Screens/WelcomePage/WelcomePage'));
 
 function App() {
     const [currUser] = useContext(UserContext);
@@ -25,40 +29,44 @@ function App() {
     if (currUser) {
         return (
             <Router>
-                <Switch>
-                    <Route exact path='/chats/room'>
-                        <Layout component={<ChatRoom/>} />
-                    </Route>
-                    <Route exact path='/chats'>
-                        <Layout component={<ChatsPage/>}/>
-                    </Route>
-                    <Route exact path='/profile'>
-                        <Layout component={<ProfilePage/>}/>
-                    </Route>
-                    <Route exact path='/'>
-                        <Layout component={<HomePage/>}/>
-                    </Route>
-                    <Redirect from="*" to="/" />
-                </Switch>
+                <Suspense fallback={<Loader/>}>
+                    <Switch>
+                        <Route exact path='/chats/room'>
+                            <Layout component={<ChatRoom/>} />
+                        </Route>
+                        <Route exact path='/chats'>
+                            <Layout component={<ChatsPage/>}/>
+                        </Route>
+                        <Route exact path='/profile'>
+                            <Layout component={<ProfilePage/>}/>
+                        </Route>
+                        <Route exact path='/'>
+                            <Layout component={<HomePage/>}/>
+                        </Route>
+                        <Redirect from="*" to="/" />
+                    </Switch>
+                </Suspense>
             </Router>
         );
     }
     return (
         <Router>
-            <Switch>
-                <Route exact path='/welcome'>
-                    <Layout component={<WelcomePage/>}/>
-                </Route>
-                <Route exact path='/privacy-policy'>
-                    <Legals legalTitle='privacy-policy'/>
-                </Route>
-                <Route exact path='/'>
-                    <LoginPage/>
-                </Route>
-                <Route>
-                    <NotFound/>
-                </Route>
-            </Switch>
+            <Suspense fallback={<Loader/>}>
+                <Switch>
+                    <Route exact path='/welcome'>
+                        <WelcomePage/>
+                    </Route>
+                    <Route exact path='/privacy-policy'>
+                        <Legals legalTitle='privacy-policy'/>
+                    </Route>
+                    <Route exact path='/'>
+                        <LoginPage/>
+                    </Route>
+                    <Route>
+                        <NotFound/>
+                    </Route>
+                </Switch>
+            </Suspense>
         </Router>
     );
 }
