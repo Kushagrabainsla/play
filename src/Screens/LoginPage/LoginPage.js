@@ -17,7 +17,6 @@ const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
 
 function LoginPage() {
-    console.log('loaded');
     const toggleUser = useContext(updateUserContext);
     const [isGapiLoaded, setisGapiLoaded] = useState(false);
     const [dataLoading, setdataLoading] = useState(false);
