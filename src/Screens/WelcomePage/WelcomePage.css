@@ -1,14 +1,82 @@
-.welcomePageContainer {
+.welcome-page {
+    width: 100%;
+    overflow: scroll;
+    font-family: 'Poppins', sans-serif;
+}
+.welcome-page-container {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: url('https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/social_picture.webp');
 }
 
-.welcomeText {
-    font-size: 50px;
-    font-weight: 200;
+.welcome-get-started-button {
+    margin-top: 30px;
+    background-color: white;
+    color: #264653;
+    padding: 10px 40px 10px 40px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1.8px solid #264653;
+    box-shadow: 2px 1px 10px black;
+    cursor: pointer;
+}
 
+.welcome-text-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+}
+.welcome-text-bold {
+    color: white;
+    font-weight: 600;
+    font-size: 200px;
+}
+.welcome-text-light {
+    color: white;
+    font-weight: 400;
+    font-size: 40px;
+}
+
+.welcome-page-about {
+    width: 100%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 500px) and (min-width: 400px)
+{
+    .welcome-text-bold {
+        font-size: 150px;
+    }
+    .welcome-text-light {
+        font-size: 30px;
+    }
+    .welcome-page-about {
+        padding: 50px;
+    }
+}
+
+@media only screen and (max-width: 400px)
+{
+    .welcome-text-bold {
+        font-size: 100px;
+    }
+    .welcome-text-light {
+        font-size: 20px;
+    }
+    .welcome-page-about {
+        padding: 30px;
+    }
 }
