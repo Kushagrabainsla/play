@@ -4,7 +4,6 @@ import React, {
     useContext,
 } from 'react';
 import './ProfilePage.css';
-import { Link } from 'react-router-dom';
 import {
     Button,
     Modal,
@@ -15,7 +14,6 @@ import {
     Select,
     Row,
     Skeleton,
-    Badge,
     Divider,
 } from 'antd';
 import {
@@ -34,10 +32,7 @@ import {
   } from 'react-share';
 import axios from 'axios';
 import {
-    RiHome5Fill,
-    RiChatSmile3Fill,
     RiLogoutBoxRFill,
-    RiAccountCircleFill,
     RiMenuFill,
     RiAddCircleFill,
     RiTwitterFill,
@@ -48,15 +43,15 @@ import {
     RiShareFill,
     RiDeleteBin6Fill,
 } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
-import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
+import { ProfileFloatingFooter } from '../../Components/Footers/Footers';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function ProfilePage() {
     const { Option } = Select;
     const [currUser] = useContext(UserContext);
-    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
 
     const [userDetails, setuserDetails] = useState(false);
     const [userSocials, setuserSocials] = useState(false);
@@ -217,7 +212,7 @@ function ProfilePage() {
                         });
                     }}
                 >
-                    Delete account
+                    Delete acc.
                 </Button>
             </Menu.Item>
             <Menu.Divider />
@@ -340,37 +335,7 @@ function ProfilePage() {
                     }
                 </div>
             </div>
-            <div className='profileFloatingFooter'>
-                <Link
-                    to='/chats'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <Badge dot={areNewMessagesAvailable}>
-                        <RiChatSmile3Fill
-                            fontSize={32}
-                            color='lightgrey'
-                        />
-                    </Badge>
-                </Link>
-                <Link
-                    to='/'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <RiHome5Fill
-                        fontSize={32}
-                        color='lightgrey'
-                    />
-                </Link>
-                <Link
-                    to='/profile'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <RiAccountCircleFill
-                        fontSize={32}
-                        color='black'
-                    />
-                </Link>
-            </div>
+            <ProfileFloatingFooter/>
             <Modal
                 title="Add Social Media"
                 visible={socialVisible}

@@ -5,26 +5,15 @@ import React, {
 } from 'react';
 import './HomePage.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import {
-    RiAccountCircleFill,
-    RiChatSmile3Fill,
-    RiHome5Fill,
-} from 'react-icons/ri';
-import {
-    Modal,
-    Skeleton,
-    Badge,
-} from 'antd';
+import { Modal, Skeleton } from 'antd';
 import { UserContext } from '../../StateManagement/UserContext';
-import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
+import { HomeFloatingFooter } from '../../Components/Footers/Footers';
 import MatchedProfileCard from '../../Components/MatchedProfileCard/MatchedProfileCard';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
 function HomePage() {
     const [currUser] = useContext(UserContext);
-    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     const [matchedProfiles, setmatchedProfiles] = useState(false);
 
     async function fetchMatches() {
@@ -93,37 +82,7 @@ function HomePage() {
                     </>
                 }
             </div>
-            <div className='homeFloatingFooter'>
-                <Link
-                    to='/chats'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <Badge dot={areNewMessagesAvailable}>
-                        <RiChatSmile3Fill
-                            fontSize={32}
-                            color='lightgrey'
-                        />
-                    </Badge>
-                </Link>
-                <Link
-                    to='/'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <RiHome5Fill
-                        fontSize={32}
-                        color='black'
-                    />
-                </Link>
-                <Link
-                    to='/profile'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <RiAccountCircleFill
-                        fontSize={32}
-                        color='lightgrey'
-                    />
-                </Link>
-            </div>
+            <HomeFloatingFooter/>
         </div>
     );
 }

@@ -4,22 +4,18 @@ import React, {
     useContext,
 } from 'react';
 import './ChatsPage.css';
-import { Link } from 'react-router-dom';
-import {
-    RiHome5Fill,
-    RiChatSmile3Fill,
-    RiAccountCircleFill,
-} from 'react-icons/ri';
-import axios from 'axios';
-import io from 'socket.io-client';
 import {
     Modal,
     Skeleton,
     Badge,
 } from 'antd';
+import axios from 'axios';
 import moment from 'moment';
+import io from 'socket.io-client';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
-import { NewMessagesContext, updateNewMessages } from '../../StateManagement/NewMessagesContext';
+import { ChatsPageFloatingFooter } from '../../Components/Footers/Footers';
+import { updateNewMessages } from '../../StateManagement/NewMessagesContext';
 
 const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
@@ -27,7 +23,6 @@ const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 function ChatsPage() {
     const [currUser] = useContext(UserContext);
     const toggleBadge = useContext(updateNewMessages);
-    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     const [acticeChats, setacticeChats] = useState(false);
 
     function checkNewMessage(messages) {
@@ -152,37 +147,7 @@ function ChatsPage() {
                     }
                 </>
             }
-            <div className='chatsPageFloatingFooter'>
-                <Link
-                    to='/chats'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <Badge dot={areNewMessagesAvailable}>
-                        <RiChatSmile3Fill
-                            fontSize={32}
-                            color='black'
-                        />
-                    </Badge>
-                </Link>
-                <Link
-                    to='/'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <RiHome5Fill
-                        fontSize={32}
-                        color='lightgrey'
-                    />
-                </Link>
-                <Link
-                    to='/profile'
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                    <RiAccountCircleFill
-                        fontSize={32}
-                        color='lightgrey'
-                    />
-                </Link>
-            </div>
+            <ChatsPageFloatingFooter/>
         </div>
     );
 }
