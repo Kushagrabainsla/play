@@ -1,8 +1,8 @@
 .welcome-page {
     width: 100%;
     overflow: scroll;
-    font-family: 'Poppins', sans-serif;
 }
+
 .welcome-page-container {
     width: 100%;
     height: 100vh;
@@ -14,10 +14,15 @@
 }
 
 .welcome-get-started-button {
+    font-weight: 600;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+
     margin-top: 30px;
     background-color: white;
     color: #264653;
     padding: 10px 40px 10px 40px;
+    font-weight: 600;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -35,17 +40,19 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-family: 'Poppins', sans-serif;
 }
 .welcome-text-bold {
     color: white;
     font-weight: 600;
     font-size: 200px;
+    font-family: 'Poppins', sans-serif;
 }
 .welcome-text-light {
     color: white;
     font-weight: 400;
     font-size: 40px;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 .welcome-page-about {
@@ -53,6 +60,7 @@
     padding: 100px;
     display: flex;
     flex-direction: column;
+    font-family: 'Poppins', sans-serif;
 }
 
 @media only screen and (max-width: 500px) and (min-width: 400px)
@@ -66,6 +74,9 @@
     .welcome-page-about {
         padding: 50px;
     }
+    .welcome-get-started-button {
+        padding: 7px 30px 7px 30px;
+    }
 }
 
 @media only screen and (max-width: 400px)
@@ -78,5 +89,8 @@
     }
     .welcome-page-about {
         padding: 30px;
+    }
+    .welcome-get-started-button {
+        padding: 7px 30px 7px 30px;
     }
 }
