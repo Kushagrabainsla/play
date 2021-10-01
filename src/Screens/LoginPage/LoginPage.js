@@ -48,7 +48,7 @@ function LoginPage() {
             setpeopleResponse(response);
         }).catch(() => {
             setdataLoading(false);
-            Modal.warn({ content: 'Error while loading, please retry !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
             // console.log('PEOPLE API', err);
         });
         window.gapi.client.youtube.playlistItems.list({
@@ -59,7 +59,7 @@ function LoginPage() {
             setyoutubeResponse(response);
         }).catch(() => {
             setdataLoading(false);
-            Modal.warn({ content: 'Error while loading, please retry !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
             // console.log('YOUTUBE API', err);
         });
     }
@@ -78,7 +78,7 @@ function LoginPage() {
                 }
             }).catch(() => {
                 setdataLoading(false);
-                Modal.warn({ content: 'Error while updating, please retry !!' });
+                Modal.warn({ content: 'Please check your network connection.' });
             });
         }
     }, [youtubeResponse, peopleResponse]);

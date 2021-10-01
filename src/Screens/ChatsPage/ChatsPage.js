@@ -53,10 +53,10 @@ function ChatsPage() {
                 checkNewMessage(response.data.message);
                 setacticeChats(response.data.message);
             } else {
-                Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
+                Modal.warn({ content: 'Please check your network connection.' });
             }
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading conversations, please refresh !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     }
 
@@ -71,7 +71,7 @@ function ChatsPage() {
         };
         const value = true;
         axios.put(url, value, config).catch(() => {
-            Modal.warn({ content: 'Error while updating read receipts !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     }
 

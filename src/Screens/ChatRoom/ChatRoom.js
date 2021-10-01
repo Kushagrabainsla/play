@@ -43,10 +43,10 @@ function ChatRoom() {
             if (response.status === 200 && response.data.error === false) {
                 setmessages(response.data.message);
             } else {
-                Modal.warn({ content: 'Error while loading messages, please refresh !!' });
+                Modal.warn({ content: 'Please check your network connection.' });
             }
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading messages, please refresh !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     }
 
@@ -139,7 +139,6 @@ function ChatRoom() {
                 <div className='chatRoomFooterLeft'>
                     <Input
                         placeholder='Message'
-                        // allowClear
                         onPressEnter={sendMessage}
                         value={message}
                         style={{

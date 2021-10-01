@@ -40,7 +40,7 @@ function HomePage() {
                 setmatchedProfiles(response.data.result);
             }
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading , please refresh !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     }
     async function makeMatches() {

@@ -44,7 +44,7 @@ function MatchedProfileCard(props) {
                 setmatchedDetails(response.data.result.details);
             }
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading, please refresh !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     }
     useEffect(() => {

@@ -89,10 +89,10 @@ function ProfilePage() {
                 }
                 setuserLikes(moreLikes);
             } else {
-                Modal.warn({ content: 'Error while loading profile, please refresh !!' });
+                Modal.warn({ content: 'Please check your network connection.' });
             }
         }).catch(() => {
-            Modal.warn({ content: 'Error while loading profile, please refresh !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     }
     useEffect(() => {
