@@ -62,7 +62,6 @@ function HomePage() {
                             key={profileIndex}
                         />)
                         : <img
-                            // src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/noMatchesFound.svg'
                             src={`${process.env.PUBLIC_URL}/noMatchesFound.svg`}
                             alt='No Matches Found'
                             style={{
