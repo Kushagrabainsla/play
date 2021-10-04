@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico" alt="Play Logo" width="200" align="right">
+<img src="https://github.com/Kushagrabainsla/play/blob/master/public/playLogo192.png?raw=true" alt="Play Logo" width="200" align="right">
 
 
 
@@ -6,7 +6,7 @@
 
 <Br/>
 
-> Social media website which matches users on the basis of their internet preferences and likes.
+> Play lets you connect with people who share your interests.
 
 
 ## Developing
@@ -35,8 +35,3 @@ cd play
 npm install
 npm start
 ```
-
-
-## Api Reference
-
-* All the APIs are for internal use only.
