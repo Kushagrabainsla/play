@@ -83,25 +83,18 @@
 
 .profileBottom {
     width: 95%;
-    height: 50vh;
-    min-height: 220px;
     display: flex;
     text-align: center;
     justify-content: center;
     border-radius: 15px;
     box-shadow: 2px 1px 10px lightgrey;
     margin-bottom: 70px;
-    overflow: hidden; 
-    /* background-color: yellow; */
     padding-bottom: 3vh;
     padding-top: 3vh;
 }
 .profileLikes {
     width: 95%;
     text-align: center;
-
-    /* Child container for hiding scroll bar */
-    overflow: scroll;
     padding-left: 10px;
     padding-right: 10px;
     box-sizing: content-box;
