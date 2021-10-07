@@ -42,6 +42,7 @@ import {
     RiLinkedinBoxFill,
     RiShareFill,
     RiDeleteBin6Fill,
+    RiHonourFill,
 } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
@@ -216,8 +217,28 @@ function ProfilePage() {
                 </Button>
             </Menu.Item>
             <Menu.Divider />
-            <Link to='/'>
+            <Link to='/privacy-policy'>
                 <Menu.Item key="3" style={{ background: 'white' }}>
+                    <Button
+                        type="ghost"
+                        shape="round"
+                        style={{
+                            color: 'white',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-evenly',
+                            background: '#2a9d8f',
+                            fontWeight: '500',
+                        }}
+                        icon={<RiHonourFill style={{ marginRight: 5 }}/>}
+                    >
+                        Privacy Policy
+                    </Button>
+                </Menu.Item>
+            </Link>
+            <Menu.Divider />
+            <Link to='/'>
+                <Menu.Item key="4" style={{ background: 'white' }}>
                     <Button
                         type="ghost"
                         shape="round"

@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import './Legals.css';
+import { Divider } from 'antd';
 import PropTypes from 'prop-types';
 
 function Legals(props) {
@@ -11,7 +12,7 @@ function Legals(props) {
         return (
             <div className='legal-page-container'>
                 <h1>Privacy Policy for Play</h1>
-
+                <Divider/>
                 <p>At Play, accessible from <a href="https://officialplay.me">https://officialplay.me</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Play and how we use it.</p>
 
                 <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
@@ -23,8 +24,18 @@ function Legals(props) {
                 <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
                 <br/>
                 <h2>Information we collect</h2>
+                <p>We at play, will be using YouTube data API and People API provided by google.</p>
 
-                <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
+                <p>We will use the YouTube data api to read user's YouTube liked videos, and use that playlist as one of the many parameters for our matching algorithm to match the user with other users on our platform.</p>
+                <p>We will use the people api for necessary details like user's gender, his/her profile picture, his/her profile name, etc. We will access the user data on the application's client-side, and then send it securely to the server side for our use case. And this is how we plan to utilise google user data we get from the scopes.</p>
+
+                <p>The personal information that you are asked to provide at the time of Sign up:</p>
+                <ul>
+                <li>See your primary Google Account email address</li>
+                <li>See your personal info, including any personal info you've made publicly available</li>
+                <li>View your YouTube account</li>
+                <li>See your gender</li>
+                </ul>
                 <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
                 <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
                 <br/>
@@ -40,6 +51,7 @@ function Legals(props) {
                 <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes</li>
                 <li>Send you emails</li>
                 <li>Find and prevent fraud</li>
+                <li>Match you with other users</li>
                 </ul>
                 <br/>
                 <h2>Log Files</h2>
@@ -50,7 +62,6 @@ function Legals(props) {
 
                 <p>Like any other website, Play uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
 
-                <p>For more general information on cookies, please read <a href="https://www.generateprivacypolicy.com/#cookies">"Cookies" article from the Privacy Policy Generator</a>.</p>
                 <br/>
                 <h2>Advertising Partners Privacy Policies</h2>
 
@@ -90,7 +101,7 @@ function Legals(props) {
                 <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
 
                 <p>Play does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
-                <br/>
+                <Divider/>
                 <br/>
             </div>
         );

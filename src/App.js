@@ -10,10 +10,10 @@ import {
     Route,
     Redirect,
 } from 'react-router-dom';
-import Layout from './Screens/Layout/Layout';
 import Loader from './Components/Loader/Loader';
 import { UserContext } from './StateManagement/UserContext';
 
+const Layout = lazy(() => import('./Screens/Layout/Layout'));
 const Legals = lazy(() => import('./Screens/Legals/Legals'));
 const NotFound = lazy(() => import('./Screens/NotFound/NotFound'));
 const HomePage = lazy(() => import('./Screens/HomePage/HomePage'));
@@ -31,6 +31,12 @@ function App() {
             <Router>
                 <Suspense fallback={<Loader/>}>
                     <Switch>
+                        <Route exact path='/welcome'>
+                            <WelcomePage/>
+                        </Route>
+                        <Route exact path='/privacy-policy'>
+                            <Legals legalTitle='privacy-policy'/>
+                        </Route>
                         <Route exact path='/chats/room'>
                             <Layout component={<ChatRoom/>} />
                         </Route>

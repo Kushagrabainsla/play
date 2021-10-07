@@ -57,11 +57,29 @@
 
 .welcome-page-about {
     width: 100%;
-    padding: 100px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
 }
+.welcome-additionals-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.additionals-text {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px;
+    font-weight: 300;
+    color: #264653;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
 
 @media only screen and (max-width: 500px) and (min-width: 400px)
 {
@@ -72,7 +90,7 @@
         font-size: 30px;
     }
     .welcome-page-about {
-        padding: 50px;
+        padding: 40px;
     }
     .welcome-get-started-button {
         padding: 7px 30px 7px 30px;
@@ -92,5 +110,8 @@
     }
     .welcome-get-started-button {
         padding: 7px 30px 7px 30px;
+    }
+    .welcome-additionals-container {
+        flex-direction: column;
     }
 }

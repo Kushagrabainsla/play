@@ -5,3 +5,10 @@
     padding: 50px;
     flex-direction: column;
 }
+
+@media only screen and (max-width: 400px)
+{
+    .legal-page-container {
+        padding: 40px;
+    }
+}
