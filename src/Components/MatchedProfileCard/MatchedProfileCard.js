@@ -51,13 +51,6 @@ function MatchedProfileCard(props) {
         fetchUser();
     }, []);
 
-    function formattedPhotoURL(url) {
-        const formattedList = url.split('=');
-        formattedList[formattedList.length - 1] = 's300';
-        const formattedUrl = formattedList.join('=');
-        return formattedUrl;
-    }
-
     return (
         <div className='matchedProfile'>
             {
@@ -65,7 +58,7 @@ function MatchedProfileCard(props) {
                 ? <div className='matchedProfileTop'>
                     <div className='matchedProfileTopLeft'>
                         <img
-                            src={formattedPhotoURL(matchedDetails.userPhotoURL)}
+                            src={matchedDetails.userPhotoURL}
                             alt='Matched Profile Picture'
                             className='matchedProfileProfilePhoto'
                         />

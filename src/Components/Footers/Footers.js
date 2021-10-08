@@ -5,6 +5,9 @@ import {
     RiAccountCircleFill,
     RiChatSmile3Fill,
     RiHome5Fill,
+    RiHome5Line,
+    RiChatSmile3Line,
+    RiAccountCircleLine,
 } from 'react-icons/ri';
 import { Badge } from 'antd';
 import { Link } from 'react-router-dom';
@@ -19,7 +22,7 @@ export function HomeFloatingFooter() {
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Fill
+                    <RiChatSmile3Line
                         fontSize={32}
                         color='lightgrey'
                     />
@@ -38,7 +41,7 @@ export function HomeFloatingFooter() {
                 to='/profile'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiAccountCircleFill
+                <RiAccountCircleLine
                     fontSize={32}
                     color='lightgrey'
                 />
@@ -66,7 +69,7 @@ export function ChatsPageFloatingFooter() {
                 to='/'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiHome5Fill
+                <RiHome5Line
                     fontSize={32}
                     color='lightgrey'
                 />
@@ -75,7 +78,7 @@ export function ChatsPageFloatingFooter() {
                 to='/profile'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiAccountCircleFill
+                <RiAccountCircleLine
                     fontSize={32}
                     color='lightgrey'
                 />
@@ -93,7 +96,7 @@ export function ProfileFloatingFooter() {
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Fill
+                    <RiChatSmile3Line
                         fontSize={32}
                         color='lightgrey'
                     />
@@ -103,7 +106,7 @@ export function ProfileFloatingFooter() {
                 to='/'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiHome5Fill
+                <RiHome5Line
                     fontSize={32}
                     color='lightgrey'
                 />

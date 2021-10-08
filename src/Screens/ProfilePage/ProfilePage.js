@@ -183,7 +183,6 @@ function ProfilePage() {
                     }}
                     icon={<RiShareFill style={{ marginRight: 5 }}/>}
                     onClick={() => {
-                        // window.navigator.clipboard.writeText('https://officialplay.me');
                         showshareModal();
                     }}
                 >
