@@ -1,4 +1,4 @@
-<img src="https://github.com/Kushagrabainsla/play/blob/master/public/playLogo192.png?raw=true" alt="Play Logo" width="200" align="right">
+<img src="https://github.com/Kushagrabainsla/play/blob/master/public/readmePlayLogo.png?raw=true" alt="Play Logo" width="300" align="right">
 
 
 
