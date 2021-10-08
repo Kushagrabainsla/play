@@ -1,5 +1,4 @@
 .chatsPageContainer {
-    padding-top: 2vh;
     height: 100vh;
     width: 100%;
     max-width: 800px;
@@ -8,41 +7,46 @@
     align-items: center;
     box-shadow: 2px 1px 10px lightgrey;
     overflow: scroll;
-    /* background-color: red; */
-    padding-bottom: 70px;    
+    padding-bottom: 80px;    
+}
+
+.sngleChatContainer {
+    width: 100%;
 }
 
 .singleChatBubble {
-    margin-top: 10px;
-    width: 95%;
-    padding: 0px 10px 0px 5px;
-    height: 100px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    width: 100%;
+    padding: 0px 15px 0px 15px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    box-shadow: 2px 1px 10px lightgrey;
-    border-radius: 15px;
-    background-color: white;
+}
+
+.singleChatBubble:hover {
+    transition: 0.2s;
+    background-color:rgb(248, 248, 248);
 }
 
 .chatBubbleLeft {
-    width: 20%;
+    width: 80px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .chatProfilePhoto {
-    width: 80%;
-    max-width: 70px;
+    width: 55px;
     border-radius: 50%;
     box-shadow: 2px 1px 10px lightgrey;
     border: 2px solid white;
 }
 
 .chatBubbleMid {
-    width: 60%;
-    height: 100px; /* Same as of chatbubble */
+    padding-left: 10px;
+    width: 100%;
+    height: 80px; /* Same as of chatbubble */
     display: 'flex';
     flex-direction: 'column';
 }
@@ -62,17 +66,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
-    color: gray;
+    color: rgb(83, 100, 113);
     font-weight: 400;
 }
 
 .chatBubbleRight {
-    width: 20%;
+    width: 100px;
+    float: right;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: gray;
+    color: rgb(83, 100, 113);
 }
 
 .chatBubbleSkeleton {
@@ -88,7 +92,6 @@
     flex-direction: row;
     box-shadow: 2px 1px 10px lightgrey;
     border-radius: 15px;
-    /* background-color: red; */
 }
 .noChatBubbleLeft {
     width: 15%;

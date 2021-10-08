@@ -8,6 +8,7 @@ import {
     Modal,
     Skeleton,
     Badge,
+    Divider,
 } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
@@ -86,41 +87,46 @@ function ChatsPage() {
                 ? acticeChats.length > 0
                     ? acticeChats
                     .sort((ele1, ele2) => ele2.lastMessageTimestamp - ele1.lastMessageTimestamp)
-                    .map((chat) => <Link
-                        to={{
-                            pathname: '/chats/room',
-                            state: {
-                                receiver: chat,
-                            },
-                        }}
-                        className='singleChatBubble'
+                    .map((chat) => <div
+                        className='sngleChatContainer'
                         key={chat.userId}
-                        onClick={() => {
-                            localStorage.setItem('receiver', JSON.stringify(chat));
-                            markMessagesSeen(chat);
-                        }}
                     >
-                        <div className='chatBubbleLeft'>
-                            <Badge dot={!chat.lastMessageSeen} offset={[-20, 5]}>
-                                <img
-                                    src={chat.userProfilePhoto}
-                                    alt='Profile Picture'
-                                    className='chatProfilePhoto'
-                                />
-                            </Badge>
-                        </div>
-                        <div className='chatBubbleMid' >
-                            <div className='chatBubbleUpperMid' >
-                                {chat.username}
+                        <Divider/>
+                        <Link
+                            to={{
+                                pathname: '/chats/room',
+                                state: {
+                                    receiver: chat,
+                                },
+                            }}
+                            className='singleChatBubble'
+                            onClick={() => {
+                                localStorage.setItem('receiver', JSON.stringify(chat));
+                                markMessagesSeen(chat);
+                            }}
+                        >
+                            <div className='chatBubbleLeft'>
+                                <Badge dot={!chat.lastMessageSeen} offset={[-20, 5]}>
+                                    <img
+                                        src={chat.userProfilePhoto}
+                                        alt='Profile Picture'
+                                        className='chatProfilePhoto'
+                                    />
+                                </Badge>
                             </div>
-                            <div className='chatBubbleLowerMid'>
-                                {chat.lastMessageText}
+                            <div className='chatBubbleMid' >
+                                <div className='chatBubbleUpperMid' >
+                                    {chat.username}
+                                </div>
+                                <div className='chatBubbleLowerMid'>
+                                    {chat.lastMessageText}
+                                </div>
                             </div>
-                        </div>
-                        <div className='chatBubbleRight'>
-                            { moment(chat.lastMessageTimestamp).format('LT') }
-                        </div>
-                    </Link>)
+                            <div className='chatBubbleRight'>
+                                { moment(chat.lastMessageTimestamp).format('LT') }
+                            </div>
+                        </Link>
+                    </div>)
                     : <div className='noChatBubble'>
                         <div className='noChatBubbleLeft'>
                             <img
