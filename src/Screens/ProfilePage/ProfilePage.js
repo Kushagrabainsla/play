@@ -44,6 +44,7 @@ import {
     RiDeleteBin6Fill,
     RiHonourFill,
 } from 'react-icons/ri';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
 import { ProfileFloatingFooter } from '../../Components/Footers/Footers';
@@ -261,6 +262,9 @@ function ProfilePage() {
 
     return (
         <div className='profileContainer'>
+            <Helmet>
+                <title>Profile / Play</title>
+            </Helmet>
             {
                 userDetails && userSocials
                 ? <div className='profileTop'>

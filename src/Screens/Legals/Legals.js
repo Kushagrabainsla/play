@@ -4,6 +4,7 @@ import React from 'react';
 import './Legals.css';
 import { Divider } from 'antd';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 function Legals(props) {
     const { legalTitle } = props;
@@ -11,6 +12,9 @@ function Legals(props) {
     if (legalTitle === 'privacy-policy') {
         return (
             <div className='legal-page-container'>
+                <Helmet>
+                    <title>Privacy Policy / Play</title>
+                </Helmet>
                 <h1>Privacy Policy for Play</h1>
                 <Divider/>
                 <p>At Play, accessible from <a href="https://officialplay.me">https://officialplay.me</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Play and how we use it.</p>

@@ -2,11 +2,15 @@
 import React from 'react';
 import './WelcomePage.css';
 import { Divider } from 'antd';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 function WelcomePage() {
     return (
         <div className='welcome-page'>
+            <Helmet>
+                <title>About / Play</title>
+            </Helmet>
             <div className='welcome-page-container'>
                 <div className='welcome-text-container'>
                     <div className='welcome-text-bold'>play</div>

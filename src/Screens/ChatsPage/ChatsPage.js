@@ -13,6 +13,7 @@ import {
 import axios from 'axios';
 import moment from 'moment';
 import io from 'socket.io-client';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
 import { ChatsPageFloatingFooter } from '../../Components/Footers/Footers';
@@ -81,6 +82,9 @@ function ChatsPage() {
 
     return (
         <div className='chatsPageContainer'>
+            <Helmet>
+                <title>Messages / Play</title>
+            </Helmet>
             {
                 // eslint-disable-next-line no-nested-ternary
                 acticeChats

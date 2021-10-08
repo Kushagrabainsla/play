@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import './HomePage.css';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import { Modal, Skeleton } from 'antd';
 import { UserContext } from '../../StateManagement/UserContext';
 import { HomeFloatingFooter } from '../../Components/Footers/Footers';
@@ -52,6 +53,9 @@ function HomePage() {
 
     return (
         <div className='homeContainer'>
+            <Helmet>
+                <title>Home / Play</title>
+            </Helmet>
             <div className='matchedProfilesContainer'>
                 {
                     // eslint-disable-next-line no-nested-ternary
