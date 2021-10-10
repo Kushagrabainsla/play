@@ -9,6 +9,7 @@ import {
     Menu,
     Dropdown,
     Collapse,
+    Divider,
 } from 'antd';
 import {
     RiTwitterFill,
@@ -103,6 +104,7 @@ function MatchedProfileCard(props) {
                 </div>
                 : null
             }
+            <Divider/>
             <div className='matchedProfileBottom'>
                 <Collapse ghost >
                     <Panel

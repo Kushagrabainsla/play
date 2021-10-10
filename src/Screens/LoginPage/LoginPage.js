@@ -120,9 +120,9 @@ function LoginPage() {
                         <Link to='/privacy-policy'>
                             <div className='additionals-text'>Privary Policy</div>
                         </Link>
-                        <Link to='/frequently-asked-questions'>
+                        {/* <Link to='/frequently-asked-questions'>
                             <div className='additionals-text'>FAQ</div>
-                        </Link>
+                        </Link> */}
                         <Link to='/privacy-policy'>
                             <div className='additionals-text'>{'Terms & Conditions'}</div>
                         </Link>
