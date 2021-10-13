@@ -16,8 +16,10 @@ import io from 'socket.io-client';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
-import { ChatsPageFloatingFooter } from '../../Components/Footers/Footers';
 import { updateNewMessages } from '../../StateManagement/NewMessagesContext';
+import { ChatsPageFloatingFooter } from '../../Components/Footers/Footers';
+import { ChatsLeftTab } from '../../Components/LeftCompartment/LeftCompartment';
+import RightCompartment from '../../Components/RightCompartment/RightCompartment';
 
 const socket = io(process.env.REACT_APP_SERVER_PROD_URL);
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
@@ -81,82 +83,88 @@ function ChatsPage() {
     }, []);
 
     return (
-        <div className='chatsPageContainer'>
+        <div className='chats-page-container'>
             <Helmet>
                 <title>Messages / Play</title>
             </Helmet>
-            {
-                // eslint-disable-next-line no-nested-ternary
-                acticeChats
-                ? acticeChats.length > 0
-                    ? acticeChats
-                    .sort((ele1, ele2) => ele2.lastMessageTimestamp - ele1.lastMessageTimestamp)
-                    .map((chat) => <div
-                        className='sngleChatContainer'
-                        key={chat.userId}
-                    >
-                        <Divider/>
-                        <Link
-                            to={{
-                                pathname: '/chats/room',
-                                state: {
-                                    receiver: chat,
-                                },
-                            }}
-                            className='singleChatBubble'
-                            onClick={() => {
-                                localStorage.setItem('receiver', JSON.stringify(chat));
-                                markMessagesSeen(chat);
-                            }}
+            <ChatsLeftTab/>
+            <div className='chats-page-middle-area'>
+                <div className='chats-page-chat-container'>
+                {
+                    // eslint-disable-next-line no-nested-ternary
+                    acticeChats
+                    ? acticeChats.length > 0
+                        ? acticeChats
+                        .sort((ele1, ele2) => ele2.lastMessageTimestamp - ele1.lastMessageTimestamp)
+                        .map((chat) => <div
+                            className='sngleChatContainer'
+                            key={chat.userId}
                         >
-                            <div className='chatBubbleLeft'>
-                                <Badge dot={!chat.lastMessageSeen} offset={[-20, 5]}>
-                                    <img
-                                        src={chat.userProfilePhoto}
-                                        alt='Profile Picture'
-                                        className='chatProfilePhoto'
-                                    />
-                                </Badge>
-                            </div>
-                            <div className='chatBubbleMid' >
-                                <div className='chatBubbleUpperMid' >
-                                    {chat.username}
+                            <Divider/>
+                            <Link
+                                to={{
+                                    pathname: '/chats/room',
+                                    state: {
+                                        receiver: chat,
+                                    },
+                                }}
+                                className='singleChatBubble'
+                                onClick={() => {
+                                    localStorage.setItem('receiver', JSON.stringify(chat));
+                                    markMessagesSeen(chat);
+                                }}
+                            >
+                                <div className='chatBubbleLeft'>
+                                    <Badge dot={!chat.lastMessageSeen} offset={[-10, 5]}>
+                                        <img
+                                            src={chat.userProfilePhoto}
+                                            alt='Profile Picture'
+                                            className='chatProfilePhoto'
+                                        />
+                                    </Badge>
                                 </div>
-                                <div className='chatBubbleLowerMid'>
-                                    {chat.lastMessageText}
+                                <div className='chatBubbleMid' >
+                                    <div className='chatBubbleUpperMid' >
+                                        {chat.username}
+                                    </div>
+                                    <div className='chatBubbleLowerMid'>
+                                        {chat.lastMessageText}
+                                    </div>
                                 </div>
+                                <div className='chatBubbleRight'>
+                                    { moment(chat.lastMessageTimestamp).format('LT') }
+                                </div>
+                            </Link>
+                        </div>)
+                        : <div className='noChatBubble'>
+                            <div className='noChatBubbleLeft'>
+                                <img
+                                    src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
+                                    width='100%'
+                                />
                             </div>
-                            <div className='chatBubbleRight'>
-                                { moment(chat.lastMessageTimestamp).format('LT') }
+                            <div className='noChatBubbleRight' >
+                                You do not have any conversations yet,
+                                go to your connections page, and tap on any
+                                interest tag of your favourite connection
+                                to start a conversation.
                             </div>
-                        </Link>
-                    </div>)
-                    : <div className='noChatBubble'>
-                        <div className='noChatBubbleLeft'>
-                            <img
-                                src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
-                                width='100%'
-                            />
                         </div>
-                        <div className='noChatBubbleRight' >
-                            You do not have any conversations yet,
-                            go to your connections page, and tap on any
-                            interest tag of your favourite connection
-                            to start a conversation.
-                        </div>
-                    </div>
-                : <>
-                    {
-                        [0, 1, 2, 3, 4].map((id) => <Skeleton
-                            key={id}
-                            active
-                            avatar
-                            paragraph={{ rows: 1 }}
-                            className='chatBubbleSkeleton'
-                        />)
-                    }
-                </>
-            }
+                    : <>
+                        {
+                            [0, 1, 2, 3, 4].map((id) => <Skeleton
+                                key={id}
+                                active
+                                avatar
+                                paragraph={{ rows: 1 }}
+                                className='chatBubbleSkeleton'
+                            />)
+                        }
+                    </>
+                }
+                </div>
+            </div>
+            <RightCompartment/>
             <ChatsPageFloatingFooter/>
         </div>
     );

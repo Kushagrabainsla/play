@@ -1,65 +1,21 @@
-.homeFloatingFooter {
-    background-color: white;
-    bottom: 10px;
-    position: fixed;
-    border-radius: 50px;
-    box-shadow: 2px 1px 10px lightgrey;
-    width: 220px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    transition: bottom 0.5s;
+.floatingFooter {
+    display: none;
 }
 
-.chatsPageFloatingFooter {
-    background-color: white;
-    bottom: 10px;
-    position: fixed;
-    border-radius: 50px;
-    box-shadow: 2px 1px 10px lightgrey;
-    width: 220px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    transition: bottom 0.5s;
-}
-
-.profileFloatingFooter {
-    background-color: white;
-    bottom: 10px;
-    position: fixed;
-    border-radius: 50px;
-    box-shadow: 2px 1px 10px lightgrey;
-    width: 220px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    transition: bottom 0.5s;
-}
-
-@media only screen and (max-width: 400px)
+@media only screen and (max-width: 500px)
 {
-    .homeFloatingFooter {
+    .floatingFooter {
         bottom: 0px;
         border-radius: 0px;
         width: 100%;
-    }
-    
-    .chatsPageFloatingFooter {
-        bottom: 0px;
-        border-radius: 0px;
-        width: 100%;
-    }
-    
-    .profileFloatingFooter {
-        bottom: 0px;
-        border-radius: 0px;
-        width: 100%;
+        background-color: white;
+        position: fixed;
+        box-shadow: 2px 1px 10px lightgrey;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        transition: bottom 0.5s;
     }
 }

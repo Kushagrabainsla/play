@@ -48,6 +48,8 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
 import { ProfileFloatingFooter } from '../../Components/Footers/Footers';
+import { ProfileLeftTab } from '../../Components/LeftCompartment/LeftCompartment';
+import RightCompartment from '../../Components/RightCompartment/RightCompartment';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 
@@ -261,104 +263,108 @@ function ProfilePage() {
     );
 
     return (
-        <div className='profileContainer'>
+        <div className='profile-page-container'>
             <Helmet>
                 <title>Profile / Play</title>
             </Helmet>
-            {
-                userDetails && userSocials
-                ? <div className='profileTop'>
-                    <div className='profileTopHamburgerArea'>
-                        <Dropdown
-                            overlay={optionsMenu}
-                            placement="bottomRight"
-                            trigger={['click']}
-                        >
-                            <RiMenuFill
-                                onClick={(e) => e.preventDefault()}
-                                style={{
-                                    fontSize: 20,
-                                    color: 'black',
-                                    cursor: 'pointer',
-                                }}
-                            />
-                        </Dropdown>
+            <ProfileLeftTab/>
+            <div className='profile-page-middle-area'>
+                {
+                    userDetails && userSocials
+                    ? <div className='profileTop'>
+                        <div className='profileTopHamburgerArea'>
+                            <Dropdown
+                                overlay={optionsMenu}
+                                placement="bottomRight"
+                                trigger={['click']}
+                            >
+                                <RiMenuFill
+                                    onClick={(e) => e.preventDefault()}
+                                    style={{
+                                        fontSize: 20,
+                                        color: 'black',
+                                        cursor: 'pointer',
+                                    }}
+                                />
+                            </Dropdown>
+                        </div>
+                        <div className='profileTopDetails'>
+                            <div className='profilePhotoContainer'>
+                                <img
+                                    src={formattedPhotoURL(userDetails.userPhotoURL)}
+                                    alt='User Profile Photo'
+                                    className='profilePhoto'
+                                />
+                            </div>
+                            <div className='profileSocials'>
+                                {
+                                    userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>}
+                                        arrow
+                                    >
+                                        <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                    </Dropdown>
+                                }
+                                {
+                                    userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>}
+                                        arrow
+                                    >
+                                        <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                    </Dropdown>
+                                }
+                                {
+                                    userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>}
+                                        arrow
+                                    >
+                                        <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                    </Dropdown>
+                                }
+                                {
+                                    userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>}
+                                        arrow
+                                    >
+                                        <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                    </Dropdown>
+                                }
+                                {
+                                    userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>}
+                                        arrow
+                                    >
+                                        <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
+                                    </Dropdown>
+                                }
+                            </div>
+                            <div className='profileNameText'>
+                                {userDetails.userName}
+                            </div>
+                        </div>
                     </div>
-                    <div className='profileTopDetails'>
-                        <div className='profilePhotoContainer'>
-                            <img
-                                src={formattedPhotoURL(userDetails.userPhotoURL)}
-                                alt='User Profile Photo'
-                                className='profilePhoto'
+                    : <Skeleton
+                        active
+                        title={false}
+                        avatar={{ size: 100 }}
+                        className='profileDetailsSkeleton'
+                    />
+                }
+                <Divider/>
+                <div className='profileBottom'>
+                    <div className='profileLikes'>
+                        {
+                            userLikes
+                            ? userLikes.map((keyword, index) => <p
+                                key={index}
+                                className='likeContainer'
+                                >{keyword}</p>)
+                            : <Skeleton
+                                active
+                                title={false}
+                                paragraph={{ rows: 6 }}
+                                className='likeContainerSkeleton'
                             />
-                        </div>
-                        <div className='profileSocials'>
-                            {
-                                userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                        </div>
-                        <div className='profileNameText'>
-                            {userDetails.userName}
-                        </div>
+                        }
                     </div>
-                </div>
-                : <Skeleton
-                    active
-                    title={false}
-                    avatar={{ size: 100 }}
-                    className='profileDetailsSkeleton'
-                />
-            }
-            <Divider/>
-            <div className='profileBottom'>
-                <div className='profileLikes'>
-                    {
-                        userLikes
-                        ? userLikes.map((keyword, index) => <p
-                            key={index}
-                            className='likeContainer'
-                            >{keyword}</p>)
-                        : <Skeleton
-                            active
-                            title={false}
-                            paragraph={{ rows: 6 }}
-                            className='likeContainerSkeleton'
-                        />
-                    }
                 </div>
             </div>
+            <RightCompartment/>
             <ProfileFloatingFooter/>
             <Modal
                 title="Add Social Media"

@@ -88,82 +88,84 @@ function ChatRoom() {
     }, [messages]);
 
     return (
-        <div className='chatRoomContainer'>
-            <div className='chatRoomFloatingHeader'>
-                <div className='chatRoomHeaderLeft'>
-                    <RiArrowLeftSLine
-                        onClick={() => history.goBack()}
-                        style={{
-                            fontSize: 32,
-                            cursor: 'pointer',
-                        }}
-                    />
+        <div className='chat-room-container'>
+            <div className='chatRoomContainer'>
+                <div className='chatRoomFloatingHeader'>
+                    <div className='chatRoomHeaderLeft'>
+                        <RiArrowLeftSLine
+                            onClick={() => history.goBack()}
+                            style={{
+                                fontSize: 32,
+                                cursor: 'pointer',
+                            }}
+                        />
+                    </div>
+                    <div className='chatRoomHeaderRight'>
+                        {receiver.username}
+                    </div>
                 </div>
-                <div className='chatRoomHeaderRight'>
-                    {receiver.username}
-                </div>
-            </div>
-            <div className='chatRoomChatContainer'>
-                {
-                    messages.map((text, textIndex) => <div
-                        key={textIndex}
-                    >
-                        <div className='chatRoomChatRow'>
-                            <img
-                                src={receiver.userProfilePhoto}
-                                alt='Profile Picture'
-                                style={{
-                                    display: text.author === currUser ? 'none' : 'flex',
-                                    width: '30px',
-                                    borderRadius: '50%',
-                                    alignSelf: 'flex-end',
-                                    boxShadow: '2px 1px 10px lightgrey',
-                                }}
-                            />
-                            <div
-                                className={
-                                    text.author === currUser
-                                    ? 'chatRoomBubbleRight'
-                                    : 'chatRoomBubbleLeft'
-                                }
-                            >
-                                <div className='chatRoomBubbleText'>{text.body}</div>
-                                <div className='chatRoomBubbleTimestamp'>{moment(text.timeStamp).format('LT')}</div>
+                <div className='chatRoomChatContainer'>
+                    {
+                        messages.map((text, textIndex) => <div
+                            key={textIndex}
+                        >
+                            <div className='chatRoomChatRow'>
+                                <img
+                                    src={receiver.userProfilePhoto}
+                                    alt='Profile Picture'
+                                    style={{
+                                        display: text.author === currUser ? 'none' : 'flex',
+                                        width: '30px',
+                                        borderRadius: '50%',
+                                        alignSelf: 'flex-end',
+                                        boxShadow: '2px 1px 10px lightgrey',
+                                    }}
+                                />
+                                <div
+                                    className={
+                                        text.author === currUser
+                                        ? 'chatRoomBubbleRight'
+                                        : 'chatRoomBubbleLeft'
+                                    }
+                                >
+                                    <div className='chatRoomBubbleText'>{text.body}</div>
+                                    <div className='chatRoomBubbleTimestamp'>{moment(text.timeStamp).format('LT')}</div>
+                                </div>
                             </div>
-                        </div>
-                    </div>)
-                }
-                <span ref={lastMessageReference}></span>
-            </div>
-            <div className='chatRoomFloatingFooter'>
-                <div className='chatRoomFooterLeft'>
-                    <Input
-                        placeholder='Message'
-                        onPressEnter={sendMessage}
-                        value={message}
-                        style={{
-                            height: '100%',
-                            border: 'none',
-                            borderRadius: '50px',
-                        }}
-                        onChange={(event) => setmessage(event.target.value)}
-                    />
+                        </div>)
+                    }
+                    <span ref={lastMessageReference}></span>
                 </div>
-                <div className='chatRoomFooterRight'>
-                    <Button
-                        type="ghost"
-                        shape="circle"
-                        size='large'
-                        onClick={sendMessage}
-                        icon={<RiSendPlane2Fill/>}
-                        style={{
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            background: '#2a9d8f',
-                        }}
-                    />
+                <div className='chatRoomFloatingFooter'>
+                    <div className='chatRoomFooterLeft'>
+                        <Input
+                            placeholder='Message'
+                            onPressEnter={sendMessage}
+                            value={message}
+                            style={{
+                                height: '100%',
+                                border: 'none',
+                                borderRadius: '50px',
+                            }}
+                            onChange={(event) => setmessage(event.target.value)}
+                        />
+                    </div>
+                    <div className='chatRoomFooterRight'>
+                        <Button
+                            type="ghost"
+                            shape="circle"
+                            size='large'
+                            onClick={sendMessage}
+                            icon={<RiSendPlane2Fill/>}
+                            style={{
+                                color: 'white',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: '#2a9d8f',
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

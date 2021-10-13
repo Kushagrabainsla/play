@@ -1,0 +1,21 @@
+.layout-right-area {
+    height: 100vh;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 500px) and (max-width: 850px)
+{
+    .layout-right-area {
+        display: none;
+    }
+}
+
+/* Mobile screens */
+@media only screen and (max-width: 500px)
+{
+    .layout-right-area {
+        display: none;
+    }
+}

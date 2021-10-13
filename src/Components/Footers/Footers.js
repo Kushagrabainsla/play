@@ -16,7 +16,7 @@ import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
 export function HomeFloatingFooter() {
     const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     return (
-        <div className='homeFloatingFooter'>
+        <div className='floatingFooter'>
             <Link
                 to='/chats'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -53,7 +53,7 @@ export function HomeFloatingFooter() {
 export function ChatsPageFloatingFooter() {
     const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     return (
-        <div className='chatsPageFloatingFooter'>
+        <div className='floatingFooter'>
             <Link
                 to='/chats'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
@@ -90,7 +90,7 @@ export function ChatsPageFloatingFooter() {
 export function ProfileFloatingFooter() {
     const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     return (
-        <div className='profileFloatingFooter'>
+        <div className='floatingFooter'>
             <Link
                 to='/chats'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}

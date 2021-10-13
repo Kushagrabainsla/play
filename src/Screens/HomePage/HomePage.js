@@ -9,6 +9,8 @@ import { Helmet } from 'react-helmet';
 import { Modal, Skeleton } from 'antd';
 import { UserContext } from '../../StateManagement/UserContext';
 import { HomeFloatingFooter } from '../../Components/Footers/Footers';
+import { HomeLeftTab } from '../../Components/LeftCompartment/LeftCompartment';
+import RightCompartment from '../../Components/RightCompartment/RightCompartment';
 import MatchedProfileCard from '../../Components/MatchedProfileCard/MatchedProfileCard';
 
 const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
@@ -52,40 +54,44 @@ function HomePage() {
     }, []);
 
     return (
-        <div className='homeContainer'>
+        <div className='home-page-container'>
             <Helmet>
                 <title>Home / Play</title>
             </Helmet>
-            <div className='matchedProfilesContainer'>
-                {
-                    // eslint-disable-next-line no-nested-ternary
-                    matchedProfiles
-                    ? matchedProfiles.length > 0
-                        ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
-                            profile={profile}
-                            key={profileIndex}
-                        />)
-                        : <img
-                            src={`${process.env.PUBLIC_URL}/noMatchesFound.svg`}
-                            alt='No Matches Found'
-                            style={{
-                                height: '60vh',
-                                paddingTop: '30vh',
-                            }}
-                        />
-                    : <>
-                        {
-                            [0, 1, 2, 3, 4].map((id) => <Skeleton
-                                key={id}
-                                active
-                                avatar={{ size: 80 }}
-                                paragraph={{ rows: 3 }}
-                                className='matchedProfileSkeleton'
+            <HomeLeftTab/>
+            <div className='home-page-middle-area'>
+                <div className='home-page-card-container'>
+                    {
+                        // eslint-disable-next-line no-nested-ternary
+                        matchedProfiles
+                        ? matchedProfiles.length > 0
+                            ? matchedProfiles.map((profile, profileIndex) => <MatchedProfileCard
+                                profile={profile}
+                                key={profileIndex}
                             />)
-                        }
-                    </>
-                }
+                            : <img
+                                src={`${process.env.PUBLIC_URL}/noMatchesFound.svg`}
+                                alt='No Matches Found'
+                                style={{
+                                    height: '60vh',
+                                    paddingTop: '30vh',
+                                }}
+                            />
+                        : <>
+                            {
+                                [0, 1, 2, 3, 4].map((id) => <Skeleton
+                                    key={id}
+                                    active
+                                    avatar={{ size: 80 }}
+                                    paragraph={{ rows: 3 }}
+                                    className='home-page-card-skeleton'
+                                />)
+                            }
+                        </>
+                    }
+                </div>
             </div>
+            <RightCompartment/>
             <HomeFloatingFooter/>
         </div>
     );
