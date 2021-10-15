@@ -3,8 +3,23 @@
     display: flex;
     padding: 20px;
     flex-direction: column;
+    min-width: 180px;
+    max-width: 180px;
+}
+.layout-right-text {
+    text-decoration: none;
+    color: rgb(83, 100, 113);
+    font-size: 13px;
+    margin: 1px;
+}
+.layout-right-text:hover {
+    text-decoration: none;
+    color: rgb(83, 100, 113);
+    font-size: 13px;
+    margin: 1px;
 }
 
+/* Tablets */
 @media only screen and (min-width: 500px) and (max-width: 850px)
 {
     .layout-right-area {

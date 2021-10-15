@@ -17,6 +17,7 @@ const Legals = lazy(() => import('./Screens/Legals/Legals'));
 const NotFound = lazy(() => import('./Screens/NotFound/NotFound'));
 const HomePage = lazy(() => import('./Screens/HomePage/HomePage'));
 const ChatRoom = lazy(() => import('./Screens/ChatRoom/ChatRoom'));
+const MorePage = lazy(() => import('./Screens/MorePage/MorePage'));
 const ChatsPage = lazy(() => import('./Screens/ChatsPage/ChatsPage'));
 const LoginPage = lazy(() => import('./Screens/LoginPage/LoginPage'));
 const ProfilePage = lazy(() => import('./Screens/ProfilePage/ProfilePage'));
@@ -33,10 +34,11 @@ function App() {
                         <Route exact path='/privacy-policy'>
                             <Legals legalTitle='privacy-policy'/>
                         </Route>
-                        <Route exact path='/chats/room' component={ChatRoom}/>
-                        <Route exact path='/chats' component={ChatsPage}/>
                         <Route exact path='/welcome' component={WelcomePage}/>
                         <Route exact path='/profile' component={ProfilePage}/>
+                        <Route exact path='/chats/room' component={ChatRoom}/>
+                        <Route exact path='/chats' component={ChatsPage}/>
+                        <Route exact path='/more' component={MorePage}/>
                         <Route exact path='/' component={HomePage}/>
                         <Redirect from='*' to='/' />
                     </Switch>

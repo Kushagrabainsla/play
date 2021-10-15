@@ -8,6 +8,8 @@ import {
     RiAccountCircleFill,
     RiChatSmile3Fill,
     RiHome5Line,
+    RiMoreLine,
+    RiMoreFill,
 } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
@@ -22,32 +24,30 @@ export function HomeLeftTab() {
                 className='page-left-element'
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line
-                        fontSize={32}
-                        color='rgb(15, 20, 25)'
-                    />
+                    <RiChatSmile3Line className='page-left-element-icon' />
                 </Badge>
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '400' }}>Messages</div>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
             </Link>
             <Link
                 to='/'
                 className='page-left-element'
             >
-                <RiHome5Fill
-                    fontSize={32}
-                    color='rgb(15, 20, 25)'
-                />
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '600' }}>Home</div>
+                <RiHome5Fill className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '600' }}>Home</div>
             </Link>
             <Link
                 to='/profile'
                 className='page-left-element'
             >
-                <RiAccountCircleLine
-                    fontSize={32}
-                    color='rgb(15, 20, 25)'
-                />
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '400' }}>Profile</div>
+                <RiAccountCircleLine className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Profile</div>
+            </Link>
+            <Link
+                to='/more'
+                className='page-left-element'
+            >
+                <RiMoreLine className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>More</div>
             </Link>
         </div>
     );
@@ -62,32 +62,30 @@ export function ProfileLeftTab() {
                 className='page-left-element'
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line
-                        fontSize={32}
-                        color='rgb(15, 20, 25)'
-                    />
+                    <RiChatSmile3Line className='page-left-element-icon' />
                 </Badge>
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '400' }}>Messages</div>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
             </Link>
             <Link
                 to='/'
                 className='page-left-element'
             >
-                <RiHome5Line
-                    fontSize={32}
-                    color='rgb(15, 20, 25)'
-                />
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '400' }}>Home</div>
+                <RiHome5Line className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
             </Link>
             <Link
                 to='/profile'
                 className='page-left-element'
             >
-                <RiAccountCircleFill
-                    fontSize={32}
-                    color='rgb(15, 20, 25)'
-                />
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '600' }}>Profile</div>
+                <RiAccountCircleFill className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '600' }}>Profile</div>
+            </Link>
+            <Link
+                to='/more'
+                className='page-left-element'
+            >
+                <RiMoreLine className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>More</div>
             </Link>
         </div>
     );
@@ -102,32 +100,68 @@ export function ChatsLeftTab() {
                 className='page-left-element'
             >
                 <Badge dot={areNewMessagesAvailable} >
-                    <RiChatSmile3Fill
-                        fontSize={32}
-                        color='rgb(15, 20, 25)'
-                    />
+                    <RiChatSmile3Fill className='page-left-element-icon'/>
                 </Badge>
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '600' }}>Messages</div>
+                <div className='page-left-element-text' style={{ fontWeight: '600' }}>Messages</div>
             </Link>
             <Link
                 to='/'
                 className='page-left-element'
             >
-                <RiHome5Line
-                    fontSize={32}
-                    color='rgb(15, 20, 25)'
-                />
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '400' }}>Home</div>
+                <RiHome5Line className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
             </Link>
             <Link
                 to='/profile'
                 className='page-left-element'
             >
-                <RiAccountCircleLine
-                    fontSize={32}
-                    color='rgb(15, 20, 25)'
-                />
-                <div className='page-left-element-text' style={{ color: 'rgb(15, 20, 25)', fontWeight: '400' }}>Profile</div>
+                <RiAccountCircleLine className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Profile</div>
+            </Link>
+            <Link
+                to='/more'
+                className='page-left-element'
+            >
+                <RiMoreLine className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>More</div>
+            </Link>
+        </div>
+    );
+}
+
+export function MoreLeftTab() {
+    const [areNewMessagesAvailable] = useContext(NewMessagesContext);
+    return (
+        <div className='page-left-area'>
+            <Link
+                to='/chats'
+                className='page-left-element'
+            >
+                <Badge dot={areNewMessagesAvailable} >
+                    <RiChatSmile3Line className='page-left-element-icon'/>
+                </Badge>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
+            </Link>
+            <Link
+                to='/'
+                className='page-left-element'
+            >
+                <RiHome5Line className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
+            </Link>
+            <Link
+                to='/profile'
+                className='page-left-element'
+            >
+                <RiAccountCircleLine className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Profile</div>
+            </Link>
+            <Link
+                to='/more'
+                className='page-left-element'
+            >
+                <RiMoreFill className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '600' }}>More</div>
             </Link>
         </div>
     );

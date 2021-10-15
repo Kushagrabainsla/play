@@ -7,28 +7,27 @@ function RightCompartment() {
         <div className='layout-right-area'>
             <Link
                 to='/privacy-policy'
-                style={{
-                    textDecoration: 'none',
-                    color: 'rgb(83, 100, 113)',
-                    fontSize: '13px',
-                }}
-            >Privacy Policy</Link>
+                className='layout-right-text'
+            >
+                Privacy Policy
+            </Link>
             <Link
                 to='/privacy-policy'
-                style={{
-                    textDecoration: 'none',
-                    color: 'rgb(83, 100, 113)',
-                    fontSize: '13px',
-                }}
-            >Cookie Policy</Link>
+                className='layout-right-text'
+            >
+                Cookie Policy
+            </Link>
             <Link
                 to='/privacy-policy'
-                style={{
-                    textDecoration: 'none',
-                    color: 'rgb(83, 100, 113)',
-                    fontSize: '13px',
-                }}
-            >Terms of service</Link>
+                className='layout-right-text'
+            >
+                Terms of service
+            </Link>
+            <p
+            className='layout-right-text'
+            >
+                © 2021 Play, Inc.
+            </p>
         </div>
     );
 }
