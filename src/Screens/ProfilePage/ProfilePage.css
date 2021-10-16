@@ -90,8 +90,8 @@
     margin: 3px 3px 3px 0px;
     padding: 5px 10px 5px 10px;
     border-radius: 50px;
-    background-color: var(--themeLightGreen);    
-    box-shadow: 2px 1px 10px lightgrey;
+    background-color: var(--themeLightGreen);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .likeContainerSkeleton {
     margin: 3px 3px 3px 0px;

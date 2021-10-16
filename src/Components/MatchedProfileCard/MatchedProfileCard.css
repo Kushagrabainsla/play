@@ -66,3 +66,13 @@
     font-weight: 400;
     color: rgb(83, 100, 113);
 }
+.likeContainer {
+    display: inline-block;
+    color: white;
+    font-weight: 500;
+    margin: 3px 3px 3px 0px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 50px;
+    background-color: var(--themeLightGreen);    
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

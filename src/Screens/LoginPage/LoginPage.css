@@ -2,12 +2,16 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    align-items: center;
+    overflow: scroll;
     justify-content: center;
 }
 .login-container {
-    width: 90%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     height: 90vh;
+    min-height: 600px;
+
+    width: 90%;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -20,15 +24,16 @@
     width: 40%;
     min-width: 450px;
     height: 90vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative; /* For privacy policy */
-
 }
 .login-left-container {
     width: 60%;
     height: 90vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,9 +41,11 @@
     overflow: hidden;
     border-radius: 30px;
     box-shadow: 3px 3px 10px lightblue;
+
 }
 .login-picture-container {
     height: 90vh;
+    min-height: 600px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -48,7 +55,6 @@
 .login-picture {
     width: 135%;
 }
-
 .login-additionals-container {
     width: 425px;
     position: absolute;
@@ -65,11 +71,11 @@
     justify-content: center;
     padding-bottom: 5px;
     font-weight: 300;
-    color: #264653;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    color: rgb(83, 100, 113);
+    font-size: 13px;
 }
-
 .login-card {
     height: 400px;
     width: 280px;
@@ -80,6 +86,7 @@
     background-color: white;
     box-shadow: 3px 3px 10px lightblue;
     border-radius: 30px;
+
 }
 .login-card-upper {
     width: 100%;
@@ -87,7 +94,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: red; */
 }
 .login-play-text {
     font-size: 100px;
@@ -117,9 +123,9 @@
     border-radius: 10px;
     width: 210px;
     height: 40px;
-    font-weight: 300;
     border: 2px solid #264653;
     cursor: pointer;
+    color: rgb(15, 20, 25);
     box-shadow: 2px 1px 10px lightgrey;
     font-family: 'Poppins', sans-serif;
 }
@@ -146,7 +152,6 @@
         flex-direction: column;
         height: auto;
         box-shadow: none;
-        /* background-color: red; */
         overflow: hidden;
     }
     .login-right-container {
@@ -173,7 +178,6 @@
         flex-direction: column;
         height: auto;
         box-shadow: none;
-        /* background-color: red; */
         overflow: hidden;
     }
     .login-right-container {

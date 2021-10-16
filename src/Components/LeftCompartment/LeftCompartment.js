@@ -8,8 +8,8 @@ import {
     RiAccountCircleFill,
     RiChatSmile3Fill,
     RiHome5Line,
-    RiMoreLine,
-    RiMoreFill,
+    RiSettings3Line,
+    RiSettings3Fill,
 } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
@@ -46,7 +46,7 @@ export function HomeLeftTab() {
                 to='/more'
                 className='page-left-element'
             >
-                <RiMoreLine className='page-left-element-icon' />
+                <RiSettings3Line className='page-left-element-icon' />
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>More</div>
             </Link>
         </div>
@@ -84,7 +84,7 @@ export function ProfileLeftTab() {
                 to='/more'
                 className='page-left-element'
             >
-                <RiMoreLine className='page-left-element-icon' />
+                <RiSettings3Line className='page-left-element-icon' />
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>More</div>
             </Link>
         </div>
@@ -122,7 +122,7 @@ export function ChatsLeftTab() {
                 to='/more'
                 className='page-left-element'
             >
-                <RiMoreLine className='page-left-element-icon' />
+                <RiSettings3Line className='page-left-element-icon' />
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>More</div>
             </Link>
         </div>
@@ -160,7 +160,7 @@ export function MoreLeftTab() {
                 to='/more'
                 className='page-left-element'
             >
-                <RiMoreFill className='page-left-element-icon' />
+                <RiSettings3Fill className='page-left-element-icon' />
                 <div className='page-left-element-text' style={{ fontWeight: '600' }}>More</div>
             </Link>
         </div>

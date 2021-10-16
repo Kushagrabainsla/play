@@ -71,7 +71,7 @@
     margin-right: auto;
     color: black;
     background-color: white;
-    box-shadow: 2px 1px 10px lightgrey;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 15px 15px 15px 0px;
     width: auto;
     max-width: 70%;
@@ -83,7 +83,7 @@
     margin-right: 5px;
     color: white;
     background-color: var(--themeLightGreen);
-    box-shadow: 2px 1px 10px lightgrey;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 15px 15px 0px 15px;
     width: auto;
     max-width: 70%;

@@ -4,7 +4,7 @@
 /* ANTD MODAL */
 .ant-modal-content {
   overflow: auto;
-  border-radius: 20px
+  border-radius: 10px
 }
 
 :root {

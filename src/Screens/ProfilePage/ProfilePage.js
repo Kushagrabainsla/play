@@ -72,7 +72,11 @@ function ProfilePage() {
     return (
         <div className='profile-page-container'>
             <Helmet>
-                <title>Profile / Play</title>
+                {
+                    userDetails
+                    ? <title>{userDetails.userName}</title>
+                    : <title>Profile / Play</title>
+                }
             </Helmet>
             <ProfileLeftTab/>
             <div className='profile-page-middle-area'>

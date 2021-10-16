@@ -13,6 +13,7 @@ import axios from 'axios';
 import moment from 'moment';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import { Input, Button, Modal } from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
@@ -89,6 +90,15 @@ function ChatRoom() {
 
     return (
         <div className='chat-room-container'>
+            <Helmet>
+                <title>
+                    {
+                        receiver
+                        ? 'Messages / '.concat(receiver.username)
+                        : ''
+                    }
+                </title>
+            </Helmet>
             <div className='chatRoomContainer'>
                 <div className='chatRoomFloatingHeader'>
                     <div className='chatRoomHeaderLeft'>

@@ -8,8 +8,8 @@ import {
     RiHome5Line,
     RiChatSmile3Line,
     RiAccountCircleLine,
-    RiMoreLine,
-    RiMoreFill,
+    RiSettings3Line,
+    RiSettings3Fill,
 } from 'react-icons/ri';
 import { Badge } from 'antd';
 import { Link } from 'react-router-dom';
@@ -52,7 +52,7 @@ export function HomeFloatingFooter() {
                 to='/more'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiMoreLine
+                <RiSettings3Line
                     fontSize={32}
                     color='lightgrey'
                 />
@@ -98,7 +98,7 @@ export function ChatsPageFloatingFooter() {
                 to='/more'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiMoreLine
+                <RiSettings3Line
                     fontSize={32}
                     color='lightgrey'
                 />
@@ -144,7 +144,7 @@ export function ProfileFloatingFooter() {
                 to='/more'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiMoreLine
+                <RiSettings3Line
                     fontSize={32}
                     color='lightgrey'
                 />
@@ -190,7 +190,7 @@ export function MoreFloatingFooter() {
                 to='/more'
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
-                <RiMoreFill
+                <RiSettings3Fill
                     fontSize={32}
                     color='black'
                 />

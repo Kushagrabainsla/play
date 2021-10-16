@@ -11,6 +11,7 @@ import {
     Select,
     Row,
     Divider,
+    Upload,
 } from 'antd';
 import {
     RiLogoutBoxRFill,
@@ -18,6 +19,7 @@ import {
     RiShareFill,
     RiDeleteBin6Fill,
     RiHonourFill,
+    RiEdit2Fill,
 } from 'react-icons/ri';
 import {
     EmailShareButton,
@@ -46,6 +48,14 @@ const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 function MorePage() {
     const { Option } = Select;
     const [currUser] = useContext(UserContext);
+
+    function signOut() {
+        if (window.gapi.auth2.getAuthInstance()) {
+            window.gapi.auth2.getAuthInstance().signOut();
+        }
+        localStorage.clear();
+        document.location.href = '/';
+    }
 
     // --------------------------- ADDING SOCIAL MEDIA MODAL ------------------------------
     const [socialVisible, setsocialVisible] = useState(false);
@@ -83,13 +93,26 @@ function MorePage() {
     const showshareModal = () => setshareVisible(true);
     const shareHandleCancel = () => setshareVisible(false);
 
-    function signOut() {
-        if (window.gapi.auth2.getAuthInstance()) {
-            window.gapi.auth2.getAuthInstance().signOut();
+    // --------------------------- PROFILE EDIT MODAL ------------------------------
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+          return e;
         }
-        localStorage.clear();
-        document.location.href = '/';
-    }
+        return e && e.fileList;
+    };
+    const [profileEditVisible, setprofileEditVisible] = useState(false);
+    const [profileEditConfirmLoading, setprofileEditConfirmLoading] = useState(false);
+
+    const showProfileEditModal = () => setprofileEditVisible(true);
+    const profileEditHandleCancel = () => setprofileEditVisible(false);
+    const onProfileEditFinishFailed = (errorInfo) => Modal.error({ content: errorInfo });
+
+    const onProfileEditFinish = (values) => {
+        setprofileEditConfirmLoading(true);
+        Modal.confirm(values);
+        setprofileEditVisible(false);
+        setprofileEditConfirmLoading(false);
+    };
 
     return (
         <div className='more-page-container'>
@@ -101,27 +124,34 @@ function MorePage() {
                 <Divider className='antd-divider-style'/>
                 <div
                     className='more-page-option-container'
-                    onClick={() => {
-                        showsocialModal();
-                    }}
+                    onClick={showsocialModal}
                 >
                     <RiAddCircleFill className='more-page-option-icon'/>
-                    <div className='more-page-option-text'>Add Socials</div>
+                    <div className='more-page-option-text'>Add socials</div>
                 </div>
                 <Divider className='antd-divider-style'/>
                 <div
                     className='more-page-option-container'
-                    onClick={() => {
-                        showshareModal();
-                    }}
+                    onClick={showProfileEditModal}
+                >
+                    <RiEdit2Fill className='more-page-option-icon'/>
+                    <div className='more-page-option-text'>Edit profile</div>
+                </div>
+                <Divider className='antd-divider-style'/>
+                <div
+                    className='more-page-option-container'
+                    onClick={showshareModal}
                 >
                     <RiShareFill className='more-page-option-icon'/>
                     <div className='more-page-option-text'>Tell a friend</div>
                 </div>
                 <Divider className='antd-divider-style'/>
-                <Link to='/privacy-policy' className='more-page-option-container'>
+                <Link
+                    to='/privacy-policy'
+                    className='more-page-option-container'
+                >
                     <RiHonourFill className='more-page-option-icon'/>
-                    <div className='more-page-option-text'>Privacy Policy</div>
+                    <div className='more-page-option-text'>Privacy policy</div>
                 </Link>
                 <Divider className='antd-divider-style'/>
                 <div
@@ -136,7 +166,7 @@ function MorePage() {
                     }}
                 >
                     <RiDeleteBin6Fill className='more-page-option-icon'/>
-                    <div className='more-page-option-text'>Delete Account</div>
+                    <div className='more-page-option-text'>Delete account</div>
                 </div>
                 <Divider className='antd-divider-style'/>
                 <div
@@ -279,6 +309,72 @@ function MorePage() {
                         <TwitterIcon size={36} round={true}/>
                     </TwitterShareButton>
                 </div>
+            </Modal>
+            <Modal
+                title="Edit profile"
+                visible={profileEditVisible}
+                confirmLoading={profileEditConfirmLoading}
+                onCancel={profileEditHandleCancel}
+                footer={[]}
+                getContainer={false}
+            >
+                <Form
+                    name="basic"
+                    initialValues={{ remember: false }}
+                    onFinish={onProfileEditFinish}
+                    onFinishFailed={onProfileEditFinishFailed}
+                    layout={'horizontal'}
+                >
+                    <Form.Item
+                        label="Name"
+                        name="name"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Name can’t be blank',
+                            },
+                        ]}
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        label="Bio"
+                        name="bio"
+                    >
+                        <Input/>
+                    </Form.Item>
+                    <Form.Item
+                        name="upload"
+                        label="Upload"
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
+                    >
+                        <Upload name="logo" action="/upload.do" listType="picture" >
+                            <Button
+                                icon={<RiAddCircleFill />}
+                            >Click to upload</Button>
+                        </Upload>
+                    </Form.Item>
+                    <Form.Item>
+                        <Row justify="end">
+                            <Button
+                                htmlType="submit"
+                                shape="round"
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-evenly',
+                                    background: '#2a9d8f',
+                                    fontWeight: '500',
+                                    color: 'white',
+                                }}
+                                icon={<RiAddCircleFill style={{ marginRight: 5 }}/>}
+                            >
+                                Submit
+                            </Button>
+                        </Row>
+                    </Form.Item>
+                </Form>
             </Modal>
         </div>
     );
