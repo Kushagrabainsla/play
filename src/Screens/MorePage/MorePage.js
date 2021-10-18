@@ -1,5 +1,6 @@
 import React, {
     useState,
+    useEffect,
     useContext,
 } from 'react';
 import './MorePage.css';
@@ -12,6 +13,9 @@ import {
     Row,
     Divider,
     Upload,
+    Progress,
+    Avatar,
+    Badge,
 } from 'antd';
 import {
     RiLogoutBoxRFill,
@@ -36,6 +40,7 @@ import {
     TwitterIcon,
 } from 'react-share';
 import axios from 'axios';
+import FormData from 'form-data';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
@@ -48,6 +53,29 @@ const AUTH_TOKEN = `Bearer ${process.env.REACT_APP_API_TOKEN}`;
 function MorePage() {
     const { Option } = Select;
     const [currUser] = useContext(UserContext);
+    const [userDetails, setuserDetails] = useState(false);
+
+    async function fetchUser() {
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
+        const config = {
+            headers: {
+                Authorization: AUTH_TOKEN,
+                userID: currUser,
+            },
+        };
+        axios.get(url, config).then((response) => {
+            if (response.status === 200 && response.data.error === false) {
+                setuserDetails(response.data.result.details);
+            } else {
+                Modal.warn({ content: 'Please check your network connection.' });
+            }
+        }).catch(() => {
+            Modal.warn({ content: 'Please check your network connection.' });
+        });
+    }
+    useEffect(() => {
+        fetchUser();
+    }, []);
 
     function signOut() {
         if (window.gapi.auth2.getAuthInstance()) {
@@ -81,14 +109,14 @@ function MorePage() {
                 setsocialConfirmLoading(false);
                 Modal.success({ content: response.data.message });
             } else {
-                Modal.warn({ content: 'Error while updating socials !!' });
+                Modal.warn({ content: 'Please check your network connection.' });
             }
         }).catch(() => {
-            Modal.warn({ content: 'Error while updating socials !!' });
+            Modal.warn({ content: 'Please check your network connection.' });
         });
     };
 
-    // --------------------------- SHARE WITH FRIENDS MODAL ------------------------------
+    // --------------------------- SHARE WITH FRIENDS MODAL --------------------------
     const [shareVisible, setshareVisible] = useState(false);
     const showshareModal = () => setshareVisible(true);
     const shareHandleCancel = () => setshareVisible(false);
@@ -102,6 +130,7 @@ function MorePage() {
     };
     const [profileEditVisible, setprofileEditVisible] = useState(false);
     const [profileEditConfirmLoading, setprofileEditConfirmLoading] = useState(false);
+    const [availableImageForUpload, setavailableImageForUpload] = useState(false);
 
     const showProfileEditModal = () => setprofileEditVisible(true);
     const profileEditHandleCancel = () => setprofileEditVisible(false);
@@ -109,9 +138,38 @@ function MorePage() {
 
     const onProfileEditFinish = (values) => {
         setprofileEditConfirmLoading(true);
-        Modal.confirm(values);
-        setprofileEditVisible(false);
-        setprofileEditConfirmLoading(false);
+        const profileForm = new FormData();
+        profileForm.append('userName', values.name);
+        profileForm.append('userBio', values.bio);
+        profileForm.append('userImage', values.image ? values.image[0].originFileObj : null);
+
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/update`;
+        const config = {
+            headers: {
+                Authorization: AUTH_TOKEN,
+                userID: currUser,
+            },
+            onUploadProgress: (progressEvent) => {
+                if (progressEvent.lengthComputable) {
+                   const uploadPercentage = (progressEvent.loaded / progressEvent.total) * 100;
+                   setavailableImageForUpload(uploadPercentage);
+                }
+            },
+        };
+
+        axios.put(url, profileForm, config).then((response) => {
+            if (response.status === 200 && response.data.error === false) {
+                setprofileEditVisible(false);
+                setprofileEditConfirmLoading(false);
+                Modal.success({ content: response.data.message });
+            } else {
+                Modal.error({ content: response.data.message });
+            }
+            setavailableImageForUpload(false);
+        }).catch(() => {
+            Modal.error({ content: 'Please check your network connection.' });
+            setavailableImageForUpload(false);
+        });
     };
 
     return (
@@ -320,14 +378,49 @@ function MorePage() {
             >
                 <Form
                     name="basic"
-                    initialValues={{ remember: false }}
+                    initialValues={{
+                        name: userDetails && userDetails.userName,
+                        // bio: userDetails && userDetails.userBio
+                        bio: 'Your Bio',
+                    }}
                     onFinish={onProfileEditFinish}
                     onFinishFailed={onProfileEditFinishFailed}
-                    layout={'horizontal'}
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        width: '100%',
+                    }}
                 >
+                    <Form.Item
+                        name="image"
+                        label=""
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
+                    >
+                        <Upload
+                            name='file'
+                            listType='picture'
+                            beforeUpload={() => false}
+                            accept='image/*'
+                        >
+                            <Badge
+                                count={<RiAddCircleFill size={20} color='#2a9d8f'/>}
+                                offset={[-20, 90]}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <Avatar
+                                    size={100}
+                                    src={userDetails && userDetails.userPhotoURL}
+                                    style={{ cursor: 'pointer' }}
+                                />
+                            </Badge>
+                        </Upload>
+                    </Form.Item>
                     <Form.Item
                         label="Name"
                         name="name"
+                        style={{ width: '100%' }}
                         rules={[
                             {
                                 required: true,
@@ -340,22 +433,11 @@ function MorePage() {
                     <Form.Item
                         label="Bio"
                         name="bio"
+                        style={{ width: '100%', paddingLeft: '10px' }}
                     >
-                        <Input/>
+                        <Input.TextArea/>
                     </Form.Item>
-                    <Form.Item
-                        name="upload"
-                        label="Upload"
-                        valuePropName="fileList"
-                        getValueFromEvent={normFile}
-                    >
-                        <Upload name="logo" action="/upload.do" listType="picture" >
-                            <Button
-                                icon={<RiAddCircleFill />}
-                            >Click to upload</Button>
-                        </Upload>
-                    </Form.Item>
-                    <Form.Item>
+                    <Form.Item style={{ width: '100%' }}>
                         <Row justify="end">
                             <Button
                                 htmlType="submit"
@@ -375,6 +457,17 @@ function MorePage() {
                         </Row>
                     </Form.Item>
                 </Form>
+                {
+                    availableImageForUpload && <Progress
+                        strokeColor={{
+                            '0%': '#68f3e3',
+                            '100%': '#2a9d8f',
+                        }}
+                        percent={availableImageForUpload}
+                        format={() => Math.round(availableImageForUpload * 10) / 10}
+                        status="active"
+                    />
+                }
             </Modal>
         </div>
     );

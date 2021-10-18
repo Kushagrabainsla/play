@@ -9,6 +9,7 @@ import {
     Menu,
     Dropdown,
     Skeleton,
+    Avatar,
     Divider,
 } from 'antd';
 import {
@@ -62,13 +63,6 @@ function ProfilePage() {
         fetchUser();
     }, []);
 
-    function formattedPhotoURL(url) {
-        const formattedList = url.split('=');
-        formattedList[formattedList.length - 1] = 's300';
-        const formattedUrl = formattedList.join('=');
-        return formattedUrl;
-    }
-
     return (
         <div className='profile-page-container'>
             <Helmet>
@@ -84,10 +78,13 @@ function ProfilePage() {
                     userDetails && userSocials
                     ? <div className='profileTop'>
                         <div className='profilePhotoContainer'>
-                            <img
-                                src={formattedPhotoURL(userDetails.userPhotoURL)}
-                                alt='User Profile Photo'
-                                className='profilePhoto'
+                            <Avatar
+                                size={120}
+                                style={{
+                                    border: '2px solid white',
+                                    boxShadow: '2px 1px 10px lightgrey',
+                                }}
+                                src={userDetails.userPhotoURL}
                             />
                         </div>
                         <div className='profileSocials'>
