@@ -21,41 +21,29 @@ export function HomeFloatingFooter() {
         <div className='floatingFooter'>
             <Link
                 to='/chats'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line
-                        fontSize={32}
-                        color='lightgrey'
-                    />
+                    <RiChatSmile3Line className='footer-icon-lightgrey' />
                 </Badge>
             </Link>
             <Link
                 to='/'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiHome5Fill
-                    fontSize={32}
-                    color='black'
-                />
+                <RiHome5Fill className='footer-icon-black' />
             </Link>
             <Link
                 to='/profile'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiAccountCircleLine
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiAccountCircleLine className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/more'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiSettings3Line
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiSettings3Line className='footer-icon-lightgrey' />
             </Link>
         </div>
     );
@@ -67,41 +55,29 @@ export function ChatsPageFloatingFooter() {
         <div className='floatingFooter'>
             <Link
                 to='/chats'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Fill
-                        fontSize={32}
-                        color='black'
-                    />
+                    <RiChatSmile3Fill className='footer-icon-black' />
                 </Badge>
             </Link>
             <Link
                 to='/'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiHome5Line
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiHome5Line className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/profile'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiAccountCircleLine
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiAccountCircleLine className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/more'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiSettings3Line
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiSettings3Line className='footer-icon-lightgrey' />
             </Link>
         </div>
     );
@@ -113,41 +89,29 @@ export function ProfileFloatingFooter() {
         <div className='floatingFooter'>
             <Link
                 to='/chats'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line
-                        fontSize={32}
-                        color='lightgrey'
-                    />
+                    <RiChatSmile3Line className='footer-icon-lightgrey' />
                 </Badge>
             </Link>
             <Link
                 to='/'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiHome5Line
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiHome5Line className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/profile'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiAccountCircleFill
-                    fontSize={32}
-                    color='black'
-                />
+                <RiAccountCircleFill className='footer-icon-black' />
             </Link>
             <Link
                 to='/more'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiSettings3Line
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiSettings3Line className='footer-icon-lightgrey' />
             </Link>
         </div>
     );
@@ -159,41 +123,29 @@ export function MoreFloatingFooter() {
         <div className='floatingFooter'>
             <Link
                 to='/chats'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line
-                        fontSize={32}
-                        color='lightgrey'
-                    />
+                    <RiChatSmile3Line className='footer-icon-lightgrey' />
                 </Badge>
             </Link>
             <Link
                 to='/'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiHome5Line
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiHome5Line className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/profile'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiAccountCircleFill
-                    fontSize={32}
-                    color='lightgrey'
-                />
+                <RiAccountCircleLine className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/more'
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                className='footer-icon-container'
             >
-                <RiSettings3Fill
-                    fontSize={32}
-                    color='black'
-                />
+                <RiSettings3Fill className='footer-icon-black' />
             </Link>
         </div>
     );

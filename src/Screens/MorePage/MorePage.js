@@ -412,7 +412,11 @@ function MorePage() {
                                 <Avatar
                                     size={100}
                                     src={userDetails && userDetails.userPhotoURL}
-                                    style={{ cursor: 'pointer' }}
+                                    style={{
+                                        cursor: 'pointer',
+                                        border: '2px solid white',
+                                        boxShadow: '2px 1px 10px lightgrey',
+                                    }}
                                 />
                             </Badge>
                         </Upload>

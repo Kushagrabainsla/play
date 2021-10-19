@@ -56,13 +56,6 @@
     align-items: center;
     justify-content: flex-start;
 }
-.chatProfilePhoto {
-    width: 55px;
-    border-radius: 50%;
-    box-shadow: 2px 1px 10px lightgrey;
-    border: 2px solid white;
-}
-
 .chatBubbleMid {
     padding-left: 10px;
     width: 100%;

@@ -26,13 +26,7 @@
     align-items: center;
     justify-content: center;
 }
-.matchedProfileProfilePhoto {
-    width: 80%;
-    max-width: 100px;
-    border-radius: 50%;
-    box-shadow: 2px 1px 10px lightgrey;
-    border: 2px solid white;
-}
+
 .matchedProfileTopRight {
     width: 70%;
     height: 100%;

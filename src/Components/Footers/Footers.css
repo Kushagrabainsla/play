@@ -1,7 +1,19 @@
 .floatingFooter {
     display: none;
 }
-
+.footer-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-icon-black {
+    font-size: 32px;
+    color: rgb(15, 20, 25);
+}
+.footer-icon-lightgrey {
+    font-size: 32px;
+    color: lightgrey;
+}
 @media only screen and (max-width: 500px)
 {
     .floatingFooter {

@@ -10,6 +10,7 @@ import {
     Dropdown,
     Collapse,
     Divider,
+    Avatar,
 } from 'antd';
 import {
     RiTwitterFill,
@@ -28,6 +29,7 @@ function MatchedProfileCard(props) {
     const { profile } = props;
     const matchedLikes = Object.keys(profile.matched_likes);
 
+    const [avatarSize, setavatarSize] = useState(1400);
     const [matchedSocials, setmatchedSocials] = useState(false);
     const [matchedDetails, setmatchedDetails] = useState(false);
 
@@ -49,6 +51,9 @@ function MatchedProfileCard(props) {
         });
     }
     useEffect(() => {
+        window.addEventListener('resize', () => {
+            setavatarSize(document.body.clientWidth);
+        });
         fetchUser();
     }, []);
 
@@ -58,10 +63,13 @@ function MatchedProfileCard(props) {
                 matchedDetails
                 ? <div className='matchedProfileTop'>
                     <div className='matchedProfileTopLeft'>
-                        <img
+                        <Avatar
+                            style={{
+                                border: '2px solid white',
+                                boxShadow: '2px 1px 10px lightgrey',
+                            }}
+                            size={avatarSize > 400 ? 100 : 80}
                             src={matchedDetails.userPhotoURL}
-                            alt='Matched Profile Picture'
-                            className='matchedProfileProfilePhoto'
                         />
                     </div>
                     <div className='matchedProfileTopRight'>

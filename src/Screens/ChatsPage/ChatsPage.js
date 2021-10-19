@@ -9,6 +9,7 @@ import {
     Skeleton,
     Badge,
     Divider,
+    Avatar,
 } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
@@ -116,10 +117,13 @@ function ChatsPage() {
                             >
                                 <div className='chatBubbleLeft'>
                                     <Badge dot={!chat.lastMessageSeen} offset={[-10, 5]}>
-                                        <img
+                                        <Avatar
+                                            size={55}
                                             src={chat.userProfilePhoto}
-                                            alt='Profile Picture'
-                                            className='chatProfilePhoto'
+                                            style={{
+                                                border: '2px solid white',
+                                                boxShadow: '2px 1px 10px lightgrey',
+                                            }}
                                         />
                                     </Badge>
                                 </div>
