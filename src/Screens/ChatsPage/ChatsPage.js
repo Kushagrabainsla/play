@@ -30,6 +30,22 @@ function ChatsPage() {
     const toggleBadge = useContext(updateNewMessages);
     const [acticeChats, setacticeChats] = useState(false);
 
+    function formattedDate(date) {
+        const today = new Date();
+        if (moment(date).format('DD/MM/YY') === moment(today).format('DD/MM/YY')) {
+            return moment(date).format('LT');
+        }
+        const todayDD = moment(today).format('DD');
+        const dateDD = moment(date).format('DD');
+        const todayMM = moment(today).format('MM');
+        const dateMM = moment(date).format('MM');
+        const todayYY = moment(today).format('YY');
+        const dateYY = moment(date).format('YY');
+        if ((todayDD === dateDD + 1) && (todayMM === dateMM) && (todayYY === dateYY)) {
+            return 'Yesterday';
+        }
+        return moment(today).format('DD/MM/YY');
+    }
     function checkNewMessage(messages) {
         for (let index = 0; index < messages.length; index += 1) {
             if (messages[index].lastMessageSeen === false) {
@@ -136,7 +152,7 @@ function ChatsPage() {
                                     </div>
                                 </div>
                                 <div className='chatBubbleRight'>
-                                    { moment(chat.lastMessageTimestamp).format('LT') }
+                                    { formattedDate(chat.lastMessageTimestamp) }
                                 </div>
                             </Link>
                         </div>)

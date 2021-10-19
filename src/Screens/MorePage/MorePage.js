@@ -407,7 +407,9 @@ function MorePage() {
                             <Badge
                                 count={<RiAddCircleFill size={20} color='#2a9d8f'/>}
                                 offset={[-20, 90]}
-                                style={{ cursor: 'pointer' }}
+                                style={{
+                                    cursor: 'pointer',
+                                }}
                             >
                                 <Avatar
                                     size={100}

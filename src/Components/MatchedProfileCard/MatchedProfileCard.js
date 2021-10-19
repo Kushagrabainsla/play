@@ -54,6 +54,7 @@ function MatchedProfileCard(props) {
         window.addEventListener('resize', () => {
             setavatarSize(document.body.clientWidth);
         });
+        setavatarSize(document.body.clientWidth);
         fetchUser();
     }, []);
 
