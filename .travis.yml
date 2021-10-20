@@ -8,6 +8,7 @@ script:
   - npm run build
 
 deploy:
+  skip_cleanup: true
   provider: pages
   github_token: $github_token
   env:
