@@ -35,16 +35,16 @@ function ChatsPage() {
         if (moment(date).format('DD/MM/YY') === moment(today).format('DD/MM/YY')) {
             return moment(date).format('LT');
         }
-        const todayDD = moment(today).format('DD');
-        const dateDD = moment(date).format('DD');
-        const todayMM = moment(today).format('MM');
-        const dateMM = moment(date).format('MM');
-        const todayYY = moment(today).format('YY');
-        const dateYY = moment(date).format('YY');
+        const todayDD = parseInt(moment(today).format('DD'), 10);
+        const dateDD = parseInt(moment(date).format('DD'), 10);
+        const todayMM = parseInt(moment(today).format('MM'), 10);
+        const dateMM = parseInt(moment(date).format('MM'), 10);
+        const todayYY = parseInt(moment(today).format('YY'), 10);
+        const dateYY = parseInt(moment(date).format('YY'), 10);
         if ((todayDD === dateDD + 1) && (todayMM === dateMM) && (todayYY === dateYY)) {
             return 'Yesterday';
         }
-        return moment(today).format('DD/MM/YY');
+        return moment(date).format('DD/MM/YY');
     }
     function checkNewMessage(messages) {
         for (let index = 0; index < messages.length; index += 1) {
