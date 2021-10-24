@@ -33,7 +33,7 @@ function ChatRoom() {
     const [messages, setmessages] = useState([]);
 
     async function fetchMessages() {
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/messages`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/socket/messages`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,

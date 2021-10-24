@@ -114,8 +114,8 @@
 }
 .noChatBubbleRight {
     width: 85%;
-    font-weight: 500;
-    color: gray;
+    font-weight: 400;
+    color: rgb(83, 100, 113);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,5 +128,15 @@
 {
     .chats-page-middle-area {
         padding-bottom: 50px;
+    }
+    .noChatBubble {
+        align-items: center;
+        flex-direction: column;
+    }
+    .noChatBubbleLeft {
+        width: 20%;
+    }
+    .noChatBubbleRight {
+        width: 100%;
     }
 }

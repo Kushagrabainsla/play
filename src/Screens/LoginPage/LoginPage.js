@@ -65,7 +65,7 @@ function LoginPage() {
     }
     useEffect(() => {
         if (youtubeResponse !== false && peopleResponse !== false) {
-            const url = `${process.env.REACT_APP_SERVER_PROD_URL}/login`;
+            const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/login`;
             const userDetails = {
                 youtubeResponse,
                 peopleResponse,

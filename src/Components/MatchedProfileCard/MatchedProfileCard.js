@@ -34,7 +34,7 @@ function MatchedProfileCard(props) {
     const [matchedDetails, setmatchedDetails] = useState(false);
 
     async function fetchUser() {
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/user/profile`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,

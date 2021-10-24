@@ -56,7 +56,7 @@ function MorePage() {
     const [userDetails, setuserDetails] = useState(false);
 
     async function fetchUser() {
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/profile`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/user/profile`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -95,7 +95,7 @@ function MorePage() {
 
     const onSocialFinish = (values) => {
         setsocialConfirmLoading(true);
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/updateSocials`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/updateSocials`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -143,7 +143,7 @@ function MorePage() {
         profileForm.append('userBio', values.bio);
         profileForm.append('userImage', values.image ? values.image[0].originFileObj : null);
 
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/user/update`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/user/update`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,

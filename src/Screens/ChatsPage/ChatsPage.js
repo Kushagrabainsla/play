@@ -57,7 +57,7 @@ function ChatsPage() {
     }
 
     async function fetchChats() {
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/chats`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/socket/chats`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -77,7 +77,7 @@ function ChatsPage() {
     }
 
     async function markMessagesSeen(receiver) {
-        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/socket/markMessage`;
+        const url = `${process.env.REACT_APP_SERVER_PROD_URL}/v1/socket/markMessage`;
         const config = {
             headers: {
                 Authorization: AUTH_TOKEN,
@@ -159,7 +159,7 @@ function ChatsPage() {
                         : <div className='noChatBubble'>
                             <div className='noChatBubbleLeft'>
                                 <img
-                                    src='https://raw.githubusercontent.com/Kushagrabainsla/play/master/public/playLogo.ico'
+                                    src={`${process.env.PUBLIC_URL}/playLogo192.png`}
                                     width='100%'
                                 />
                             </div>
