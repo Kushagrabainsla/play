@@ -6,19 +6,10 @@ import './MatchedProfileCard.css';
 import PropTypes from 'prop-types';
 import {
     Modal,
-    Menu,
-    Dropdown,
     Collapse,
     Divider,
     Avatar,
 } from 'antd';
-import {
-    RiTwitterFill,
-    RiFacebookBoxFill,
-    RiSnapchatFill,
-    RiInstagramFill,
-    RiLinkedinBoxFill,
-} from 'react-icons/ri';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +21,6 @@ function MatchedProfileCard(props) {
     const matchedLikes = Object.keys(profile.matched_likes);
 
     const [avatarSize, setavatarSize] = useState(1400);
-    const [matchedSocials, setmatchedSocials] = useState(false);
     const [matchedDetails, setmatchedDetails] = useState(false);
 
     async function fetchUser() {
@@ -43,7 +33,6 @@ function MatchedProfileCard(props) {
         };
         axios.get(url, config).then((response) => {
             if (response.status === 200 && response.data.error === false) {
-                setmatchedSocials(response.data.result.socials);
                 setmatchedDetails(response.data.result.details);
             }
         }).catch(() => {
@@ -82,33 +71,6 @@ function MatchedProfileCard(props) {
                             ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
                             : <div className='interestTagText'>Tap an interest tag to begin a conversation with her.</div>
                         }
-                        <div className='matchedProfileSocialMedia'>
-                            {
-                                matchedSocials && matchedSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{matchedSocials.instagram}</Menu.Item></Menu>} arrow>
-                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                matchedSocials && matchedSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{matchedSocials.facebook}</Menu.Item></Menu>} arrow>
-                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                matchedSocials && matchedSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{matchedSocials.twitter}</Menu.Item></Menu>} arrow>
-                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                matchedSocials && matchedSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{matchedSocials.snapchat}</Menu.Item></Menu>} arrow>
-                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                matchedSocials && matchedSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{matchedSocials.linkedin}</Menu.Item></Menu>} arrow>
-                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                        </div>
                     </div>
                 </div>
                 : null

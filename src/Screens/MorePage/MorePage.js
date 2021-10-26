@@ -229,14 +229,7 @@ function MorePage() {
                 <Divider className='antd-divider-style'/>
                 <div
                     className='more-page-option-container'
-                    onClick={() => {
-                        Modal.warning({
-                            title: 'Are you sure you want to log out ?',
-                            okText: 'Yes',
-                            closable: true,
-                            onOk: signOut,
-                        });
-                    }}
+                    onClick={signOut}
                 >
                     <RiLogoutBoxRFill className='more-page-option-icon'/>
                     <div className='more-page-option-text'>Log out</div>

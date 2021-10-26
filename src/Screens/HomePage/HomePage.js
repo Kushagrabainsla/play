@@ -6,7 +6,10 @@ import React, {
 import './HomePage.css';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
-import { Modal, Skeleton } from 'antd';
+import {
+    Modal,
+    Skeleton,
+} from 'antd';
 import { UserContext } from '../../StateManagement/UserContext';
 import { HomeFloatingFooter } from '../../Components/Footers/Footers';
 import { HomeLeftTab } from '../../Components/LeftCompartment/LeftCompartment';

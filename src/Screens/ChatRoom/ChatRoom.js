@@ -14,7 +14,12 @@ import moment from 'moment';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { Input, Button, Modal } from 'antd';
+import {
+    Input,
+    Button,
+    Modal,
+    Avatar,
+} from 'antd';
 import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../StateManagement/UserContext';
 
@@ -120,15 +125,14 @@ function ChatRoom() {
                             key={textIndex}
                         >
                             <div className='chatRoomChatRow'>
-                                <img
+                                <Avatar
+                                    size={30}
                                     src={receiver.userProfilePhoto}
-                                    alt='Profile Picture'
                                     style={{
                                         display: text.author === currUser ? 'none' : 'flex',
-                                        width: '30px',
+                                        boxShadow: '2px 1px 10px lightgrey',
                                         borderRadius: '50%',
                                         alignSelf: 'flex-end',
-                                        boxShadow: '2px 1px 10px lightgrey',
                                     }}
                                 />
                                 <div
