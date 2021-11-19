@@ -15,7 +15,7 @@
     overflow: scroll;
     border-left: 1px solid rgb(239, 243, 244);
     border-right: 1px solid rgb(239, 243, 244);
-    padding-bottom: 0px;
+    padding-bottom: 10px;
 }
 .profileTop {
     margin-top: 2vh;
@@ -42,6 +42,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 .profileNameText {
     width: 100%;
@@ -50,7 +52,7 @@
     justify-content: center;
     font-size: 30px;
     font-weight: 400;
-    padding-bottom: 5px;
+    color: rgb(15, 20, 25);
 }
 .shareModalContainer {
     width: 100%;
@@ -58,22 +60,27 @@
     align-items: center;
     justify-content: space-evenly;
 }
-.profileBottom {
+.profile-page-elements-container {
     width: 95%;
     display: flex;
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     border-radius: 15px;
     box-shadow: 2px 1px 10px lightgrey;
-    margin-bottom: 70px;
-    padding-bottom: 3vh;
-    padding-top: 3vh;
+}
+.profile-page-elements-heading {
+    width: 100%;
+    display: flex;
+    padding: 10px 0px 0px 15px;
+    margin-bottom: -5px;
+    color: rgb(83, 100, 113);
+    font-size: 14px;
 }
 .profileLikes {
     width: 95%;
+    padding: 15px;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
     box-sizing: content-box;
 }
 .likeContainer {
@@ -100,4 +107,13 @@
     justify-content: space-evenly;
     margin-bottom: 2vh;
 }
+.antd-divider-style {
+    margin: 10px 0px 10px 0px;
+}
 
+@media only screen and (max-width: 500px)
+{
+    .profile-page-middle-area {
+        padding-bottom: 60px;
+    }
+}

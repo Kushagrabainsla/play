@@ -75,7 +75,7 @@ function ProfilePage() {
             <ProfileLeftTab/>
             <div className='profile-page-middle-area'>
                 {
-                    userDetails && userSocials
+                    userDetails
                     ? <div className='profileTop'>
                         <div className='profilePhotoContainer'>
                             <Avatar
@@ -86,43 +86,6 @@ function ProfilePage() {
                                 }}
                                 src={userDetails.userPhotoURL}
                             />
-                        </div>
-                        <div className='profileSocials'>
-                            {
-                                userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
-                            {
-                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>}
-                                    arrow
-                                >
-                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 5, cursor: 'pointer' }} />
-                                </Dropdown>
-                            }
                         </div>
                         <div className='profileNameText'>
                             {userDetails.userName}
@@ -136,7 +99,10 @@ function ProfilePage() {
                     />
                 }
                 <Divider className='antd-divider-style'/>
-                <div className='profileBottom'>
+                <div className='profile-page-elements-container'>
+                    <div className='profile-page-elements-heading'>
+                        Interest Tags
+                    </div>
                     <div className='profileLikes'>
                         {
                             userLikes
@@ -152,6 +118,58 @@ function ProfilePage() {
                             />
                         }
                     </div>
+                </div>
+                <Divider className='antd-divider-style'/>
+                <div className='profile-page-elements-container'>
+                    <div className='profile-page-elements-heading'>
+                        Socials
+                    </div>
+                    {
+                        userSocials
+                        ? <div className='profileSocials'>
+                            {
+                                userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiInstagramFill style={{ fontSize: 32, marginRight: 20, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.facebook && <Dropdown overlay={<Menu><Menu.Item key="1">{userSocials.facebook}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiFacebookBoxFill style={{ fontSize: 32, marginRight: 20, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.twitter && <Dropdown overlay={<Menu><Menu.Item key="2">{userSocials.twitter}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiTwitterFill style={{ fontSize: 32, marginRight: 20, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.snapchat && <Dropdown overlay={<Menu><Menu.Item key="3">{userSocials.snapchat}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiSnapchatFill style={{ fontSize: 32, marginRight: 20, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                            {
+                                userSocials.linkedin && <Dropdown overlay={<Menu><Menu.Item key="4">{userSocials.linkedin}</Menu.Item></Menu>}
+                                    arrow
+                                >
+                                    <RiLinkedinBoxFill style={{ fontSize: 32, marginRight: 20, cursor: 'pointer' }} />
+                                </Dropdown>
+                            }
+                        </div>
+                        : <Skeleton
+                            active
+                            title={true}
+                            paragraph={{ rows: 0 }}
+                            className='likeContainerSkeleton'
+                        />
+                    }
                 </div>
             </div>
             <RightCompartment/>
