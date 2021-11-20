@@ -90,6 +90,9 @@ function ProfilePage() {
                         <div className='profileNameText'>
                             {userDetails.userName}
                         </div>
+                        <div className='profile-page-bio-text'>
+                            {userDetails.userBio}
+                        </div>
                     </div>
                     : <Skeleton
                         active
@@ -113,20 +116,19 @@ function ProfilePage() {
                             : <Skeleton
                                 active
                                 title={false}
-                                paragraph={{ rows: 6 }}
+                                paragraph={{ rows: 4 }}
                                 className='likeContainerSkeleton'
                             />
                         }
                     </div>
                 </div>
                 <Divider className='antd-divider-style'/>
-                <div className='profile-page-elements-container'>
-                    <div className='profile-page-elements-heading'>
-                        Socials
-                    </div>
-                    {
-                        userSocials
-                        ? <div className='profileSocials'>
+                {
+                    (userSocials.instagram || userSocials.facebook || userSocials.twitter || userSocials.snapchat || userSocials.linkedin) && <div className='profile-page-elements-container'>
+                        <div className='profile-page-elements-heading'>
+                            Socials
+                        </div>
+                        <div className='profileSocials'>
                             {
                                 userSocials.instagram && <Dropdown overlay={<Menu><Menu.Item key="0">{userSocials.instagram}</Menu.Item></Menu>}
                                     arrow
@@ -163,14 +165,8 @@ function ProfilePage() {
                                 </Dropdown>
                             }
                         </div>
-                        : <Skeleton
-                            active
-                            title={true}
-                            paragraph={{ rows: 0 }}
-                            className='likeContainerSkeleton'
-                        />
-                    }
-                </div>
+                    </div>
+                }
             </div>
             <RightCompartment/>
             <ProfileFloatingFooter/>
