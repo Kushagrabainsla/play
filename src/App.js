@@ -20,6 +20,7 @@ const ChatRoom = lazy(() => import('./Screens/ChatRoom/ChatRoom'));
 const MorePage = lazy(() => import('./Screens/MorePage/MorePage'));
 const ChatsPage = lazy(() => import('./Screens/ChatsPage/ChatsPage'));
 const LoginPage = lazy(() => import('./Screens/LoginPage/LoginPage'));
+const ExternalProfilePage = lazy(() => import('./Screens/ExternalProfilePage/ExternalProfilePage'));
 const ProfilePage = lazy(() => import('./Screens/ProfilePage/ProfilePage'));
 const WelcomePage = lazy(() => import('./Screens/WelcomePage/WelcomePage'));
 
@@ -35,6 +36,7 @@ function App() {
                             <Legals legalTitle='privacy-policy'/>
                         </Route>
                         <Route exact path='/welcome' component={WelcomePage}/>
+                        <Route exact path='/profile/:userId' component={ExternalProfilePage}/>
                         <Route exact path='/profile' component={ProfilePage}/>
                         <Route exact path='/chats/room' component={ChatRoom}/>
                         <Route exact path='/chats' component={ChatsPage}/>

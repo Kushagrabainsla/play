@@ -50,30 +50,32 @@ function MatchedProfileCard(props) {
     return (
         <div className='matchedProfile'>
             {
-                matchedDetails
-                ? <div className='matchedProfileTop'>
-                    <div className='matchedProfileTopLeft'>
-                        <Avatar
-                            style={{
-                                border: '2px solid white',
-                                boxShadow: '2px 1px 10px lightgrey',
-                            }}
-                            size={avatarSize > 400 ? 100 : 80}
-                            src={matchedDetails.userPhotoURL}
-                        />
-                    </div>
-                    <div className='matchedProfileTopRight'>
-                        <div className='matchedProfileNameText'>
-                            {matchedDetails.userName}
+                matchedDetails && <Link
+                    to={`/profile/${matchedDetails.userId}`}
+                    style={{ color: 'rgb(15, 20, 25)' }}
+                    className='matchedProfileTop'
+                >
+                        <div className='matchedProfileTopLeft'>
+                            <Avatar
+                                style={{
+                                    border: '2px solid white',
+                                    boxShadow: '2px 1px 10px lightgrey',
+                                }}
+                                size={avatarSize > 400 ? 100 : 80}
+                                src={matchedDetails.userPhotoURL}
+                            />
                         </div>
-                        {
-                            matchedDetails.userGender === 'Male'
-                            ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
-                            : <div className='interestTagText'>Tap an interest tag to begin a conversation with her.</div>
-                        }
-                    </div>
-                </div>
-                : null
+                        <div className='matchedProfileTopRight'>
+                            <div className='matchedProfileNameText'>
+                                {matchedDetails.userName}
+                            </div>
+                            {
+                                matchedDetails.userGender === 'Male'
+                                ? <div className='interestTagText'>Tap an interest tag to begin a conversation with him.</div>
+                                : <div className='interestTagText'>Tap an interest tag to begin a conversation with her.</div>
+                            }
+                        </div>
+                </Link>
             }
             <Divider/>
             <div className='matchedProfileBottom'>

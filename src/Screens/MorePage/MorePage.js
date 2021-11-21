@@ -16,11 +16,13 @@ import {
     Progress,
     Avatar,
     Badge,
+    notification,
 } from 'antd';
 import {
     RiLogoutBoxRFill,
     RiAddCircleFill,
     RiShareFill,
+    RiLinksFill,
     RiDeleteBin6Fill,
     RiHonourFill,
     RiEdit2Fill,
@@ -179,6 +181,20 @@ function MorePage() {
             </Helmet>
             <MoreLeftTab/>
             <div className='more-page-middle-area'>
+                <Divider className='antd-divider-style'/>
+                <div
+                    className='more-page-option-container'
+                    onClick={() => {
+                        window.navigator.clipboard.writeText(`https://officialplay.me/#/profile/${currUser}`);
+                        notification.open({
+                            message: userDetails ? `Hi, ${userDetails.userName}` : 'Hi, User',
+                            description: 'Url copied to clipboard',
+                        });
+                    }}
+                >
+                    <RiLinksFill className='more-page-option-icon'/>
+                    <div className='more-page-option-text'>Profile Url</div>
+                </div>
                 <Divider className='antd-divider-style'/>
                 <div
                     className='more-page-option-container'
@@ -373,8 +389,7 @@ function MorePage() {
                     name="basic"
                     initialValues={{
                         name: userDetails && userDetails.userName,
-                        // bio: userDetails && userDetails.userBio
-                        bio: 'Your Bio',
+                        bio: userDetails && userDetails.userBio,
                     }}
                     onFinish={onProfileEditFinish}
                     onFinishFailed={onProfileEditFinishFailed}
