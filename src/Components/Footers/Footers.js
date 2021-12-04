@@ -20,18 +20,18 @@ export function HomeFloatingFooter() {
     return (
         <div className='floatingFooter'>
             <Link
+                to='/'
+                className='footer-icon-container'
+            >
+                <RiHome5Fill className='footer-icon-black' />
+            </Link>
+            <Link
                 to='/chats'
                 className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
                     <RiChatSmile3Line className='footer-icon-lightgrey' />
                 </Badge>
-            </Link>
-            <Link
-                to='/'
-                className='footer-icon-container'
-            >
-                <RiHome5Fill className='footer-icon-black' />
             </Link>
             <Link
                 to='/profile'
@@ -54,18 +54,18 @@ export function ChatsPageFloatingFooter() {
     return (
         <div className='floatingFooter'>
             <Link
+                to='/'
+                className='footer-icon-container'
+            >
+                <RiHome5Line className='footer-icon-lightgrey' />
+            </Link>
+            <Link
                 to='/chats'
                 className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
                     <RiChatSmile3Fill className='footer-icon-black' />
                 </Badge>
-            </Link>
-            <Link
-                to='/'
-                className='footer-icon-container'
-            >
-                <RiHome5Line className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/profile'
@@ -88,18 +88,18 @@ export function ProfileFloatingFooter() {
     return (
         <div className='floatingFooter'>
             <Link
+                to='/'
+                className='footer-icon-container'
+            >
+                <RiHome5Line className='footer-icon-lightgrey' />
+            </Link>
+            <Link
                 to='/chats'
                 className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
                     <RiChatSmile3Line className='footer-icon-lightgrey' />
                 </Badge>
-            </Link>
-            <Link
-                to='/'
-                className='footer-icon-container'
-            >
-                <RiHome5Line className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/profile'
@@ -122,18 +122,18 @@ export function MoreFloatingFooter() {
     return (
         <div className='floatingFooter'>
             <Link
+                to='/'
+                className='footer-icon-container'
+            >
+                <RiHome5Line className='footer-icon-lightgrey' />
+            </Link>
+            <Link
                 to='/chats'
                 className='footer-icon-container'
             >
                 <Badge dot={areNewMessagesAvailable}>
                     <RiChatSmile3Line className='footer-icon-lightgrey' />
                 </Badge>
-            </Link>
-            <Link
-                to='/'
-                className='footer-icon-container'
-            >
-                <RiHome5Line className='footer-icon-lightgrey' />
             </Link>
             <Link
                 to='/profile'

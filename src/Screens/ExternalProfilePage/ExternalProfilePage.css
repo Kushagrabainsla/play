@@ -17,6 +17,13 @@
     border-right: 1px solid rgb(239, 243, 244);
     padding-bottom: 10px;
 }
+.profile-button-container {
+    width: 95%;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 20px;
+    margin-bottom: -30px;
+}
 .profileTop {
     margin-top: 2vh;
     padding: 20px;

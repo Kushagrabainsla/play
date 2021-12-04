@@ -12,13 +12,38 @@ import {
     RiSettings3Fill,
 } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import { Badge } from 'antd';
+import { Badge, Divider } from 'antd';
 import { NewMessagesContext } from '../../StateManagement/NewMessagesContext';
 
 export function HomeLeftTab() {
     const [areNewMessagesAvailable] = useContext(NewMessagesContext);
     return (
         <div className='page-left-area'>
+            <Link
+                to='/'
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <img
+                    src={`${process.env.PUBLIC_URL}/playLogo192.png`}
+                    style={{
+                        width: '60px',
+                        marginTop: '-10px',
+                        marginBottom: '-20px',
+                    }}
+                />
+            </Link>
+            <Divider/>
+            <Link
+                to='/'
+                className='page-left-element'
+            >
+                <RiHome5Fill className='page-left-element-icon' />
+                <div className='page-left-element-text' style={{ fontWeight: '600' }}>Home</div>
+            </Link>
             <Link
                 to='/chats'
                 className='page-left-element'
@@ -27,13 +52,6 @@ export function HomeLeftTab() {
                     <RiChatSmile3Line className='page-left-element-icon' />
                 </Badge>
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
-            </Link>
-            <Link
-                to='/'
-                className='page-left-element'
-            >
-                <RiHome5Fill className='page-left-element-icon' />
-                <div className='page-left-element-text' style={{ fontWeight: '600' }}>Home</div>
             </Link>
             <Link
                 to='/profile'
@@ -58,6 +76,31 @@ export function ProfileLeftTab() {
     return (
         <div className='page-left-area'>
             <Link
+                to='/'
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <img
+                    src={`${process.env.PUBLIC_URL}/playLogo192.png`}
+                    style={{
+                        width: '60px',
+                        marginTop: '-10px',
+                        marginBottom: '-20px',
+                    }}
+                />
+            </Link>
+            <Divider/>
+            <Link
+                to='/'
+                className='page-left-element'
+            >
+                <RiHome5Line className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
+            </Link>
+            <Link
                 to='/chats'
                 className='page-left-element'
             >
@@ -65,13 +108,6 @@ export function ProfileLeftTab() {
                     <RiChatSmile3Line className='page-left-element-icon' />
                 </Badge>
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
-            </Link>
-            <Link
-                to='/'
-                className='page-left-element'
-            >
-                <RiHome5Line className='page-left-element-icon'/>
-                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
             </Link>
             <Link
                 to='/profile'
@@ -96,6 +132,31 @@ export function ChatsLeftTab() {
     return (
         <div className='page-left-area'>
             <Link
+                to='/'
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <img
+                    src={`${process.env.PUBLIC_URL}/playLogo192.png`}
+                    style={{
+                        width: '60px',
+                        marginTop: '-10px',
+                        marginBottom: '-20px',
+                    }}
+                />
+            </Link>
+            <Divider/>
+            <Link
+                to='/'
+                className='page-left-element'
+            >
+                <RiHome5Line className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
+            </Link>
+            <Link
                 to='/chats'
                 className='page-left-element'
             >
@@ -103,13 +164,6 @@ export function ChatsLeftTab() {
                     <RiChatSmile3Fill className='page-left-element-icon'/>
                 </Badge>
                 <div className='page-left-element-text' style={{ fontWeight: '600' }}>Messages</div>
-            </Link>
-            <Link
-                to='/'
-                className='page-left-element'
-            >
-                <RiHome5Line className='page-left-element-icon'/>
-                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
             </Link>
             <Link
                 to='/profile'
@@ -134,6 +188,31 @@ export function MoreLeftTab() {
     return (
         <div className='page-left-area'>
             <Link
+                to='/'
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <img
+                    src={`${process.env.PUBLIC_URL}/playLogo192.png`}
+                    style={{
+                        width: '60px',
+                        marginTop: '-10px',
+                        marginBottom: '-20px',
+                    }}
+                />
+            </Link>
+            <Divider/>
+            <Link
+                to='/'
+                className='page-left-element'
+            >
+                <RiHome5Line className='page-left-element-icon'/>
+                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
+            </Link>
+            <Link
                 to='/chats'
                 className='page-left-element'
             >
@@ -141,13 +220,6 @@ export function MoreLeftTab() {
                     <RiChatSmile3Line className='page-left-element-icon'/>
                 </Badge>
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
-            </Link>
-            <Link
-                to='/'
-                className='page-left-element'
-            >
-                <RiHome5Line className='page-left-element-icon'/>
-                <div className='page-left-element-text' style={{ fontWeight: '400' }}>Home</div>
             </Link>
             <Link
                 to='/profile'

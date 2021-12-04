@@ -18,6 +18,7 @@ import {
     RiSnapchatFill,
     RiInstagramFill,
     RiLinkedinBoxFill,
+    RiArrowLeftSLine,
 } from 'react-icons/ri';
 import { Helmet } from 'react-helmet';
 import { useLocation, useHistory, Redirect } from 'react-router-dom';
@@ -79,6 +80,15 @@ function ExternalProfilePage() {
                 </Helmet>
                 <HomeLeftTab/>
                 <div className='profile-page-middle-area'>
+                    <div className='profile-button-container'>
+                        <RiArrowLeftSLine
+                            onClick={() => history.goBack()}
+                            style={{
+                                fontSize: 32,
+                                cursor: 'pointer',
+                            }}
+                        />
+                    </div>
                     {
                         userDetails
                         ? <div className='profileTop'>

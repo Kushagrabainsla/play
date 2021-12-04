@@ -2,12 +2,15 @@
 /* eslint-disable max-len */
 import React from 'react';
 import './Legals.css';
+import { RiArrowLeftSLine } from 'react-icons/ri';
 import { Divider } from 'antd';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { useHistory } from 'react-router-dom';
 
 function Legals(props) {
     const { legalTitle } = props;
+    const history = useHistory();
 
     if (legalTitle === 'privacy-policy') {
         return (
@@ -15,7 +18,17 @@ function Legals(props) {
                 <Helmet>
                     <title>Privacy Policy / Play</title>
                 </Helmet>
-                <h1>Privacy Policy for Play</h1>
+                <div className='legals-header-container'>
+                    <RiArrowLeftSLine
+                        onClick={() => history.goBack()}
+                        style={{
+                            fontSize: 35,
+                            cursor: 'pointer',
+                            marginRight: '20px',
+                        }}
+                    />
+                    <div style={{ fontSize: '28px', fontWeight: '500' }}>Privacy Policy for Play</div>
+                </div>
                 <Divider/>
                 <p>At Play, accessible from <a href="https://officialplay.me">https://officialplay.me</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Play and how we use it.</p>
 
