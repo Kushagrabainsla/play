@@ -47,13 +47,12 @@ function ChatsPage() {
         return moment(date).format('DD/MM/YY');
     }
     function checkNewMessage(messages) {
+        let numberOfNewMessages = 0;
         for (let index = 0; index < messages.length; index += 1) {
-            if (messages[index].lastMessageSeen === false) {
-                toggleBadge(true);
-                return;
-            }
+            if (messages[index].lastMessageSeen === false) numberOfNewMessages += 1;
         }
-        toggleBadge(false);
+        if (numberOfNewMessages > 0) toggleBadge(numberOfNewMessages);
+        else toggleBadge(false);
     }
 
     async function fetchChats() {

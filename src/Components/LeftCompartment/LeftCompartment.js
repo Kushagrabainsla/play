@@ -48,9 +48,15 @@ export function HomeLeftTab() {
                 to='/chats'
                 className='page-left-element'
             >
-                <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line className='page-left-element-icon' />
-                </Badge>
+                {
+                    areNewMessagesAvailable
+                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                        <RiChatSmile3Line className='page-left-element-icon' />
+                    </Badge>
+                    : <Badge>
+                        <RiChatSmile3Line className='page-left-element-icon' />
+                    </Badge>
+                }
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
             </Link>
             <Link
@@ -104,9 +110,15 @@ export function ProfileLeftTab() {
                 to='/chats'
                 className='page-left-element'
             >
-                <Badge dot={areNewMessagesAvailable}>
-                    <RiChatSmile3Line className='page-left-element-icon' />
-                </Badge>
+                {
+                    areNewMessagesAvailable
+                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                        <RiChatSmile3Line className='page-left-element-icon' />
+                    </Badge>
+                    : <Badge>
+                        <RiChatSmile3Line className='page-left-element-icon' />
+                    </Badge>
+                }
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
             </Link>
             <Link
@@ -160,9 +172,15 @@ export function ChatsLeftTab() {
                 to='/chats'
                 className='page-left-element'
             >
-                <Badge dot={areNewMessagesAvailable} >
-                    <RiChatSmile3Fill className='page-left-element-icon'/>
-                </Badge>
+                {
+                    areNewMessagesAvailable
+                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                        <RiChatSmile3Fill className='page-left-element-icon' />
+                    </Badge>
+                    : <Badge>
+                        <RiChatSmile3Fill className='page-left-element-icon' />
+                    </Badge>
+                }
                 <div className='page-left-element-text' style={{ fontWeight: '600' }}>Messages</div>
             </Link>
             <Link
@@ -216,9 +234,15 @@ export function MoreLeftTab() {
                 to='/chats'
                 className='page-left-element'
             >
-                <Badge dot={areNewMessagesAvailable} >
-                    <RiChatSmile3Line className='page-left-element-icon'/>
-                </Badge>
+                {
+                    areNewMessagesAvailable
+                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                        <RiChatSmile3Line className='page-left-element-icon' />
+                    </Badge>
+                    : <Badge>
+                        <RiChatSmile3Line className='page-left-element-icon' />
+                    </Badge>
+                }
                 <div className='page-left-element-text' style={{ fontWeight: '400' }}>Messages</div>
             </Link>
             <Link
