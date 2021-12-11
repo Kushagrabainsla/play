@@ -50,7 +50,7 @@ export function HomeLeftTab() {
             >
                 {
                     areNewMessagesAvailable
-                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                    ? <Badge size='default' count={areNewMessagesAvailable} offset={[-2, 2]} color={'cyan'}>
                         <RiChatSmile3Line className='page-left-element-icon' />
                     </Badge>
                     : <Badge>
@@ -112,7 +112,7 @@ export function ProfileLeftTab() {
             >
                 {
                     areNewMessagesAvailable
-                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                    ? <Badge size='default' count={areNewMessagesAvailable} offset={[-2, 2]} color={'cyan'}>
                         <RiChatSmile3Line className='page-left-element-icon' />
                     </Badge>
                     : <Badge>
@@ -174,7 +174,7 @@ export function ChatsLeftTab() {
             >
                 {
                     areNewMessagesAvailable
-                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                    ? <Badge size='default' count={areNewMessagesAvailable} offset={[-2, 2]} color={'cyan'}>
                         <RiChatSmile3Fill className='page-left-element-icon' />
                     </Badge>
                     : <Badge>
@@ -236,7 +236,7 @@ export function MoreLeftTab() {
             >
                 {
                     areNewMessagesAvailable
-                    ? <Badge size='small' count={areNewMessagesAvailable} offset={[-2, 2]}>
+                    ? <Badge size='default' count={areNewMessagesAvailable} offset={[-2, 2]} color={'cyan'}>
                         <RiChatSmile3Line className='page-left-element-icon' />
                     </Badge>
                     : <Badge>

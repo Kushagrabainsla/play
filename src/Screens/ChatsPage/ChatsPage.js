@@ -131,7 +131,7 @@ function ChatsPage() {
                                 }}
                             >
                                 <div className='chatBubbleLeft'>
-                                    <Badge dot={!chat.lastMessageSeen} offset={[-10, 5]}>
+                                    <Badge dot={!chat.lastMessageSeen} offset={[-10, 5]} color={'cyan'}>
                                         <Avatar
                                             size={55}
                                             src={chat.userProfilePhoto}

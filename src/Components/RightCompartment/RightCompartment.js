@@ -1,5 +1,8 @@
 import React from 'react';
 import './RightCompartment.css';
+import {
+    RiGithubFill,
+} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 function RightCompartment() {
@@ -16,6 +19,13 @@ function RightCompartment() {
                 <div className='layout-right-advertisement-content'>
                     Place your Ad here.
                 </div>
+            </div>
+            <div
+                className='layout-right-github-container'
+                onClick={() => window.open('https://github.com/Kushagrabainsla/play')}
+            >
+                Star me on github
+                <RiGithubFill style={{ marginLeft: 5 }}/>
             </div>
             <div className='layout-right-legals-container'>
                 <Link
