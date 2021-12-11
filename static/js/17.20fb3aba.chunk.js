@@ -1,0 +1,2 @@
+(this.webpackJsonpplay=this.webpackJsonpplay||[]).push([[17],{248:function(t,e,n){},356:function(t,e,n){"use strict";n.r(e);n(0),n(248);var o=n(368),i=n(25),s=n(1);e.default=function(){return Object(s.jsx)("div",{className:"notFoundContainer",children:Object(s.jsx)(o.a,{status:"404",title:"404",subTitle:"Sorry, We could not find the page you were looking for.",extra:Object(s.jsx)(i.b,{to:"/",children:"Go back to Login"})})})}}}]);
+//# sourceMappingURL=17.20fb3aba.chunk.js.map
